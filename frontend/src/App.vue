@@ -1,16 +1,18 @@
 <template>
   <div id="app">
    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-   <header-logged-in></header-logged-in>
+   <tracking></tracking>
   </div>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
+import Tracking from './components/views/Tracking.vue'
 
 export default {
   name: 'app',
   components: {
+    Tracking
   }
 }
 </script>
