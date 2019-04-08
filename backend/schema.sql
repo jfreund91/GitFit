@@ -22,9 +22,13 @@ CREATE TABLE users
 (
 	id			int			identity(1,1),
 	username	varchar(50)	not null,
-	password	varchar(50)	not null,
+	password	nvarchar(50)	not null,
 	salt		varchar(50)	not null,
 	role		varchar(50)	default('user'),
+	age			int			not null,
+	height		int			not null,
+	currentWeight  int		not null,
+	desiredWeight  int		not null,
 
 	constraint pk_users primary key (id)
 );
