@@ -24,6 +24,8 @@ namespace SampleApi.Tests.Controllers
         {
             // Mocks the jwt generator to return "token"
             mockGenerator.Setup(m => m.GenerateToken("user", "User")).Returns("token");
+            mockGenerator.Setup(m => m.GenerateToken("testuser", "User")).Returns("token");
+
 
             // Mocks the password hasher to "compute a hash"
             mockHasher.Setup(m => m.ComputeHash("password")).Returns(new PasswordHash("hashedPassword", "salt"));
@@ -36,7 +38,7 @@ namespace SampleApi.Tests.Controllers
         public void Register_Adds_The_User_And_Returns_A_Token()
         {
             var controller = new AccountController(mockGenerator.Object, mockHasher.Object, mockDao.Object);
-            var model = new AuthenticationModel() { Username = "user", Password = "password" };
+            var model = new AuthenticationModel() { Username = "testuser", Password = "password" };
 
             var result = controller.Register(model) as OkObjectResult;
 
