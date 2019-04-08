@@ -1,17 +1,16 @@
 <template>
-  <div id="app">  
-    <img alt="Vue logo" src="./assets/TEGitFit.jpg" id="te-gitfit-logo">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+   <header-logged-in></header-logged-in>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld
   }
 }
 </script>
@@ -23,7 +22,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0;
 }
 
 body {
