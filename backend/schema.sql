@@ -25,10 +25,6 @@ CREATE TABLE users
 	password	nvarchar(50)	not null,
 	salt		varchar(50)	not null,
 	role		varchar(50)	default('user'),
-	age			int			not null,
-	height		int			not null,
-	currentWeight  int		not null,
-	desiredWeight  int		not null,
 
 	constraint pk_users primary key (id)
 );
