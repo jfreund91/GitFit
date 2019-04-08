@@ -1,16 +1,22 @@
 <template>
   <div id="app">
    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-   <header-logged-in></header-logged-in>
+   <header-logged-out></header-logged-out>
+   <profile />
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+import HeaderLoggedIn from './components/layout/HeaderLoggedIn.vue'
+import HeaderLoggedOut from './components/layout/HeaderLoggedOut.vue'
+import Profile from './components/views/Profile.vue'
 
 export default {
   name: 'app',
   components: {
+    HeaderLoggedIn,
+    HeaderLoggedOut,
+    Profile
   }
 }
 </script>
