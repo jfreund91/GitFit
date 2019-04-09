@@ -1,15 +1,184 @@
 <template>
-    
+    <div>
+        <div class="container circle-container">
+            <div class="circle"><h2 class="circle-header">Calories Consumed:</h2></div>
+            <div class="circle"><h2 class="circle-header">Calorie Budget:</h2></div>
+        </div>
+        <div class="container bars-container">
+            <div>
+                <h1>Marco Nutrients</h1>
+                <h2>Protien</h2>
+                <div class="marco" id="protein"></div>
+                <h2>Carbs</h2>
+                <div class="macro" id="carbs"></div>
+                <h2>Fat</h2>
+                <div class="macro" id="fat"></div>
+            </div>
+            <div>
+                <h1>Water</h1>
+                <div class="glass-container">
+                <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
+                <div class="water-glass">
+                    <div id="water"></div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="meal-list-header">
+                    <h2>Snacks</h2>
+                </div>
+                <div class="container">
+                    <i class="fas fa-plus-circle large-plus"></i>
+                </div>
+            </div>
+            <div>                
+                <div class="meal-list-header">
+                    <h2>Breakfast</h2>
+                </div>
+                <div class="container">
+                    <i class="fas fa-plus-circle large-plus"></i>
+                </div>
+            </div>
+            <div>                
+                <div class="meal-list-header">
+                    <h2>Lunch</h2>
+                </div>
+                <div class="container">
+                    <i class="fas fa-plus-circle large-plus"></i>
+                </div>
+            </div>
+            <div>                
+                <div class="meal-list-header">
+                    <h2>Dinner</h2>
+                </div>
+                <div class="container">
+                    <i class="fas fa-plus-circle large-plus"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
+    name: 'tracking',
+    data() {
+        return {
+            water: 0
+        }
+    },
+    methods: {
+        addWater() {
+            this.water +=1;
+            let waterLevel = document.getElementById('water');
+            if(this.water === 1) {
+                waterLevel.style.height = "12.5%";
+            } else if (this.water === 2) {
+                waterLevel.style.height = "25%";
+            } else if (this.water === 3) {
+                waterLevel.style.height = "37.5%";
+            } else if (this.water === 4) {
+                waterLevel.style.height = "50%";
+            } else if (this.water === 5) {
+                waterLevel.style.height = "62.5%";
+            } else if (this.water === 6) {
+                waterLevel.style.height = "75%";
+            } else if (this.water === 7) {
+                waterLevel.style.height = "87.5%";
+            }
+            else if (this.water === 8) {
+                waterLevel.style.height = "100%";
+            }
+        }
+    }
 
 }
 </script>
 
 <style>
 
+    #water {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 210px;
+        height: 0%;
+        background-color: lightskyblue;
+    }
+
+    .water-glass {
+        height: 350px;
+        width: 250px;
+        background-color: whitesmoke;
+        position: relative;
+    }
+
+    .meal-list-header {
+        background-color: #1a174e;
+        color: white;
+        width: 100%;
+        padding: 10px 0px 10px 0px;
+        text-align: left;
+    }
+
+    #fat {
+        height: 30px;
+        width: 50%;
+        background-color: green;
+    }
+
+    #protein {
+        height: 30px;
+        width: 70%;
+        background-color: red;
+    }
+
+    #carbs {
+        height: 30px;
+        width: 90%;
+        background-color: blue;
+    }
+
+    .meal-list-header h2 {
+        margin-left: 100px;
+    }
+
+    .bars-container, .glass-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .circle-container {
+        display: flex;
+        justify-content:space-evenly;
+    }
+
+
+    .large-plus {
+        font-size: 50px;
+        text-align: left;
+    }
+    .circle-header {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       margin: 0px;
+       transform: translate(-50%, -50%);
+    }
+
+    .circle {
+        width: 250px;
+        height: 250px;
+        background-color:royalblue;
+        border-radius: 50%;
+        position: relative;
+        color: white;
+
+    }
     .search-results ul {
         color: black;
         text-align: left;
