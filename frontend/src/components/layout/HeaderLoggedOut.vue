@@ -1,12 +1,13 @@
 <template>
     <header>
         <div class="img-container">
-        <img src="../../assets/logo.png">
+        <router-link to="/"><img src="../../assets/logo.png"></router-link>
         </div>
         <nav>
                 <ul id="main-nav">
                      <li><router-link to="/">Home</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
+                     <li><router-link to="/search">Search</router-link></li>
                     <li><router-link to="/login">Register/Login</router-link></li>
                 </ul>
         </nav>
