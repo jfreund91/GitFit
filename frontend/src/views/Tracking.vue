@@ -1,6 +1,5 @@
 <template>
 <div>
-    <header-logged-out></header-logged-out>
     <div class="container">
         <input class="search" type="text">
         <input class="search-btn" type ="submit" value="Search">
@@ -16,12 +15,11 @@
     </div>
 </template>
 <script>
-import HeaderLoggedOut from '../layout/HeaderLoggedOut.vue'
 
 export default {
-  name: 'tracking',
+  name: '',
   components: {
-      HeaderLoggedOut
+      
   }
 }
 </script>

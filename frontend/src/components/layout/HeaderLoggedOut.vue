@@ -4,8 +4,9 @@
         <img src="../../assets/logo.png">
         </div>
         <nav>
-                <ul>
-                    <li>Register/Login</li>
+                <ul id="main-nav">
+                    <li><router-link to="/login">Register/Login</router-link></li>
+                    <li><router-link to="/profile">Home</router-link></li>
                 </ul>
         </nav>
     </header>
@@ -15,7 +16,7 @@
         name: "header-logged-out"
     }
 </script>
-<style>
+<style >
     header {
         display: flex;
         width: 100%;
@@ -29,10 +30,11 @@
         padding: 20px;
     }
 
-    ul {
+    #main-nav {
         padding-left: 0;
         list-style: none;
         color: white;
+        display: flex;
     }
 
     img { 
