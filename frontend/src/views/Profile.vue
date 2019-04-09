@@ -70,8 +70,12 @@ export default {
 </script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css?family=Kodchasan');
+
 #profile {
     padding: 2%;
+    font-family: 'Kodchasan', sans-serif;
 }
 
 .form-input {
@@ -98,10 +102,9 @@ span.label {
 
 h1 {
     /* color: #777; */
-
     color: whitesmoke;
-  text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
-  font-size: 40px;
+    text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
+    font-size: 40px;
 }
 
 button {
