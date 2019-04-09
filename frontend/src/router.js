@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import Tracking from "./views/Tracking.vue";
+import Search from "./views/Search.vue";
 //import auth from "./shared/auth";
 
 Vue.use(Router);
@@ -42,6 +43,14 @@ const router = new Router({
       component: Tracking,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: Search,
+      meta: {
+        requiesAuth: true
       }
     }
   ]
