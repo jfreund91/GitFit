@@ -7,16 +7,10 @@
 </template>
 
 <script>
-import HeaderLoggedIn from './components/layout/HeaderLoggedIn.vue'
-import HeaderLoggedOut from './components/layout/HeaderLoggedOut.vue'
-import Profile from './components/views/Profile.vue'
 
 export default {
   name: 'app',
   components: {
-    HeaderLoggedIn,
-    HeaderLoggedOut,
-    Profile
   }
 }
 </script>
