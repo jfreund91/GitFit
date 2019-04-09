@@ -1,6 +1,6 @@
 <template>
     <div id="profile">
-        <h1>Profile</h1>
+        <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
             <div class="form-input">
                 <span class="label">Age:</span>
@@ -105,9 +105,15 @@ h1 {
     color: whitesmoke;
     text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
     font-size: 40px;
+    letter-spacing: 2px;
 }
 
 button {
     margin-top: 10px;
 }
+
+.h1-img {
+    color: rgb(216, 48, 48);
+}
+
 </style>
