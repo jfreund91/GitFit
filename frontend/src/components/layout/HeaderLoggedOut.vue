@@ -5,8 +5,8 @@
         </div>
         <nav>
                 <ul id="main-nav">
+                     <li><router-link to="/">Home</router-link></li>
                     <li><router-link to="/login">Register/Login</router-link></li>
-                    <li><router-link to="/profile">Home</router-link></li>
                 </ul>
         </nav>
     </header>
@@ -35,6 +35,12 @@
         list-style: none;
         color: white;
         display: flex;
+    }
+
+    #main-nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 30px;
     }
 
     img { 
