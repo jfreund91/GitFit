@@ -16,11 +16,6 @@
 export default {
   name: '',
   components: {
-<<<<<<< HEAD:frontend/src/views/Tracking.vue
-      
-  }
-=======
-      HeaderLoggedOut
   },
  data() {
      return {
@@ -41,7 +36,6 @@ export default {
              });
      }
  }
->>>>>>> 1302c82bfeb9908b1f671402535281410deeef72:frontend/src/components/views/Tracking.vue
 }
 </script>
 <style>
