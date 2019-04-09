@@ -1,6 +1,6 @@
 <template>
     <div id="profile">
-        <h3>Profile</h3>
+        <h1>Profile</h1>
         <div class="form">
             <div class="form-input">
                 <span class="label">Age:</span>
@@ -17,10 +17,10 @@
             <div class="form-input">
                 <span class="label">Height:</span>
                 <input type="text" v-model="profile.height.feet" placeholder="ft">
-                <input type="text" v-model="profile.height.inches" placeholder="inches">
+                <input type="text" v-model="profile.height.inches" placeholder="inches" id="inches">
             </div>
             <div class="form-input">
-                <span class="label">Activity Level:</span>
+                <span class="label" id="activity-level">Activity Level:</span>
                 <input type="radio" v-model="profile.activityLevel" value="0">Sedentary
                 <input type="radio" v-model="profile.activityLevel" value="1">Lightly Active
                 <input type="radio" v-model="profile.activityLevel" value="2">Moderately Active
@@ -71,7 +71,40 @@ export default {
 
 <style>
 #profile {
-    padding: 7%;
+    padding: 2%;
 }
 
+.form-input {
+    margin: 15px 0px;
+}
+
+.form-input .label {
+    margin-right: 8px;
+}
+
+#inches {
+    margin-left: 5px; 
+}
+
+#activity-level {
+    margin-right: 10px;
+}
+
+span.label {
+    text-transform: uppercase;
+    font-weight: 530;
+    color: #010913;
+}
+
+h1 {
+    /* color: #777; */
+
+    color: whitesmoke;
+  text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
+  font-size: 40px;
+}
+
+button {
+    margin-top: 10px;
+}
 </style>
