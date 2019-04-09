@@ -32,9 +32,6 @@ export default {
 
 body {
   margin: 0;
-}
-
-body {
   background-color:#ececeb;
 }
 </style>
