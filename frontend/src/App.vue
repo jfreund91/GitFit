@@ -2,26 +2,22 @@
   <div id="app">
    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
    <header-logged-out></header-logged-out>
-   <!--<profile></profile>
-   <tracking></tracking> -->
-   <router-view/>
+   <router-view />
+   <footer-bar id="footer-section"></footer-bar>
   </div>
 </template>
 
 <script>
 import HeaderLoggedOut from '@/components/layout/HeaderLoggedOut.vue'
 // import HeaderLoggedIn from '@/components/layout/HeaderLoggedIn.vue'
-// import Profile from '@/views/Profile.vue'
-// //import HelloWorld from './components/HelloWorld.vue'
-// import Tracking from './views/Tracking.vue'
+import FooterBar from '@/components/layout/FooterBar.vue'
 
 export default {
   name: 'app',
   components: {
     HeaderLoggedOut,
+    FooterBar
     // HeaderLoggedIn,
-    // Profile,  
-    // Tracking
   }
 }
 </script>
@@ -37,6 +33,12 @@ export default {
 body {
   margin: 0;
   background-color:#ececeb;
+}
+
+#footer-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 </style>

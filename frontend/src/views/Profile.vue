@@ -53,7 +53,7 @@ export default {
         saveProfile() {
             // Add logic to save profile to an array or a generic user on the database
 
-            // Redirect the user to the main page
+            // Redirect the user to the tracking page
 
             // this.reviewID === 0 ? this.createReview() : this.updateReview();
         },
