@@ -14,11 +14,12 @@
             <h2>{{detailItem.name}}</h2>
             <ul>
                 <h3>Nutritional Value per Serving</h3>
-                <li>{{detailItem.kcal * detailItem.servingRate}} Calories</li>
-                <li>{{detailItem.fat  * detailItem.servingRate}}g Fat</li>
-                <li>{{detailItem.carbs * detailItem.servingRate}}g Carbs</li>
-                <li>{{detailItem.protein * detailItem.servingRate}}g Protein</li>
+                <li>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</li>
+                <li>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</li>
+                <li>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</li>
+                <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
             </ul>
+            <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
         </div>
     </div>
     </div>
