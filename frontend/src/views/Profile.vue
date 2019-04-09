@@ -4,6 +4,8 @@
         <div class="form">
             <div class="form-input">
                 <span class="label">Age:</span>
+                <!-- <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
+                </select> -->
                 <input type="text" v-model="profile.age" placeholder="Enter Your Age">
             </div>
             <div class="form-input">
@@ -28,7 +30,6 @@
                 <!-- <span>value: {{profile.activityLevel}}</span> -->
             </div>
             <button :disabled="!isValidForm" v-on:click="saveProfile">GitFit!</button>
-
         </div>
     </div>
 </template>
@@ -54,8 +55,20 @@ export default {
             // Add logic to save profile to an array or a generic user on the database
 
             // Redirect the user to the tracking page
+            this.$router.push('Tracking')
 
             // this.reviewID === 0 ? this.createReview() : this.updateReview();
+        },
+
+        // Populate a numbers drop-down
+        populateSelect(target, min, max){
+            let select, i, option;
+            select = document.getElementById(target);
+            for ( i = min; i <= max; i += 1 ) {
+                option = document.createElement('option');
+                option.value = option.text = i;
+                select.add(option);
+            }
         },
     },
     // Check that all of the profile form fields are filled out
@@ -67,6 +80,7 @@ export default {
     },
   },
 }
+
 </script>
 
 <style>
@@ -76,6 +90,7 @@ export default {
 #profile {
     padding: 2%;
     font-family: 'Kodchasan', sans-serif;
+    text-align: center;
 }
 
 .form-input {
