@@ -83,7 +83,7 @@ export default {
 }
 
 #inches {
-    margin-left: 5px;
+    margin-left: 5px; 
 }
 
 #activity-level {
