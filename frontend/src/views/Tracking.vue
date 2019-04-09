@@ -1,14 +1,11 @@
 <template>
 <div>
     <div class="container">
-        <input class="search" type="text">
-        <input class="search-btn" type ="submit" value="Search">
+        <input class="search" type="text" name="queryString" v-model="queryString">
+        <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
         <div class="search-results">
             <ul>
-                <li>Apple<span><i class="fas fa-plus-circle"></i></span></li>
-                <li>Apple Sauce<span><i class="fas fa-plus-circle"></i></span></li>
-                <li>Apple Juice<span><i class="fas fa-plus-circle"></i></span></li>
-                <li>Apple Butter<span><i class="fas fa-plus-circle"></i></span></li>
+                <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}<span><i class="fas fa-plus-circle"></i></span></li>
             </ul>
         </div>
     </div>
@@ -19,8 +16,32 @@
 export default {
   name: '',
   components: {
+<<<<<<< HEAD:frontend/src/views/Tracking.vue
       
   }
+=======
+      HeaderLoggedOut
+  },
+ data() {
+     return {
+         queryString: "",
+         searchResults : [],
+     }
+ },
+ methods: {
+     searchFoods(queryString) {
+         fetch(`https://api.nal.usda.gov/ndb/search/?format=json&ds=Standard%20Reference&q=${this.queryString}&max=25&offset=0&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`,{
+             method: 'GET',
+             headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+       }}).then(response => response.json()).then(json => {
+             console.log(json.list.item);
+             this.searchResults = json.list.item;
+             });
+     }
+ }
+>>>>>>> 1302c82bfeb9908b1f671402535281410deeef72:frontend/src/components/views/Tracking.vue
 }
 </script>
 <style>
