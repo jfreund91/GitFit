@@ -13,12 +13,13 @@
         <div class = "detail-food-view" v-if="! showSearch">
             <h2>{{detailItem.name}}</h2>
             <ul>
-                <h3>Nutritional Value per 100g</h3>
-                <li>{{detailItem.kcal}} Calories</li>
-                <li>{{detailItem.fat}}g Fat</li>
-                <li>{{detailItem.carbs}}g Carbs</li>
-                <li>{{detailItem.protein}}g Protein</li>
+                <h3>Nutritional Value per Serving</h3>
+                <li>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</li>
+                <li>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</li>
+                <li>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</li>
+                <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
             </ul>
+            <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
         </div>
     </div>
 </div>
@@ -38,6 +39,7 @@ export default {
              fat: 0,
              carbs: 0,
              protein: 0,
+             servingRate: Number
          }
      }
  },
@@ -66,6 +68,7 @@ export default {
                  this.detailItem.protein = json.report.food.nutrients[2].value;
                  this.detailItem.fat = json.report.food.nutrients[3].value;
                  this.detailItem.carbs = json.report.food.nutrients[4].value;
+                 this.detailItem.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
                  this.showSearch = false;
              });
         }
