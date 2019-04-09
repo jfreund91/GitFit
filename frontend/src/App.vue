@@ -35,6 +35,6 @@ body {
 }
 
 body {
-  background-color:floralwhite;
+  background-color:#ececeb;
 }
 </style>
