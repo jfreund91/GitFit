@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
    <header-logged-out></header-logged-out>
    <router-view />
-   <footer-bar id="footer-section"></footer-bar>
+   <footer-bar></footer-bar>
   </div>
 </template>
 
@@ -27,17 +26,14 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 body {
   margin: 0;
   background-color:#ececeb;
-}
-
-#footer-section {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 
 </style>

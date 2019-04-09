@@ -90,6 +90,7 @@ export default {
 #profile {
     padding: 2%;
     font-family: 'Kodchasan', sans-serif;
+    text-align: center;
 }
 
 .form-input {
