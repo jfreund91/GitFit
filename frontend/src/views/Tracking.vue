@@ -47,7 +47,7 @@ export default {
         display: flex;
         justify-content: space-between;
     }
-
+ 
     .search-results {
         margin-top: 50px;
     }

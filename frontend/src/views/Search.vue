@@ -6,17 +6,18 @@
         <div v-if="showSearch" class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}
-                    <span @click="viewDetail(key)"><i class="fas fa-plus-circle"></i></span>
-                    </li>
+                    <span @click="viewDetail(item.ndbno)"><i class="fas fa-plus-circle"></i></span>
+                </li>
             </ul>
         </div>
         <div class = "detail-food-view" v-if="! showSearch">
-            <h3>{{detailItem.name}}</h3>
+            <h2>{{detailItem.name}}</h2>
             <ul>
-                <li>{{detailItem.kcal}}</li>
-                <li>{{detailItem.fat}}</li>
-                <li>{{detailItem.carbs}}</li>
-                <li>{{detailItem.protein}}</li>
+                <h3>Nutritional Value per 100g</h3>
+                <li>{{detailItem.kcal}} Calories</li>
+                <li>{{detailItem.fat}}g Fat</li>
+                <li>{{detailItem.carbs}}g Carbs</li>
+                <li>{{detailItem.protein}}g Protein</li>
             </ul>
         </div>
     </div>
@@ -50,10 +51,11 @@ export default {
        }}).then(response => response.json()).then(json => {
              console.log(json.list.item);
              this.searchResults = json.list.item;
+             this.showSearch = true;
              });
      },
-     viewDetail(key) {
-         fetch(`https://api.nal.usda.gov/ndb/reports/?ndbno=${key}&type=b&format=JSON&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`, {
+     viewDetail(itemDbNo) {
+         fetch(`https://api.nal.usda.gov/ndb/reports/?ndbno=${itemDbNo}&type=b&format=JSON&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`, {
              method: 'GET',
              headers: {
                  'Content-Type': 'application/json',
