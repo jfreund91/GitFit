@@ -9,8 +9,8 @@
 </template>
 <script>
 </script>
-<style scoped>
-body {
+<style>
+#landing {
     text-align: center;
 }
 #landing-menu h2 a {
@@ -26,7 +26,7 @@ body {
 }
 
 #landing {
-  background-image: url("C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/assets/food.jpg") ;
+  background-image: url("../assets/food.jpg") ;
   text-align: center;
   height: 200px;
 }
