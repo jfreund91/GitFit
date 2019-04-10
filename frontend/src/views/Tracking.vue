@@ -71,11 +71,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import persistentState from 'vue-persistent-state'
-
-Vue.use(persistentState)
-
 export default {
     name: 'tracking',
     data() {
