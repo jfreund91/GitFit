@@ -22,6 +22,13 @@
                 <input type="text" v-model="profile.height.inches" placeholder="inches" id="inches">
             </div>
             <div class="form-input">
+                <span class="label">Gender:</span>
+                <select name="gender" id="gender" v-model="profile.gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-input">
                 <span class="label" id="activity-level">Activity Level:</span>
                 <input type="radio" v-model="profile.activityLevel" value="0">Sedentary
                 <input type="radio" v-model="profile.activityLevel" value="1">Lightly Active
@@ -47,6 +54,7 @@ let initialState = {
         feet: '',
         inches: ''
         },
+        gender: '',
         activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
     }
 }
@@ -85,7 +93,8 @@ export default {
     isValidForm() {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.height.feet != '' && this.profile.height.inches != '' 
-       && (this.profile.activityLevel === '0' || this.profile.activityLevel === '1' || this.profile.activityLevel === '2' || this.profile.activityLevel === '3');
+       && (this.profile.activityLevel === '0' || this.profile.activityLevel === '1' || this.profile.activityLevel === '2' || this.profile.activityLevel === '3')
+       && this.profile.gender != '';
     },
   },
 }
