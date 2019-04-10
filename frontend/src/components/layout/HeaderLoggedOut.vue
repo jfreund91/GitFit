@@ -46,6 +46,11 @@
         margin-left: 30px;
     }
 
+    #main-nav a:hover {
+        color: #c89868;
+        background-color: black;
+    }
+
     img { 
         width: 100%;
         height: auto;
