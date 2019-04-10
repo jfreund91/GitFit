@@ -18,7 +18,7 @@
         <input
           v-model.trim="loginForm.password"
           type="password"
-          placeholder="password"
+          placeholder="Password"
           id="password"
         />
 
@@ -47,7 +47,7 @@
         <input
           v-model.trim="signupForm.password"
           type="password"
-          placeholder="min 6 characters"
+          placeholder="Min 6 characters"
           id="password2"
         />
 
@@ -55,7 +55,7 @@
         <input
           v-model.trim="signupForm.confirmPassword"
           type="password"
-          placeholder="confirm password"
+          placeholder="Confirm password"
           id="password3"
         />
 
@@ -273,18 +273,17 @@ form button {
   #content,
   #login-signup {
     flex: 1;
-    padding: 25vh 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
   }
 
   #login-signup.showSignupForm {
-    padding-top: 15vh;
+    padding-top: 1rem;
   }
 }
 
 #register-header {
   text-align: center;
 }
-
 
 </style>
 
