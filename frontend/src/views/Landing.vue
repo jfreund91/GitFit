@@ -26,7 +26,7 @@
 }
 
 #landing {
-  background-image: url("C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/assets/food.jpg") ;
+  background-image: url("../assets/food.jpg") ;
   text-align: center;
   height: 200px;
 }
