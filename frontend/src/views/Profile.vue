@@ -30,10 +30,10 @@
             </div>
             <div class="form-input">
                 <span class="label" id="activity-level">Activity Level:</span>
-                <input type="radio" v-model="profile.activityLevel" value="0">Sedentary
-                <input type="radio" v-model="profile.activityLevel" value="1">Lightly Active
-                <input type="radio" v-model="profile.activityLevel" value="2">Moderately Active
-                <input type="radio" v-model="profile.activityLevel" value="3">An Exercise Beast
+                <input type="radio" v-model="profile.activityLevel" value="1.2">Sedentary
+                <input type="radio" v-model="profile.activityLevel" value="1.375">Lightly Active
+                <input type="radio" v-model="profile.activityLevel" value="1.55">Moderately Active
+                <input type="radio" v-model="profile.activityLevel" value="1.9">An Exercise Beast
                 <!-- <span>value: {{profile.activityLevel}}</span> -->
             </div>
             <button :disabled="!isValidForm" v-on:click="saveProfile">GitFit!</button>
@@ -79,7 +79,7 @@ export default {
         },
 
         // Populate a numbers drop-down
-        populateSelect(target, min, max){
+        populateSelect(target, min, max) {
             let select, i, option;
             select = document.getElementById(target);
             for ( i = min; i <= max; i += 1 ) {
@@ -94,7 +94,7 @@ export default {
     isValidForm() {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.height.feet != '' && this.profile.height.inches != '' 
-       && (this.profile.activityLevel === '0' || this.profile.activityLevel === '1' || this.profile.activityLevel === '2' || this.profile.activityLevel === '3')
+       && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '';
     },
   },

@@ -44,7 +44,11 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
-                        <li v-for="snack in snacks" :key="snack.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{snack.name}}</li>
+                        <li v-for="item in snacks" :key="item.id">
+                            <span class="remove-food">
+                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                            </span>{{item.name}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +59,11 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
-                        <li v-for="breakfast in breakfasts" :key="breakfast.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{breakfast.name}}</li>
+                        <li v-for="item in breakfasts" :key="item.id">
+                            <span class="remove-food">
+                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                            </span>{{item.name}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -66,7 +74,11 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
-                        <li class = "meal-items" v-for="lunch in lunches" :key="lunch.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{lunch.name}}</li>
+                        <li class = "meal-items" v-for="item in lunches" :key="item.id">
+                            <span class="remove-food">
+                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                            </span>{{item.name}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -77,7 +89,11 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
-                        <li v-for="dinner in dinners" :key="dinner.name">{{dinner.name}}<span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span></li>
+                        <li v-for="item in dinners" :key="item.id">
+                            <span class="remove-food">
+                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                </span>{{item.name}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -121,17 +137,27 @@ export default {
         },
         removeLastEntry(){
         this.profile.eatenToday.pop();
+        },
+        removeFood(foodId) {
+            let output = [];
+            output = this.profile.eatenToday.filter((item)=> {
+                return item.id !== foodId;
+            });
+            this.profile.eatenToday = output;
         }
     },
     computed: {
     calorieBudget () {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age))*1.2   
+            (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age)
+            )* this.profile.activityLevel
+            
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age))*1.2 
+            (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age)
+            )* this.profile.activityLevel
         }
       
     },
