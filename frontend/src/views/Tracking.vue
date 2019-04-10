@@ -243,5 +243,6 @@ export default {
 #profile-stats {
     border: solid 3px black;
     padding: 10px;
+    background-color: white;
 }
 </style>
