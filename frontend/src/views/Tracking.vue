@@ -17,12 +17,11 @@
             <div>
                 <h1>Macro Nutrients</h1>
                 <h2>Protein</h2>
-                <div class="macro" id="protein"></div>
-                <!-- <progress-bar:value="progress1"/> -->
+                <div class="macro" id="protein"><strong>{{Math.trunc(this.proteinConsumed)}} g</strong></div>
                 <h2>Carbs</h2>
-                <div class="macro" id="carbs"></div>
+                <div class="macro" id="carbs"><strong>{{Math.trunc(this.carbsConsumed)}} g</strong></div>
                 <h2>Fat</h2>
-                <div class="macro" id="fat"></div>
+                <div class="macro" id="fat"><strong>{{Math.trunc(this.fatConsumed)}} g</strong></div>
             </div>
             <div>
                 <h1>Water</h1>
@@ -42,6 +41,9 @@
                 </div>
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
+                    <ul>
+                        <li v-for="snack in snacks" :key="snack.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{snack.name}}</li>
+                    </ul>
                 </div>
             </div>
             <div>                
@@ -50,6 +52,9 @@
                 </div>
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
+                    <ul>
+                        <li v-for="breakfast in breakfasts" :key="breakfast.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{breakfast.name}}</li>
+                    </ul>
                 </div>
             </div>
             <div>                
@@ -58,6 +63,9 @@
                 </div>
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
+                    <ul>
+                        <li class = "meal-items" v-for="lunch in lunches" :key="lunch.name"><span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span>{{lunch.name}}</li>
+                    </ul>
                 </div>
             </div>
             <div>                
@@ -65,8 +73,10 @@
                     <h2>Dinner</h2>
                 </div>
                 <div class="container">
-
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
+                    <ul>
+                        <li v-for="dinner in dinners" :key="dinner.name">{{dinner.name}}<span class="remove-food"><i class="fas fa-minus-circle large-minus"></i></span></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -81,9 +91,7 @@ export default {
     // components: { ProgressBar},
     data() {
         return {
-            // progress1: 0,
-            water: 0
-            
+            water: 0,
         }
     },
     methods: {
@@ -156,11 +164,40 @@ export default {
             })
         }
         return totalProtein;
+    },
+    snacks() {
+        let snacks = [];
+        snacks = this.profile.eatenToday.filter((snack) => {
+            return snack.meal === 'Snack'
+        });
+        return snacks;
+    },
+    breakfasts () {
+        let breakfasts = [];
+        breakfasts = this.profile.eatenToday.filter((item) => {
+            return item.meal === 'Breakfast'
+        });
+        return breakfasts;
+    },
+    lunches () {
+        let lunches = [];
+        lunches = this.profile.eatenToday.filter((item) => {
+            return item.meal === 'Lunch'
+        });
+        return lunches;
+    },
+    dinners() {
+        let dinners = [];
+        dinners = this.profile.eatenToday.filter((item)=> {
+            return item.meal === 'Dinner'
+        });
+        return dinners;
+    }
     }
 
-    }
 
 }
+
 </script>
 
 <style>
@@ -222,6 +259,9 @@ export default {
         justify-content:space-evenly;
     }
 
+    .remove-food {
+        padding-right: 50px;
+    }
 
     .large-plus {
         font-size: 50px;
@@ -248,7 +288,9 @@ export default {
         color: black;
         text-align: left;
     }
-
+    .large-minus {
+        color: red;
+    }
     i {
         color: green;
         font-size: 30px;
@@ -298,5 +340,12 @@ export default {
 
 #tracking-header {
     text-align: center;
+}
+.macro {
+    color: white;
+}
+li {
+    list-style: none;
+    padding-bottom: 25px;
 }
 </style>
