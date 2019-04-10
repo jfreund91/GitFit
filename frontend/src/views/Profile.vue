@@ -55,7 +55,8 @@ let initialState = {
         inches: ''
         },
         gender: '',
-        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
+        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
+        eatenToday: []
     }
 }
  

@@ -20,6 +20,7 @@
                 <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
             </ul>
             <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
+            <button @click="addFood()">I ate this!</button>
         </div>
     </div>
 </div>
@@ -71,6 +72,14 @@ export default {
                  this.detailItem.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
                  this.showSearch = false;
              });
+        },
+        addFood() {
+            this.profile.eatenToday.push(
+                {
+                    name: this.detailItem.name,
+                    kcal: this.detailItem.kcal * this.detailItem.servingRate
+                }
+            );
         }
     }
 }
