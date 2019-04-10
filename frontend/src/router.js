@@ -31,7 +31,7 @@ const router = new Router({
       }
     },
     {
-      path: "/",
+      path: "/profile",
       name: "profile",
       component: Profile,
       meta: {
@@ -55,7 +55,7 @@ const router = new Router({
       }
     },
     {
-      path: "/landing",
+      path: "/",
       name: "landing",
       component: Landing,
       meta: {

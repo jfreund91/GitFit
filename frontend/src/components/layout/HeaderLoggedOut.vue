@@ -5,8 +5,8 @@
         </div>
         <nav>
                 <ul id="main-nav">
-                     <li><router-link to="/landing">Home</router-link></li>
-                     <li><router-link to="/">Profile</router-link></li>
+                     <li><router-link to="/">Home</router-link></li>
+                     <li><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
                      <li><router-link to="/search">Search</router-link></li>
                      <li><router-link to="/login">Register/Login</router-link></li>
