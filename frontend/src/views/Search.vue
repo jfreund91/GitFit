@@ -3,8 +3,8 @@
     <h1 id="search-header">Search</h1>
     <div class="container">
         <div id="search-bar">
-            <input class="search" type="text" name="queryString" v-model="queryString">
-            <input class="search-btn" type ="submit" value="Search" @click="searchFoods()" @keyup.enter="searchFoods()">
+            <input class="search" type="text" name="queryString" v-model="queryString" @keyup.enter="searchFoods()">
+            <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
         </div>
         <div v-if="showSearch" class="search-results">
             <ul>
@@ -95,6 +95,7 @@ export default {
         addFood() {
             this.profile.eatenToday.push(
                 {
+                    id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
                     kcal: this.detailItem.kcal * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
