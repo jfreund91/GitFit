@@ -12,6 +12,8 @@
 <script>
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+
 #landing {
     text-align: center;
 }
@@ -24,7 +26,7 @@
 
 .links a:hover {
     text-transform: uppercase;
-    color: orange;
+    color: #e1520e;
 }
 
 #landing-menu h2 {
@@ -34,7 +36,8 @@
 
 .links {
     text-align: center;
-
+    font-family: 'Fascinate Inline', cursive;
+    font-size: 30px;
 }
 
 .links a {
