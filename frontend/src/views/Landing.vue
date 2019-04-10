@@ -12,6 +12,8 @@
 <script>
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+
 #landing {
     text-align: center;
 }
@@ -34,7 +36,8 @@
 
 .links {
     text-align: center;
-
+    font-family: 'Fascinate Inline', cursive;
+    font-size: 30px;
 }
 
 .links a {
