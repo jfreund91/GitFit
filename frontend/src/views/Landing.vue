@@ -1,10 +1,12 @@
 <template>
+    <div>
     <div id="landing">
-        <h1>Welcome</h1>
         <div id="landing-menu">
-            <h2><router-link to="/login">Login</router-link></h2>
-            <h2><router-link to="/profile">Continue as Guest</router-link></h2>
+            <h1>Welcome</h1>
         </div>
+    </div>
+    <h2 class="links"><router-link to="/login">Login</router-link></h2>
+    <h2 class="links"><router-link to="/profile">Continue as Guest</router-link></h2>
     </div>
 </template>
 <script>
@@ -20,15 +22,43 @@
     font-size: 1.5rem;
 }
 
-#landing-menu h2 a:hover {
+.links a:hover {
     text-transform: uppercase;
     color: orange;
 }
 
+#landing-menu h2 {
+    font-size: 50px;
+    margin: 0px;
+}
+
+.links {
+    text-align: center;
+
+}
+
+.links a {
+    text-decoration: none;
+    color: #1a174e;
+}
+
+#landing-menu h1 {
+    font-size: 75px;
+    margin: 0px;
+}
+
+#landing-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #landing {
-  background-image: url("C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/assets/food.jpg") ;
+  background-image: url("../assets/food.jpg") ;
   text-align: center;
-  height: 200px;
+  height: 250px;
+  background-size: cover;
 }
 
 #landing-menu {
