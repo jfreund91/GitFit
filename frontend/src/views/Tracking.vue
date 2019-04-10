@@ -1,5 +1,6 @@
 <template>
     <div id="tracking">
+        <h1 id="search-header">Track Calories</h1>
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
