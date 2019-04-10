@@ -135,4 +135,8 @@ select {
     font-size: 16px;
 }
 
+.form {
+    margin-bottom: 30px;
+}
+
 </style>

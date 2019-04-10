@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="tracking">
         <div class="container circle-container">
             <div class="circle"><h2 class="circle-header">Calories Consumed:</h2></div>
             <div class="circle"><h2 class="circle-header">Calorie Budget:</h2></div>
@@ -221,4 +221,7 @@ export default {
         margin-top: 50px;
     }
 
+#tracking {
+    padding-bottom: 60px;
+}
 </style>

@@ -97,8 +97,9 @@ export default {
     }
 
     .container {
-        margin: 100px auto;
+        margin: 100px auto 0px auto;
         width: 80%;
+        padding-bottom: 40px;
     }
 
     .search {
