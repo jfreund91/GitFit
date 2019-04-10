@@ -120,6 +120,10 @@ export default {
         list-style: none;
     }
 
+    .detail-food-view ul {
+        padding-left: 0px;
+    }
+
     input {
         padding: 10px;
     }
