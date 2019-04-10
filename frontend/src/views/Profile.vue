@@ -131,4 +131,8 @@ button {
     color: rgb(216, 48, 48);
 }
 
+select {
+    font-size: 16px;
+}
+
 </style>
