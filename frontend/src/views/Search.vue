@@ -30,6 +30,13 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
+            <label><strong> Meal: </strong></label>
+            <select v-model="meal">
+                <option value="Snack">Snack</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+            </select>
             <button @click="addFood()">I ate this!</button>
            
         </div>
@@ -45,6 +52,7 @@ export default {
          showSearch: true,
          queryString: "",
          searchResults : [],
+         meal: '',
          detailItem: {
              name: "",
              kcal: 0,
@@ -91,7 +99,8 @@ export default {
                     kcal: this.detailItem.kcal * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     carbs: this.detailItem.carbs * this.detailItem.servingRate * this.detailItem.servingsConsumed,
-                    protein: this.detailItem.protein * this.detailItem.servingRate * this.detailItem.servingsConsumed
+                    protein: this.detailItem.protein * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    meal: this.meal
                 }
                 
             );
