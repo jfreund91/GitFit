@@ -48,7 +48,6 @@
 
     #main-nav a:hover {
         color: #c89868;
-        background-color: black;
     }
 
     img { 
