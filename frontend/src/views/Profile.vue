@@ -35,19 +35,39 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import persistentState from 'vue-persistent-state'
+ 
+let initialState = {
+    profile: {
+        age: '',
+        currentWeight: '',
+        goalWeight: '',
+        height: {
+        feet: '',
+        inches: ''
+        },
+        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
+    }
+}
+ 
+Vue.use(persistentState, initialState)
+// InitialState is injected as data in all vue instances
+// Any changes to state will be stored in localStorage
+
 export default {
     data() {
         return {
-            profile: {
-                age: '',
-                currentWeight: '',
-                goalWeight: '',
-                height: {
-                    feet: '',
-                    inches: ''
-                },
-                activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
-            }
+            // profile: {
+            //     age: '',
+            //     currentWeight: '',
+            //     goalWeight: '',
+            //     height: {
+            //         feet: '',
+            //         inches: ''
+            //     },
+            //     activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
+            // }
         }
     },
     methods: {
