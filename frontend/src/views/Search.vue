@@ -1,8 +1,11 @@
 <template>
 <div>
+    <h1 id="search-header">Search</h1>
     <div class="container">
-        <input class="search" type="text" name="queryString" v-model="queryString">
-        <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
+        <div id="search-bar">
+            <input class="search" type="text" name="queryString" v-model="queryString">
+            <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
+        </div>
         <div v-if="showSearch" class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}
@@ -111,7 +114,7 @@ export default {
     }
 
     .container {
-        margin: 100px auto 0px auto;
+        margin: 50px auto 0px auto;
         width: 80%;
         padding-bottom: 40px;
     }
@@ -133,5 +136,13 @@ export default {
     .search-results {
         margin-top: 50px;
     }
+
+#search-header {
+    text-align: center;
+    padding-top: 30px;
+}
+#search-bar {
+    text-align: center;
+}
 
 </style>
