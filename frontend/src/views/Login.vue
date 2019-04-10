@@ -5,6 +5,7 @@
             <form v-if="showLoginForm" v-on:submit.prevent="login">
         
             <error-message v-bind:error="error"></error-message>
+            <h1>Login</h1>
         <label for="email">Username</label>
         <input
           v-model.trim="loginForm.username"
@@ -30,7 +31,7 @@
       </form>
 
       <form v-else v-on:submit.prevent="signup">
-        <h1>Get Started</h1>
+        <h1>Git Started</h1>
 
         <error-message :error="error"></error-message>
 
@@ -278,6 +279,10 @@ form button {
   #login-signup.showSignupForm {
     padding-top: 15vh;
   }
+}
+
+#register-header {
+  text-align: center;
 }
 
 

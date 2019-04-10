@@ -1,6 +1,6 @@
 <template>
     <div id="tracking">
-        <h1 id="search-header">Track Calories</h1>
+        <h1 id="tracking-header">Track Calories</h1>
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
@@ -262,5 +262,9 @@ export default {
     border: solid 3px black;
     padding: 10px;
     background-color: white;
+}
+
+#tracking-header {
+    text-align: center;
 }
 </style>
