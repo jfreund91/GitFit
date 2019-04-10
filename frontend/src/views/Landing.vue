@@ -26,7 +26,7 @@
 
 .links a:hover {
     text-transform: uppercase;
-    color: orange;
+    color: #e1520e;
 }
 
 #landing-menu h2 {
