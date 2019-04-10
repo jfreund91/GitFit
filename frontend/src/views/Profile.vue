@@ -141,8 +141,9 @@ h1 {
     letter-spacing: 2px;
 }
 
-button {
+button, a {
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .h1-img {
