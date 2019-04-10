@@ -124,6 +124,33 @@ export default {
             sum += item.kcal;
         })}
         return sum;
+    },
+    fatConsumed() {
+        let totalFat = 0;
+        if(this.profile.eatenToday.length > 0) {
+            this.profile.eatenToday.forEach(item => {
+                totalFat += item.fat;
+            })
+        }
+        return totalFat;
+    },
+    carbsConsumed() {
+        let totalCarbs = 0;
+        if(this.profile.eatenToday.length > 0) {
+            this.profile.eatenToday.forEach(item => {
+                totalCarbs += item.carbs;
+            })
+        }
+        return totalCarbs;
+    },
+    proteinConsumed() {
+        let totalProtein = 0;
+        if(this.profile.eatenToday.length > 0) {
+            this.profile.eatenToday.forEach(item => {
+                totalProtein += item.protein;
+            })
+        }
+        return totalProtein;
     }
 
     }

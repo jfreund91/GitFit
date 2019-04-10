@@ -4,7 +4,7 @@
     <div class="container">
         <div id="search-bar">
             <input class="search" type="text" name="queryString" v-model="queryString">
-            <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
+            <input class="search-btn" type ="submit" value="Search" @click="searchFoods()" @keyup.enter="searchFoods()">
         </div>
         <div v-if="showSearch" class="search-results">
             <ul>
@@ -118,6 +118,10 @@ export default {
 
     .detail-food-view li{
         list-style: none;
+    }
+
+    .detail-food-view ul {
+        padding-left: 0px;
     }
 
     input {
