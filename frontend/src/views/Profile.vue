@@ -79,7 +79,7 @@ export default {
         },
 
         // Populate a numbers drop-down
-        populateSelect(target, min, max){
+        populateSelect(target, min, max) {
             let select, i, option;
             select = document.getElementById(target);
             for ( i = min; i <= max; i += 1 ) {

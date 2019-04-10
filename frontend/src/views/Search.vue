@@ -95,6 +95,7 @@ export default {
         addFood() {
             this.profile.eatenToday.push(
                 {
+                    id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
                     kcal: this.detailItem.kcal * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
