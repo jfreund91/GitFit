@@ -20,7 +20,15 @@
                 <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
             </ul>
             <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
+             <label><strong> Servings: </strong></label>
+             <select v-model="detailItem.servingsConsumed">
+                <option value="0.5">1/2</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
             <button @click="addFood()">I ate this!</button>
+           
         </div>
     </div>
 </div>
@@ -40,7 +48,8 @@ export default {
              fat: 0,
              carbs: 0,
              protein: 0,
-             servingRate: Number
+             servingRate: Number,
+             servingsConsumed: 0,
          }
      }
  },
@@ -52,7 +61,6 @@ export default {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
        }}).then(response => response.json()).then(json => {
-             console.log(json.list.item);
              this.searchResults = json.list.item;
              this.showSearch = true;
              });
@@ -77,7 +85,10 @@ export default {
             this.profile.eatenToday.push(
                 {
                     name: this.detailItem.name,
-                    kcal: this.detailItem.kcal * this.detailItem.servingRate
+                    kcal: this.detailItem.kcal * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    carbs: this.detailItem.carbs * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    protein: this.detailItem.protein * this.detailItem.servingRate * this.detailItem.servingsConsumed
                 }
                 
             );
