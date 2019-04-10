@@ -8,6 +8,7 @@
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
+                <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
             
             <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
@@ -35,6 +36,7 @@
             </div>
         </div>
         <div>
+            
             <div>
                 <div class="meal-list-header">
                     <h2>Snacks</h2>
@@ -68,7 +70,7 @@
                     </ul>
                 </div>
             </div>
-            <div>                
+            <div>
                 <div class="meal-list-header">
                     <h2>Dinner</h2>
                 </div>
@@ -113,6 +115,9 @@ export default {
             else if (this.water === 8) {
                 waterLevel.style.height = "100%";
             }
+        },
+        removeLastEntry(){
+        this.profile.eatenToday.pop();
         }
     },
     computed: {
