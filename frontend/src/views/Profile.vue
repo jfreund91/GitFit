@@ -58,22 +58,11 @@ Vue.use(persistentState, initialState)
 export default {
     data() {
         return {
-            // profile: {
-            //     age: '',
-            //     currentWeight: '',
-            //     goalWeight: '',
-            //     height: {
-            //         feet: '',
-            //         inches: ''
-            //     },
-            //     activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
-            // }
+
         }
     },
     methods: {
         saveProfile() {
-            // Add logic to save profile to an array or a generic user on the database
-
             // Redirect the user to the tracking page
             this.$router.push('Tracking')
 
