@@ -9,8 +9,8 @@
                 <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
             </div>
             
-            <div class="circle"><h2 class="circle-header">Calories Consumed:</h2></div>
-            <div class="circle"><h2 class="circle-header">Calorie Budget: {{calorieBudget}}</h2></div>
+            <div class="circle"><h2 class="circle-header">Calories Consumed: {{caloriesConsumed}} </h2></div>
+            <div class="circle"><h2 class="circle-header">Calorie Budget: {{calorieBudget - caloriesConsumed}}</h2></div>
         </div>
         <div class="container bars-container">
             <div>
@@ -121,7 +121,16 @@ export default {
             (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age)) 
         }
       
+    },
+    caloriesConsumed() {
+        let sum = 0;
+        if(this.profile.eatenToday.length > 0) {
+        this.profile.eatenToday.forEach(item => {
+            sum += item.kcal;
+        })}
+        return sum;
     }
+
     }
 
 }
