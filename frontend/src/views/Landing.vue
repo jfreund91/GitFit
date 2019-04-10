@@ -8,7 +8,7 @@
 <script>
 </script>
 <style>
-body {
+#landing {
     text-align: center;
 }
 router-link {

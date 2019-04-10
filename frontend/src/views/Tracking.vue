@@ -39,7 +39,7 @@
                     <h2>Snacks</h2>
                 </div>
                 <div class="container">
-                    <i class="fas fa-plus-circle large-plus"></i>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                 </div>
             </div>
             <div>                
@@ -47,7 +47,7 @@
                     <h2>Breakfast</h2>
                 </div>
                 <div class="container">
-                    <i class="fas fa-plus-circle large-plus"></i>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                 </div>
             </div>
             <div>                
@@ -55,7 +55,7 @@
                     <h2>Lunch</h2>
                 </div>
                 <div class="container">
-                    <i class="fas fa-plus-circle large-plus"></i>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                 </div>
             </div>
             <div>                
@@ -63,7 +63,8 @@
                     <h2>Dinner</h2>
                 </div>
                 <div class="container">
-                    <i class="fas fa-plus-circle large-plus"></i>
+
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                 </div>
             </div>
         </div>
