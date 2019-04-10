@@ -4,6 +4,7 @@ import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import Tracking from "./views/Tracking.vue";
 import Search from "./views/Search.vue";
+import Landing from "./views/Landing.vue";
 //import auth from "./shared/auth";
 
 Vue.use(Router);
@@ -49,6 +50,14 @@ const router = new Router({
       path: "/search",
       name: "search",
       component: Search,
+      meta: {
+        requiesAuth: true
+      }
+    },
+    {
+      path: "/landing",
+      name: "landing",
+      component: Landing,
       meta: {
         requiesAuth: true
       }
