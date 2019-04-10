@@ -4,7 +4,7 @@
 
             <form v-if="showLoginForm" v-on:submit.prevent="login">
         
-            <error-message v-bind:error="error"></error-message>
+            <p v-bind:error="error"></p>
             <h1>Login</h1>
         <label for="email">Username</label>
         <input
@@ -33,7 +33,7 @@
       <form v-else v-on:submit.prevent="signup">
         <h1>Git Started</h1>
 
-        <error-message :error="error"></error-message>
+        <p :error="error"></p>
 
         <label for="email2">Username</label>
         <input

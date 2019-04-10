@@ -5,6 +5,7 @@
         </div>
         <nav>
                 <ul id="main-nav">
+                    <li>{{userName}}</li>
                      <li><router-link to="/">Home</router-link></li>
                      <li><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
@@ -15,8 +16,16 @@
     </header>
 </template>
 <script>
+    import auth from '@/shared/auth.js'
+
     export default {
-        name: "header-logged-out"
+        name: "header-logged-out",
+        computed: {
+            userName() {
+                return auth.getUser();
+            }
+        }
+
     }
 </script>
 <style >

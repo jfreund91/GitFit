@@ -8,15 +8,13 @@
 
 <script>
 import HeaderLoggedOut from '@/components/layout/HeaderLoggedOut.vue'
-// import HeaderLoggedIn from '@/components/layout/HeaderLoggedIn.vue'
 import FooterBar from '@/components/layout/FooterBar.vue'
 
 export default {
   name: 'app',
   components: {
     HeaderLoggedOut,
-    FooterBar
-    // HeaderLoggedIn,
+    FooterBar,
   }
 }
 </script>
