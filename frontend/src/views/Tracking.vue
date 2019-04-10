@@ -1,8 +1,16 @@
 <template>
-    <div>
+    <div id="tracking">
         <div class="container circle-container">
+            <div id="profile-stats">
+                <h3>User Stats</h3>
+                <div>Age: {{profile.age}}</div>
+                <div>Current Weight: {{profile.currentWeight}}</div>
+                <div>Goal Weight: {{profile.goalWeight}}</div>
+                <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
+            </div>
+            
             <div class="circle"><h2 class="circle-header">Calories Consumed:</h2></div>
-            <div class="circle"><h2 class="circle-header">Calorie Budget:</h2></div>
+            <div class="circle"><h2 class="circle-header">Calorie Budget: {{calorieBudget}}</h2></div>
         </div>
         <div class="container bars-container">
             <div>
@@ -67,7 +75,8 @@ export default {
     name: 'tracking',
     data() {
         return {
-            water: 0
+            water: 0,
+            
         }
     },
     methods: {
@@ -93,6 +102,12 @@ export default {
                 waterLevel.style.height = "100%";
             }
         }
+    },
+    computed: {
+    calorieBudget () {
+      return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
+      (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age))
+    }
     }
 
 }
@@ -221,4 +236,13 @@ export default {
         margin-top: 50px;
     }
 
+#tracking {
+    padding-bottom: 60px;
+}
+
+#profile-stats {
+    border: solid 3px black;
+    padding: 10px;
+    background-color: white;
+}
 </style>

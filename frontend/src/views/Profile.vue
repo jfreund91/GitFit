@@ -22,6 +22,13 @@
                 <input type="text" v-model="profile.height.inches" placeholder="inches" id="inches">
             </div>
             <div class="form-input">
+                <span class="label">Gender:</span>
+                <select name="gender" id="gender" v-model="profile.gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-input">
                 <span class="label" id="activity-level">Activity Level:</span>
                 <input type="radio" v-model="profile.activityLevel" value="0">Sedentary
                 <input type="radio" v-model="profile.activityLevel" value="1">Lightly Active
@@ -35,25 +42,35 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import persistentState from 'vue-persistent-state'
+ 
+let initialState = {
+    profile: {
+        age: '',
+        currentWeight: '',
+        goalWeight: '',
+        height: {
+        feet: '',
+        inches: ''
+        },
+        gender: '',
+        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
+    }
+}
+ 
+Vue.use(persistentState, initialState)
+// InitialState is injected as data in all vue instances
+// Any changes to state will be stored in localStorage
+
 export default {
     data() {
         return {
-            profile: {
-                age: '',
-                currentWeight: '',
-                goalWeight: '',
-                height: {
-                    feet: '',
-                    inches: ''
-                },
-                activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ]
-            }
+
         }
     },
     methods: {
         saveProfile() {
-            // Add logic to save profile to an array or a generic user on the database
-
             // Redirect the user to the tracking page
             this.$router.push('Tracking')
 
@@ -76,7 +93,8 @@ export default {
     isValidForm() {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.height.feet != '' && this.profile.height.inches != '' 
-       && (this.profile.activityLevel === '0' || this.profile.activityLevel === '1' || this.profile.activityLevel === '2' || this.profile.activityLevel === '3');
+       && (this.profile.activityLevel === '0' || this.profile.activityLevel === '1' || this.profile.activityLevel === '2' || this.profile.activityLevel === '3')
+       && this.profile.gender != '';
     },
   },
 }
@@ -130,6 +148,14 @@ button, a {
 
 .h1-img {
     color: rgb(216, 48, 48);
+}
+
+select {
+    font-size: 16px;
+}
+
+.form {
+    margin-bottom: 30px;
 }
 
 </style>
