@@ -16,7 +16,7 @@ export default {
 footer {
     background-color: #648f15;
     color: whitesmoke;
-    padding: 7px;
+    padding: 7px 0px;
     font-family: 'Kodchasan', sans-serif;
     font-family: 'Baumans', cursive;
     letter-spacing: 2px;
