@@ -19,7 +19,7 @@
                 <li>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</li>
                 <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
             </ul>
-            <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
+            <button @click="()=>{this.showSearch = true}">No, not this one!</button>
             <button @click="addFood()">I ate this!</button>
         </div>
     </div>
