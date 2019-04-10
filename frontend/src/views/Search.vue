@@ -79,7 +79,9 @@ export default {
                     name: this.detailItem.name,
                     kcal: this.detailItem.kcal * this.detailItem.servingRate
                 }
+                
             );
+            this.$router.push('/tracking')
         }
     }
 }
