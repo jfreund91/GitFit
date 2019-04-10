@@ -14,7 +14,7 @@
         </div>
         <div class="container bars-container">
             <div>
-                <h1>Marco Nutrients</h1>
+                <h1>Macro Nutrients</h1>
                 <h2>Protein</h2>
                 <div class="marco" id="protein"></div>
                 <h2>Carbs</h2>
@@ -39,7 +39,8 @@
                     <h2>Snacks</h2>
                 </div>
                 <div class="container">
-                    <i class="fas fa-plus-circle large-plus"></i>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i>
+                    </router-link>
                 </div>
             </div>
             <div>                
@@ -47,7 +48,9 @@
                     <h2>Breakfast</h2>
                 </div>
                 <div class="container">
+                    <router-link to="/search">
                     <i class="fas fa-plus-circle large-plus"></i>
+                    </router-link>
                 </div>
             </div>
             <div>                
@@ -55,7 +58,9 @@
                     <h2>Lunch</h2>
                 </div>
                 <div class="container">
+                    <router-link to="/search">
                     <i class="fas fa-plus-circle large-plus"></i>
+                    </router-link>
                 </div>
             </div>
             <div>                
@@ -63,7 +68,9 @@
                     <h2>Dinner</h2>
                 </div>
                 <div class="container">
+                    <router-link to="/search">
                     <i class="fas fa-plus-circle large-plus"></i>
+                    </router-link>
                 </div>
             </div>
         </div>
