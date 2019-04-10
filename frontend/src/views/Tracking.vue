@@ -1,6 +1,14 @@
 <template>
     <div id="tracking">
         <div class="container circle-container">
+            <div id="profile-stats">
+                <h3>User Stats</h3>
+                <div>Age: {{profile.age}}</div>
+                <div>Current Weight: {{profile.currentWeight}}</div>
+                <div>Goal Weight: {{profile.goalWeight}}</div>
+                <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
+            </div>
+            
             <div class="circle"><h2 class="circle-header">Calories Consumed:</h2></div>
             <div class="circle"><h2 class="circle-header">Calorie Budget:</h2></div>
         </div>
@@ -223,5 +231,10 @@ export default {
 
 #tracking {
     padding-bottom: 60px;
+}
+
+#profile-stats {
+    border: solid 3px black;
+    padding: 10px;
 }
 </style>
