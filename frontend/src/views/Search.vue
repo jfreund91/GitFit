@@ -102,6 +102,9 @@ export default {
         cursor: pointer;
     }
 
+    .detail-food-view li{
+        list-style: none;
+    }
 
     input {
         padding: 10px;

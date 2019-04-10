@@ -9,12 +9,12 @@
                 <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
             </div>
             
-            <div class="circle"><h2 class="circle-header">Calories Consumed: {{caloriesConsumed}} </h2></div>
-            <div class="circle"><h2 class="circle-header">Calorie Budget: {{calorieBudget - caloriesConsumed}}</h2></div>
+            <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
+            <div class="circle"><h2 class="circle-header">Calorie Budget: {{Math.trunc(calorieBudget - caloriesConsumed)}}</h2></div>
         </div>
         <div class="container bars-container">
             <div>
-                <h1>Marco Nutrients</h1>
+                <h1>Macro Nutrients</h1>
                 <h2>Protein</h2>
                 <div class="marco" id="protein"></div>
                 <h2>Carbs</h2>
