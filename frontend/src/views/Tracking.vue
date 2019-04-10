@@ -18,6 +18,7 @@
                 <h1>Macro Nutrients</h1>
                 <h2>Protein</h2>
                 <div class="macro" id="protein"></div>
+                <!-- <progress-bar:value="progress1"/> -->
                 <h2>Carbs</h2>
                 <div class="macro" id="carbs"></div>
                 <h2>Fat</h2>
@@ -73,11 +74,15 @@
 </template>
 
 <script>
+// import ProgressBar from './ProgressBar'
+
 export default {
     name: 'tracking',
+    // components: { ProgressBar},
     data() {
         return {
-            water: 0,
+            // progress1: 0,
+            water: 0
             
         }
     },
