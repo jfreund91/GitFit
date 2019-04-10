@@ -14,7 +14,7 @@
         </div>
         <div class="container bars-container">
             <div>
-                <h1>Marco Nutrients</h1>
+                <h1>Macro Nutrients</h1>
                 <h2>Protein</h2>
                 <div class="marco" id="protein"></div>
                 <h2>Carbs</h2>
