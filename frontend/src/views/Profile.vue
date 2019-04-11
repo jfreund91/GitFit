@@ -36,10 +36,12 @@
                     <option value="+998">Gain Weight: (+2.0 lbs/week)</option>
                 </select>
             </div>
-            <div class="form-input">
+            <div class="feet-inches">
                 <span class="label">Height:</span>
-                <input type="text" v-model="profile.height.feet" placeholder="ft">
-                <input type="text" v-model="profile.height.inches" placeholder="inches" id="inches">
+                <div>
+                    <input type="text" v-model="profile.height.feet" placeholder="" id="feet"> ft
+                    <input type="text" v-model="profile.height.inches" placeholder="" id="inches"> in
+                </div>
             </div>
             <div class="form-input">
                 <span class="label">Gender:</span>
@@ -157,12 +159,20 @@ export default {
     justify-content: space-between;
 }
 
+.feet-inches {
+    margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .form-input .label {
     margin-right: 8px;
 }
 
-#inches {
-    margin-left: 5px; 
+#feet, #inches {
+    width: 20px;
+    border: solid black 1px;
+    margin-left: 20px;
 }
 
 #activity-level {
@@ -208,8 +218,10 @@ select {
 
 .goal-timeline {
     height: 35px;
+    width: 215px;
     /* font-size: 17px; */
 }
+
 
 
 </style>
