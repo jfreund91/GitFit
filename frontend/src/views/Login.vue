@@ -62,7 +62,7 @@
         <div class="form-actions">
           <button>Sign Up</button>
           <div class="extras">
-            <a v-on:click="toggleForm">Back to Login</a>
+            <button v-on:click="toggleForm">Already have an Account?</button>
           </div>
         </div>
       </form>
@@ -181,6 +181,9 @@ export default {
 };
 </script>
 <style scoped>
+input {
+  text-indent: 10px;
+}
 #login {
   display: flex;
   height: 100vh;
@@ -216,7 +219,7 @@ form input {
   width: 100%;
   margin-bottom: 1rem;
 
-  padding: 10px;
+  /* padding: 10px; */
   border: 1px solid #e6ecf0;
   border-radius: 3px;
 }
