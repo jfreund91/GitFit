@@ -47,6 +47,7 @@
     text-decoration: none;
     /* color: #1a174e; */
     color: #f0a2b0;
+    font-weight: 700;
 }
 
 #landing-menu h1 {
