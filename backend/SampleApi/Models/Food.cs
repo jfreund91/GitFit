@@ -15,8 +15,6 @@ namespace SampleApi.Models
         /// </summary>
         public int FoodId { get; set; }
 
-        public int UserId { get; set; }
-
         /// <summary>
         /// Represents the amount of calories in a food item.
         /// </summary>
