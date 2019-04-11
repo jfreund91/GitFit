@@ -3,7 +3,7 @@
         <div class="img-container">
         <router-link to="/"><img src="../../assets/logo.png"></router-link>  
         </div>
-        <span id="tagline1">Git fit programming your diet!</span>
+        <!-- <span id="tagline1">Git fit programming your diet!</span> -->
         <span id="tagline2">Git your diet under version control.</span>
         <nav>
                 <ul id="main-nav">
@@ -71,15 +71,22 @@
         width: 25%;
     }
 
-    #tagline1 {
+    #tagline2 {
         text-align: center;
         color: rgb(230, 186, 42);
         font-size: 1.3rem;
     }
 
-    #tagline2 {
+    #tagline1 {
         text-align: center;
         color: rgb(83, 192, 56);
     }
 
+    #profile h1 {
+        margin-bottom: 50px;
+    }
+
+#tagline2 img {
+    width: 200px;
+}
 </style>

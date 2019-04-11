@@ -64,7 +64,7 @@
 }
 
 #landing {
-  background-image: url("../assets/food.jpg") ;
+  background-image: url("../assets/food.jpg");
   text-align: center;
   height: 250px;
   background-size: cover;

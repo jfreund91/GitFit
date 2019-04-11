@@ -1,5 +1,7 @@
 <template>
     <div id="profile">
+        <img src="../assets/action-athlete-barbell.jpg"> 
+        <div id="profile-section">
         <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
             <div class="form-input">
@@ -58,6 +60,7 @@
                 <!-- <span>value: {{profile.activityLevel}}</span> -->
             </div>
             <button :disabled="!isValidForm" v-on:click="saveProfile">GitFit!</button>
+        </div>
         </div>
     </div>
 </template>
@@ -131,6 +134,21 @@ export default {
 #profile {
     padding: 2%;
     margin: 50px auto;
+    text-align: center;
+    padding-top: 0px;
+    display: flex;
+    margin-left: 10px;
+    justify-content: center;
+    margin-right: 10px;
+    
+}
+
+#profile img {
+    width: 570px;
+    height: 570px;
+    border: solid 2px red;
+    margin-right: 30px;
+    margin-top: 30px;
 }
 
 .form-input {
@@ -165,10 +183,6 @@ h1 {
     letter-spacing: 2px;
 }
 
-#profile {
-    text-align: center;
-}
-
 button, a {
     margin-top: 10px;
     cursor: pointer;
@@ -195,4 +209,6 @@ select {
     height: 35px;
     /* font-size: 17px; */
 }
+
+
 </style>
