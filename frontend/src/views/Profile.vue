@@ -17,6 +17,20 @@
                 <input type="text" v-model="profile.goalWeight" placeholder="Goal Weight">
             </div>
             <div class="form-input">
+                <span class="label">Goal Timeline:</span>
+                <select name="goal-timeline" v-model="profile.timeline" class="goal-timeline">
+                    <option value="-2">Lose Weight: (-2.0 lbs/week)</option>
+                    <option value="-1.5">Lose Weight: (-1.5 lbs/week)</option>
+                    <option value="-1">Lose Weight: (-1 lbs/week)</option>
+                    <option value="-0.5">Lose Weight: (-0.5 lbs/week)</option>
+                    <option value="0">Maintain Weight</option>
+                    <option value="+0.5">Gain Weight: (+0.5 lbs/week)</option>
+                    <option value="+1">Gain Weight: (+1.0 lbs/week)</option>
+                    <option value="+1.5">Gain Weight: (+1.5 lbs/week)</option>
+                    <option value="+2">Gain Weight: (+2.0 lbs/week)</option>
+                </select>
+            </div>
+            <div class="form-input">
                 <span class="label">Height:</span>
                 <input type="text" v-model="profile.height.feet" placeholder="ft">
                 <input type="text" v-model="profile.height.inches" placeholder="inches" id="inches">
@@ -59,6 +73,7 @@ let initialState = {
         },
         gender: '',
         activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
+        timeline: '',
         eatenToday: []
     }
 }
@@ -98,7 +113,7 @@ export default {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.height.feet != '' && this.profile.height.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
-       && this.profile.gender != '';
+       && this.profile.gender != '' && this.profile.timeline != '';
     },
   },
 }
@@ -162,4 +177,8 @@ select {
     margin-bottom: 30px;
 }
 
+.goal-timeline {
+    height: 30px;
+    /* font-size: 17px; */
+}
 </style>
