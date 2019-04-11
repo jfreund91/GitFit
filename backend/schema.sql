@@ -84,7 +84,7 @@ CREATE TABLE quick_meal_food_items
 	servings		decimal				not null,
 
 	constraint pk_quick_meal_food_items primary key (id),
-	constraint fk_meal_id foreign key (meal_id) references quick_meal(id)
+	constraint fk_meal_id foreign key (meal_id) references quick_meals(id)
 );
 
 COMMIT TRANSACTION;

@@ -9,15 +9,19 @@ namespace SampleApi.Models
     {
         public int UserId { get; set; }
 
+        public string Name { get; set; }
+
         public decimal CurrentWeight { get; set; }
 
         public decimal GoalWeight {get;set;}
 
-        public int age { get; set; }
+        public int Age { get; set; }
 
-        public int height { get; set; }
+        public int Height { get; set; }
 
         public string ActivityLevel { get; set; }
+
+        public char Gender { get; set; }
 
     }
 }
