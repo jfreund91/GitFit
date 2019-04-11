@@ -8,6 +8,8 @@ namespace SampleApi.DAL
 {
     public interface IFoodDAO
     {
-        void AddFoodItem(Food food);
+        void AddFoodItem(int currentUserId, Food food);
+
+        void RemoveFoodItem(int entryId);
     }
 }

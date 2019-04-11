@@ -50,5 +50,10 @@ namespace SampleApi.DAL
                 throw;
             }
         }
+        
+        public void RemoveFoodItem(int entryId)
+        {
+
+        }
     }
 }
