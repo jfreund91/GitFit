@@ -28,7 +28,7 @@
     text-transform: uppercase;
     /* color: #e1520e; */
     letter-spacing: 1px;
-    color: black;
+    color: #232d7a;
 }
 
 #landing-menu h2 {
@@ -46,7 +46,7 @@
 .links a {
     text-decoration: none;
     /* color: #1a174e; */
-    color: #f0a2b0;
+    color: #dc5001;
     font-weight: 700;
 }
 
