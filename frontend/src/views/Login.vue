@@ -26,7 +26,7 @@
           <button class="login">Log In</button>
           <div class="extras">
             <button v-on:click="toggleForm">Create Account</button>
-          </div>
+            </div>
         </div>
       </form>
 
@@ -60,7 +60,7 @@
         />
 
         <div class="form-actions">
-          <button>Sign Up</button>
+          <button class="login">Sign Up</button>
           <div class="extras">
             <button v-on:click="toggleForm">Already have an Account?</button>
           </div>
@@ -181,13 +181,15 @@ export default {
 };
 </script>
 <style scoped>
-input {
-  text-indent: 10px;
-}
+
 #login {
   display: flex;
   height: 100vh;
   flex-direction: column;
+}
+
+.extras, .login {
+  width: 30%;
 }
 
 #content {
@@ -229,11 +231,9 @@ form input {
 
 .form-actions {
   display: flex;
+  justify-content: space-between;
 }
 
-.form-actions .extras {
-  flex: 2;
-}
 
 .form-actions .extras {
   text-align: right;
@@ -247,7 +247,7 @@ form input {
 
   #content > *,
   #login-signup form {
-    max-width: 23%;
+    max-width: 40%;
     margin: 0 auto;
   }
 }
