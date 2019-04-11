@@ -30,7 +30,7 @@
 }
 
 #landing-menu h2 {
-    font-size: 50px;
+    font-size: 75px;
     margin: 0px;
 }
 
@@ -48,13 +48,14 @@
 #landing-menu h1 {
     font-size: 75px;
     margin: 0px;
+    padding-top: 40px;
 }
 
 #landing-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* position: ; */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
 }
 
 #landing {

@@ -24,9 +24,9 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; */
+  /* justify-content: space-between; */
 
   min-height:100%;
   position:relative;
