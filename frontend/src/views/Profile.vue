@@ -3,6 +3,10 @@
         <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
             <div class="form-input">
+                <span class="label">Name:</span>
+                <input type="text" v-model="profile.nameOfUser" placeholder="Enter Your Name">
+            </div>
+            <div class="form-input">
                 <span class="label">Age:</span>
                 <!-- <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
                 </select> -->
@@ -74,6 +78,7 @@ let initialState = {
         gender: '',
         activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
         timeline: '',
+        nameOfUser: '',
         eatenToday: []
     }
 }
@@ -113,7 +118,7 @@ export default {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.height.feet != '' && this.profile.height.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
-       && this.profile.gender != '' && this.profile.timeline != '';
+       && this.profile.gender != '' && this.profile.timeline != '' && this.profile.nameOfUser != '';
     },
   },
 }
@@ -122,16 +127,16 @@ export default {
 
 <style>
 
-@import url('https://fonts.googleapis.com/css?family=Kodchasan');
 
 #profile {
     padding: 2%;
-    font-family: 'Kodchasan', sans-serif;
-    text-align: center;
+    margin: 50px auto;
 }
 
 .form-input {
     margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .form-input .label {
@@ -147,9 +152,9 @@ export default {
 }
 
 span.label {
-    text-transform: uppercase;
     font-weight: 530;
     color: #010913;
+    align-self: center;
 }
 
 h1 {
@@ -158,6 +163,10 @@ h1 {
     text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
     font-size: 40px;
     letter-spacing: 2px;
+}
+
+#profile {
+    text-align: center;
 }
 
 button, a {
@@ -175,10 +184,15 @@ select {
 
 .form {
     margin-bottom: 30px;
+    max-width: 500px;
+}
+
+#gender {
+    height: 35px;
 }
 
 .goal-timeline {
-    height: 30px;
+    height: 35px;
     /* font-size: 17px; */
 }
 </style>

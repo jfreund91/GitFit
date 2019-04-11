@@ -364,7 +364,7 @@ export default {
 }
 
 #profile-stats {
-    border: solid 3px black;
+    border: solid .5px black;
     padding: 10px;
     background-color: white;
 }

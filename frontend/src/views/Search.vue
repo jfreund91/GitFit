@@ -128,10 +128,6 @@ export default {
             );
             this.$router.push('/tracking')
         },
-        wrongItem() {
-            // this.showSearch = true;
-            hide();
-        }
     }
 }
 </script>

@@ -34,6 +34,7 @@
         width: 100%;
         background-color: #1a174e;
         justify-content: space-between;
+        align-items: baseline;
     }
 
     nav {
@@ -56,7 +57,7 @@
     }
 
     #main-nav a:hover {
-        color: #c89868;
+        color: #dc5001;
     }
 
     img { 
