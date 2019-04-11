@@ -127,16 +127,16 @@ export default {
 
 <style>
 
-@import url('https://fonts.googleapis.com/css?family=Kodchasan');
 
 #profile {
     padding: 2%;
-    font-family: 'Kodchasan', sans-serif;
-    text-align: center;
+    margin: 50px auto;
 }
 
 .form-input {
     margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .form-input .label {
@@ -152,9 +152,9 @@ export default {
 }
 
 span.label {
-    text-transform: uppercase;
     font-weight: 530;
     color: #010913;
+    align-self: center;
 }
 
 h1 {
@@ -163,6 +163,10 @@ h1 {
     text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
     font-size: 40px;
     letter-spacing: 2px;
+}
+
+#profile {
+    text-align: center;
 }
 
 button, a {
@@ -180,6 +184,7 @@ select {
 
 .form {
     margin-bottom: 30px;
+    max-width: 500px;
 }
 
 #gender {
