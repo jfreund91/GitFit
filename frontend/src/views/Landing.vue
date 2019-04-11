@@ -26,7 +26,9 @@
 
 .links a:hover {
     text-transform: uppercase;
-    color: #e1520e;
+    /* color: #e1520e; */
+    letter-spacing: 1px;
+    color: black;
 }
 
 #landing-menu h2 {
@@ -36,13 +38,15 @@
 
 .links {
     text-align: center;
-    font-family: 'Fascinate Inline', cursive;
+    /* font-family: 'Fascinate Inline', cursive; */
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 }
 
 .links a {
     text-decoration: none;
-    color: #1a174e;
+    /* color: #1a174e; */
+    color: #f0a2b0;
 }
 
 #landing-menu h1 {
