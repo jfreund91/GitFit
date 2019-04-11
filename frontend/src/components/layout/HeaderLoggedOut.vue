@@ -34,6 +34,7 @@
         width: 100%;
         background-color: #1a174e;
         justify-content: space-between;
+        align-items: baseline;
     }
 
     nav {
