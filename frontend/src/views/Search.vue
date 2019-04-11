@@ -44,6 +44,7 @@
                         <option value="Dinner">Dinner</option>
                     </select>
                     <button id="i-ate-this-btn" @click="addFood()">I ate this!</button>
+                    <button id="not-this-one-btn" value="No, not this one!" @click="hide()">No, not this one!</button>
                 </div>
             </div>
         </modal>
@@ -76,6 +77,9 @@ export default {
  methods: {
      show () {
         this.$modal.show('food-item-detail-view');
+    },
+    hide () {
+    this.$modal.hide('food-item-detail-view');
     },
      searchFoods() {
          fetch(`https://api.nal.usda.gov/ndb/search/?format=json&ds=Standard%20Reference&q=${this.queryString}&max=25&offset=0&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`,{
@@ -119,6 +123,10 @@ export default {
                 
             );
             this.$router.push('/tracking')
+        },
+        wrongItem() {
+            this.showSearch = true;
+            hide();
         }
     }
 }
@@ -211,6 +219,10 @@ export default {
 
 #servings-detail {
     margin-top: 10px;
+}
+
+#not-this-one-btn {
+    margin-left: 15px;
 }
 
 </style>
