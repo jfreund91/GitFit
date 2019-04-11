@@ -1,8 +1,10 @@
 <template>
     <header>
         <div class="img-container">
-        <router-link to="/"><img src="../../assets/logo.png"></router-link>
+        <router-link to="/"><img src="../../assets/logo.png"></router-link>  
         </div>
+        <span id="tagline1">Git fit programming your diet!</span>
+        <span id="tagline2">Git your diet under version control.</span>
         <nav>
                 <ul id="main-nav">
                     <li>{{userName}}</li>
@@ -34,7 +36,7 @@
         width: 100%;
         background-color: #1a174e;
         justify-content: space-between;
-        align-items: baseline;
+        align-items:center;
     }
 
     nav {
@@ -67,6 +69,17 @@
 
     .img-container {
         width: 25%;
+    }
+
+    #tagline1 {
+        text-align: center;
+        color: rgb(230, 186, 42);
+        font-size: 1.3rem;
+    }
+
+    #tagline2 {
+        text-align: center;
+        color: rgb(83, 192, 56);
     }
 
 </style>
