@@ -34,6 +34,14 @@ namespace SampleApi.Models
         /// </summary>
         public decimal Protein { get; set; }
 
+        /// <summary>
+        /// Represents the number of servings eaten.
+        /// </summary>
+        public int Servings { get; set; }
 
+        /// <summary>
+        /// Represents the number of grams per serving.
+        /// </summary>
+        public decimal ServingSize { get; set; }
     }
 }
