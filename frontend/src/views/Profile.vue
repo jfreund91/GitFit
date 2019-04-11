@@ -30,10 +30,13 @@
             </div>
             <div class="form-input">
                 <span class="label" id="activity-level">Activity Level:</span>
-                <input type="radio" v-model="profile.activityLevel" value="1.2">Sedentary
-                <input type="radio" v-model="profile.activityLevel" value="1.375">Lightly Active
-                <input type="radio" v-model="profile.activityLevel" value="1.55">Moderately Active
-                <input type="radio" v-model="profile.activityLevel" value="1.9">An Exercise Beast
+                <input type="radio" v-model="profile.activityLevel" value="1.2" title="Little or no exercise, desk job"><span title="Little or no exercise, desk job">Sedentary</span>
+                <input type="radio" v-model="profile.activityLevel" value="1.375" title="Light exercise/Sports 1-3 days/week"><span title="Light exercise/Sports 1-3 days/week">Lightly Active</span>
+                <input type="radio" v-model="profile.activityLevel" value="1.55" title="Moderate exercise/Sports 6-7 days/week"><span title="Moderate exercise/Sports 6-7 days/week">Moderately Active</span>
+                <input type="radio" v-model="profile.activityLevel" value="1.9" title="My calls are forwarded to the gym/Hard exercise 2 or more times per day, 
+                or training for marathon, or triathon">
+                <span title="My calls are forwarded to the gym/Hard exercise 2 or more times per day, 
+                or training for marathon, or triathon">An Exercise Beast</span>
                 <!-- <span>value: {{profile.activityLevel}}</span> -->
             </div>
             <button :disabled="!isValidForm" v-on:click="saveProfile">GitFit!</button>
