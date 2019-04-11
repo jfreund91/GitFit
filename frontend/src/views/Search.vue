@@ -24,7 +24,7 @@
             <div class = "detail-food-view" >
                 <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
                     <h4>Nutritional Value per Serving</h4>
-                    <h5>Serving Size: {{detailItem.servingRate}}g</h5>
+                    <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
                         <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
                         <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
