@@ -25,7 +25,7 @@
         <div class="form-actions">
           <button class="login">Log In</button>
           <div class="extras">
-            <a v-on:click="toggleForm">Create an Account</a>
+            <button v-on:click="toggleForm">Create Account</button>
           </div>
         </div>
       </form>
@@ -230,7 +230,7 @@ form button {
   padding: 0.8rem 1rem;
   background: var(--primary-color);
 
-  color: #fff;
+  color: darkblue;
 
   border-radius: 3px;
 }
