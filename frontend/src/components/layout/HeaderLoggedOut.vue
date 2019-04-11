@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="img-container">
-        <router-link to="/"><img src="../../assets/logoSmall.png"></router-link>
+        <router-link to="/"><img src="../../assets/logo.png"></router-link>
         </div>
         <nav>
                 <ul id="main-nav">
@@ -34,6 +34,7 @@
         width: 100%;
         background-color: #1a174e;
         justify-content: space-between;
+        align-items: baseline;
     }
 
     nav {
