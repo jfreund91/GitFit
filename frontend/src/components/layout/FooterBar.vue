@@ -11,15 +11,11 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Baumans|Kodchasan');
 
 footer {
     background-color: #648f15;
     color: whitesmoke;
-    padding: 7px 0px;
-    font-family: 'Kodchasan', sans-serif;
-    font-family: 'Baumans', cursive;
-    letter-spacing: 2px;
+    padding: 15px 0px;
 
     position:absolute;
     bottom:0;
