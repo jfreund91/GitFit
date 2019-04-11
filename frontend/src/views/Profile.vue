@@ -186,6 +186,7 @@ h1 {
 button, a {
     margin-top: 10px;
     cursor: pointer;
+    width: 100%;
 }
 
 .h1-img {
