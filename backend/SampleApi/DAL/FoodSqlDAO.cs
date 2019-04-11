@@ -22,12 +22,14 @@ namespace SampleApi.DAL
         /// <param name="food"></param>
         public void AddFoodItem(Food food)
         {
+            string sql = "INSERT INTO food_entries VALUES(@userId, @name, @calories, @fat, @protein, @carbs, @meal_type, @meal_date, @servings, @ndbno)";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    
 
                 }
             }
