@@ -19,7 +19,7 @@
         </div>
 
 <!-- Modal to have details pop-up -->
-        <modal name="food-item-detail-view">
+        <modal name="food-item-detail-view" :height="350">
         <!-- Gives the detailed view -->
             <div class = "detail-food-view" >
                 <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
@@ -209,7 +209,8 @@ export default {
     border: solid 1px black;
     padding: 6px;
     margin-right: 10px;
-    background-color: #444;
+    /* background-color: #444; */
+    background-color: #76a627;
 }
 
 #food-specs div:nth-child(even) {
@@ -218,10 +219,12 @@ export default {
 
 #food-specs {
     border: 1px solid #555;
+    margin-right: 10px;
 }
 
 #i-ate-this-btn {
     margin-left: 15px;
+    width: 100px;
 }
 
 #servings-detail {
@@ -230,6 +233,7 @@ export default {
 
 #not-this-one-btn {
     margin-left: 15px;
+    width: 150px;
 }
 
 .item-text {

@@ -74,7 +74,7 @@
     #tagline2 {
         text-align: center;
         color: rgb(230, 186, 42);
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     #tagline1 {
