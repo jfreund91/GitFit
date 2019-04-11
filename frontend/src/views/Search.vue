@@ -9,44 +9,50 @@
         <div v-if="showSearch" class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}
+                    <!-- Click plus to see detail view of an item -->
                     <span @click="viewDetail(item.ndbno)"><i class="fas fa-plus-circle"></i></span>
                 </li>
             </ul>
         </div>
-        <div class = "detail-food-view" v-if="! showSearch">
-            <h2>{{detailItem.name}}</h2>
-            <ul>
-                <h3>Nutritional Value per Serving</h3>
-                <li>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</li>
-                <li>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</li>
-                <li>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</li>
-                <li>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</li>
-            </ul>
-            <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button>
-             <label><strong> Servings: </strong></label>
-             <select v-model="detailItem.servingsConsumed">
-                <option value="0.5">1/2</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <label><strong> Meal: </strong></label>
-            <select v-model="meal">
-                <option value="Snack">Snack</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-            </select>
-            <button @click="addFood()">I ate this!</button>
-           
-        </div>
+
+        <modal name="food-item-detail-view">
+        <!-- Gives the detailed view -->
+            <div class = "detail-food-view" v-if="! showSearch">
+                <h3>{{detailItem.name}}</h3>
+                <!-- <ul> -->
+                    <h4>Nutritional Value per Serving</h4>
+                    <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
+                    <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
+                    <div>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</div>
+                    <div>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</div>
+                <!-- </ul> -->
+                <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
+                <label><strong> Servings: </strong></label>
+                <select v-model="detailItem.servingsConsumed">
+                    <option value="0.5">1/2</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <label><strong> Meal: </strong></label>
+                <select v-model="meal">
+                    <option value="Snack">Snack</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                </select>
+                <button @click="addFood()">I ate this!</button>
+            </div>
+        </modal>
+
+
     </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'search',
+ name: 'search',
  data() {
      return {
          showSearch: true,
@@ -65,6 +71,9 @@ export default {
      }
  },
  methods: {
+     show () {
+        this.$modal.show('food-item-detail-view');
+    },
      searchFoods() {
          fetch(`https://api.nal.usda.gov/ndb/search/?format=json&ds=Standard%20Reference&q=${this.queryString}&max=25&offset=0&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`,{
              method: 'GET',
@@ -77,6 +86,7 @@ export default {
              });
      },
      viewDetail(itemDbNo) {
+         this.$modal.show('food-item-detail-view');
          fetch(`https://api.nal.usda.gov/ndb/reports/?ndbno=${itemDbNo}&type=b&format=JSON&api_key=V0RN5a4cjw39PHwdYDOTobVDhOad60hDqVHF0NJl`, {
              method: 'GET',
              headers: {
@@ -169,5 +179,10 @@ export default {
 #search-bar {
     text-align: center;
 }
+
+
+
+
+
 
 </style>
