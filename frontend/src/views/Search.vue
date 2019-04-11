@@ -15,33 +15,36 @@
             </ul>
         </div>
 
+<!-- Modal to have details pop-up -->
         <modal name="food-item-detail-view">
         <!-- Gives the detailed view -->
             <div class = "detail-food-view" v-if="! showSearch">
-                <h3>{{detailItem.name}}</h3>
-                <!-- <ul> -->
+                <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
                     <h4>Nutritional Value per Serving</h4>
-                    <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
-                    <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
-                    <div>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</div>
-                    <div>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</div>
-                <!-- </ul> -->
+                    <div id="food-specs">
+                        <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
+                        <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
+                        <div>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</div>
+                        <div>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</div>
+                    </div>
                 <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
-                <label><strong> Servings: </strong></label>
-                <select v-model="detailItem.servingsConsumed">
-                    <option value="0.5">1/2</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <label><strong> Meal: </strong></label>
-                <select v-model="meal">
-                    <option value="Snack">Snack</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Dinner">Dinner</option>
-                </select>
-                <button @click="addFood()">I ate this!</button>
+                <div id="servings-detail">
+                    <label><strong> Servings: </strong></label>
+                    <select v-model="detailItem.servingsConsumed">
+                        <option value="0.5">1/2</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <label><strong> Meal: </strong></label>
+                    <select v-model="meal">
+                        <option value="Snack">Snack</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                    <button id="i-ate-this-btn" @click="addFood()">I ate this!</button>
+                </div>
             </div>
         </modal>
 
@@ -180,9 +183,34 @@ export default {
     text-align: center;
 }
 
+.detail-food-view {
+    padding: 0px 10px;
+}
 
 
+#detail-food-view-header {
+    /* color:rgb(58, 151, 151); */
+    color: #f7f7f7;
+    border: solid 1px black;
+    padding: 6px;
+    margin-right: 10px;
+    background-color: #444;
+}
 
+#food-specs div:nth-child(even) {
+    background-color: #f7f7f7;
+}
 
+#food-specs {
+    border: 1px solid #555;
+}
+
+#i-ate-this-btn {
+    margin-left: 15px;
+}
+
+#servings-detail {
+    margin-top: 10px;
+}
 
 </style>
