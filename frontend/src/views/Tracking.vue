@@ -151,13 +151,13 @@ export default {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
             (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age)
-            )* this.profile.activityLevel
+            )* this.profile.activityLevel + (this.profile.timeline * 1)
             
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
             (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age)
-            )* this.profile.activityLevel
+            )* this.profile.activityLevel + (this.profile.timeline * 1)
         }
       
     },

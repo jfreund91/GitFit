@@ -19,15 +19,15 @@
             <div class="form-input">
                 <span class="label">Goal Timeline:</span>
                 <select name="goal-timeline" v-model="profile.timeline" class="goal-timeline">
-                    <option value="-2">Lose Weight: (-2.0 lbs/week)</option>
-                    <option value="-1.5">Lose Weight: (-1.5 lbs/week)</option>
-                    <option value="-1">Lose Weight: (-1 lbs/week)</option>
-                    <option value="-0.5">Lose Weight: (-0.5 lbs/week)</option>
+                    <option value="-998">Lose Weight: (-2.0 lbs/week)</option> <!-- 998 calorie deficit per day -->
+                    <option value="-748">Lose Weight: (-1.5 lbs/week)</option>
+                    <option value="-499">Lose Weight: (-1 lbs/week)</option>
+                    <option value="-249">Lose Weight: (-0.5 lbs/week)</option>
                     <option value="0">Maintain Weight</option>
-                    <option value="+0.5">Gain Weight: (+0.5 lbs/week)</option>
-                    <option value="+1">Gain Weight: (+1.0 lbs/week)</option>
-                    <option value="+1.5">Gain Weight: (+1.5 lbs/week)</option>
-                    <option value="+2">Gain Weight: (+2.0 lbs/week)</option>
+                    <option value="+249">Gain Weight: (+0.5 lbs/week)</option>
+                    <option value="+499">Gain Weight: (+1.0 lbs/week)</option>
+                    <option value="+748">Gain Weight: (+1.5 lbs/week)</option>
+                    <option value="+998">Gain Weight: (+2.0 lbs/week)</option>
                 </select>
             </div>
             <div class="form-input">
