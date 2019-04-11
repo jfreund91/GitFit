@@ -54,5 +54,10 @@ namespace SampleApi.Models
         /// The date the item was consumed
         /// </summary>
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// The National database number of the food item.
+        /// </summary>
+        public int ndbno { get; set; }
     }
 }

@@ -19,8 +19,9 @@ namespace SampleApi.DAL
         /// <summary>
         /// This method provides the ability to add a food item to the db.
         /// </summary>
-        /// <param name="food"></param>
-        public void AddFoodItem(Food food)
+        /// <param name="currentUserId">Current User's Id</param>
+        /// <param name="food">Food to add</param>
+        public void AddFoodItem(int currentUserId, Food food)
         {
             string sql = "INSERT INTO food_entries VALUES(@userId, @name, @calories, @fat, @protein, @carbs, @meal_type, @meal_date, @servings, @ndbno)";
             try
@@ -29,11 +30,21 @@ namespace SampleApi.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    
+                    cmd.Parameters.AddWithValue("@userId",currentUserId);
+                    cmd.Parameters.AddWithValue("@name", food.Name);
+                    cmd.Parameters.AddWithValue("@calories", food.Calories);
+                    cmd.Parameters.AddWithValue("@fat", food.Fat);
+                    cmd.Parameters.AddWithValue("@protein", food.Protein);
+                    cmd.Parameters.AddWithValue("@carbs", food.Carbohydrates);
+                    cmd.Parameters.AddWithValue("@meal_type", food.MealType);
+                    cmd.Parameters.AddWithValue("@meal_date", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@servings", food.Servings);
+                    cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
 
+                    cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
                 throw;
