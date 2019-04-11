@@ -9,7 +9,7 @@
                 <ul id="main-nav">
                     <li>{{userName}}</li>
                      <li><router-link to="/">Home</router-link></li>
-                     <li><router-link to="/profile">Profile</router-link></li>
+                     <li exact class="nav-link"><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
                      <li><router-link to="/search">Search</router-link></li>
                      <li><router-link to="/login">Register/Login</router-link></li>
@@ -89,4 +89,11 @@
 #tagline2 img {
     width: 200px;
 }
+
+#main-nav .router-link-exact-active {
+  color: #dc5001;
+}
+
+
+
 </style>
