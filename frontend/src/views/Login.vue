@@ -219,9 +219,6 @@ form input {
   width: 100%;
   margin-bottom: 1rem;
 
-  /* padding: 10px; */
-  border: 1px solid #e6ecf0;
-  border-radius: 3px;
 }
 
 form label,
@@ -229,14 +226,6 @@ form input {
   display: block;
 }
 
-form button {
-  padding: 0.8rem 1rem;
-  background: var(--primary-color);
-
-  color: darkblue;
-
-  border-radius: 3px;
-}
 
 .form-actions {
   display: flex;
