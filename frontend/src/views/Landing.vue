@@ -20,7 +20,7 @@
 #landing-menu h2 a {
     color: white;
     text-decoration: none;
-    /* text-shadow: 2px 2px #6856b9; */
+    text-shadow: 2px 2px #6856b9;
     font-size: 1.5rem;
 }
 

@@ -255,7 +255,7 @@ form button {
 
   #content > *,
   #login-signup form {
-    max-width: 80%;
+    max-width: 23%;
     margin: 0 auto;
   }
 }
