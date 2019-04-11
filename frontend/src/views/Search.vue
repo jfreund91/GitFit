@@ -8,9 +8,12 @@
         </div>
         <div class="search-results">
             <ul>
-                <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}
-                    <!-- Click plus to see detail view of an item -->
-                    <span @click="viewDetail(item.ndbno)"><i class="fas fa-plus-circle"></i></span>
+                
+                
+                <li v-for="item in this.searchResults" :key="item.ndbno">
+                <!-- Click plus to see detail view of an item -->
+                <span @click="viewDetail(item.ndbno)" class="i-span"><i class="fas fa-plus-circle"></i><span class="item-text">{{item.name}}</span></span>
+                
                 </li>
             </ul>
         </div>
@@ -21,6 +24,7 @@
             <div class = "detail-food-view" >
                 <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
                     <h4>Nutritional Value per Serving</h4>
+                    <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
                         <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
                         <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
@@ -135,7 +139,13 @@ export default {
 
     .search-results ul {
         color: black;
-        text-align: left;
+        /* text-align: right; */
+        margin: 0px 200px; 
+    }
+
+    .search-results li:nth-of-type(even){
+        background-color: #f7f7f7;
+        padding: 7px 0px;
     }
 
     i {
@@ -177,6 +187,7 @@ export default {
         margin: 10px 0px;
         display: flex;
         justify-content: space-between;
+        padding-bottom: 0px;
     }
 
     .search-results {
@@ -223,6 +234,12 @@ export default {
 
 #not-this-one-btn {
     margin-left: 15px;
+}
+
+.item-text {
+    color: black;
+    margin-left: 20px;
+    
 }
 
 </style>
