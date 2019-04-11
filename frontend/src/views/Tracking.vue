@@ -27,9 +27,10 @@
             <div>
                 <h1>Water</h1>
                 <div class="glass-container">
-                <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
+                    <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
                 <div class="water-glass">
-                    <div id="water"></div>
+                    <div id="water">
+                    </div>
                 </div>
 
                 </div>
@@ -237,10 +238,10 @@ export default {
         position: absolute;
         left: 50%;
         bottom: 0;
-        transform: translateX(-50%);
-        width: 210px;
+        width: 220px;
         height: 0%;
         background-color: lightskyblue;
+        transform: translate(-50%);
     }
 
     .water-glass {
@@ -297,6 +298,7 @@ export default {
     .large-plus {
         font-size: 50px;
         text-align: left;
+
     }
     .circle-header {
        position: absolute;
