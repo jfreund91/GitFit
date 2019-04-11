@@ -6,7 +6,7 @@
             <input class="search" type="text" name="queryString" v-model="queryString" @keyup.enter="searchFoods()">
             <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
         </div>
-        <div v-if="showSearch" class="search-results">
+        <div class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">{{item.name}}
                     <!-- Click plus to see detail view of an item -->
@@ -18,7 +18,7 @@
 <!-- Modal to have details pop-up -->
         <modal name="food-item-detail-view">
         <!-- Gives the detailed view -->
-            <div class = "detail-food-view" v-if="! showSearch">
+            <div class = "detail-food-view" >
                 <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
                     <h4>Nutritional Value per Serving</h4>
                     <div id="food-specs">
@@ -59,7 +59,7 @@ export default {
  name: 'search',
  data() {
      return {
-         showSearch: true,
+         // showSearch: true,
          queryString: "",
          searchResults : [],
          meal: '',
@@ -89,7 +89,7 @@ export default {
             'Accept': 'application/json'
        }}).then(response => response.json()).then(json => {
              this.searchResults = json.list.item;
-             this.showSearch = true;
+             //this.showSearch = true;
              });
      },
      viewDetail(itemDbNo) {
@@ -106,7 +106,7 @@ export default {
                  this.detailItem.fat = json.report.food.nutrients[3].value;
                  this.detailItem.carbs = json.report.food.nutrients[4].value;
                  this.detailItem.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
-                 this.showSearch = false;
+                //  this.showSearch = false;
              });
         },
         addFood() {
@@ -125,7 +125,7 @@ export default {
             this.$router.push('/tracking')
         },
         wrongItem() {
-            this.showSearch = true;
+            // this.showSearch = true;
             hide();
         }
     }
