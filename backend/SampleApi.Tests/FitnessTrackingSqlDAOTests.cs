@@ -27,8 +27,30 @@ namespace SampleApi.Tests
             Assert.AreEqual(1, actual);
         }
 
+        //[TestMethod]
+        //// This unit test is designed to verify the AddFoodItem method is adding a new row on the user db table
+        //public void AddFoodItem_ShouldAddNewRowItem()
+        //{
+        //    //ARRANGE
+        //    FoodSqlDAO foodItemDAO = new FoodSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+        //    UserSqlDAO userDAO = new UserSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+
+
+        //    //ACT
+        //    User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
+        //    Food item = new Food() { Calories=1000, Name="Salami", Fat=20, Carbohydrates=10, Protein=30,
+        //        MealType ="Lunch", Servings=3, Date=DateTime.Now, ndbno=200};
+
+        //    foodItemDAO.AddFoodItem(item);
+        //    int actual = this.GetRowCount("food_entries");
+
+        //    //ASSERT
+        //    Assert.AreEqual(1, actual);
+        //}
+
+
         [TestMethod]
-        // This test is our first integration test comparing ability of adding an associated profile to a user
+        // This is an integration test comparing ability of adding an associated profile to a user
         public void CreateProfile_ShouldAddNewRowItem()
         {
             //ARRANGE
