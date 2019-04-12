@@ -20,10 +20,26 @@ namespace SampleApi.Tests
             //ACT
             User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role"};
             userDAO.CreateUser(user);
-            int actual = this.GetRowCount("user_profile");
+            int actual = this.GetRowCount("users");
 
             //ASSERT
             Assert.AreEqual(1, actual);
         }
+
+        [TestMethod]
+        public void CreateProfile_ShouldAddNewRowItem()
+        {
+            //ARRANGE
+            ProfileSqlDAO profileDAO = new ProfileSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+
+            //ACT
+            Profile profile  = new Profile() { UserId=1, Name = "Name", CurrentWeight = 100, GoalWeight=200, Age=100, Height=60, ActivityLevel="moderate", Gender='F'};
+            profileDAO.CreateProfile(profile);
+            int actual = this.GetRowCount("user_profiles");
+
+            //ASSERT
+            Assert.AreEqual(1, actual);
+        }
+
     }
 }
