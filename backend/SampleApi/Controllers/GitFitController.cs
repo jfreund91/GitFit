@@ -22,6 +22,7 @@ namespace SampleApi.Controllers
                 {
                     if (base.User != null)
                     {
+                        // Returns user id: currentUser.id
                         currentUser = userDao.GetUser(base.User.Identity.Name);
                     }
                 }

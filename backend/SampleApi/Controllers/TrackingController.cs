@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleApi.DAL;
+using SampleApi.Models;
 
 namespace SampleApi.Controllers
 {
@@ -22,6 +24,19 @@ namespace SampleApi.Controllers
             this.foodDao = foodDao;
         }
 
+        [HttpPost]
+        [Authorize]
+        public void LogFood([FromBody] Food food)
+        {
+            foodDao.AddFoodItem(CurrentUser.Id, food);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<Food> GetLifetimeFoodEntries()
+        {
+            return foodDao.GetLifetimeFoodEntries(CurrentUser.Id);
+        }
      
     }
 }
