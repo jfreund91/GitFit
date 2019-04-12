@@ -46,6 +46,41 @@ namespace SampleApi.DAL
             }
             return foods;
         }
+        /// <summary>
+        /// Returns a list of foods between a date range. 
+        /// </summary>
+        /// <param name="currentUserId"></param>
+        /// <param name="start"></param>
+        /// <param name="finish"></param>
+        /// <returns></returns>
+        public IList<Food> GetFoodEntriesInRange(int currentUserId, DateTime start, DateTime finish)
+        {
+            IList<Food> results = new List<Food>();
+            string sql = "SELECT * FROM food_entries WHERE userId = @userId AND meal_date BETWEEN @start AND @finish;";
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql,conn);
+                    cmd.Parameters.AddWithValue("@userId", currentUserId);
+                    cmd.Parameters.AddWithValue("@start", start);
+                    cmd.Parameters.AddWithValue("@finish", finish);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Food food = null;
+                    while (reader.Read())
+                    {
+                        food = ConvertReaderToFood(reader);
+                        results.Add(food);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return results;
+        }
 
         private Food ConvertReaderToFood(SqlDataReader reader)
         {

@@ -10,12 +10,15 @@ namespace SampleApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfileController : GitFitController
+    public class TrackingController : GitFitController
     {
+        protected IProfileDAO profileDao;
 
-        public ProfileController (IUserDAO userDao):base (userDao)
+        public TrackingController (IUserDAO userDao, IProfileDAO profileDao):base (userDao)
         {
-            
+            this.profileDao = profileDao;
         }
+
+     
     }
 }
