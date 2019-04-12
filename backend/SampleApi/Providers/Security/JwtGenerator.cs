@@ -48,6 +48,7 @@ namespace SampleApi.Providers.Security
             {
                 new Claim("sub", username),
                 new Claim("rol", role),
+                new Claim("fitnessGuru", "expert"), // new
                 new Claim("iat", DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };
 
