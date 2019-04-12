@@ -84,7 +84,8 @@ let initialState = {
         activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
         timeline: '',
         nameOfUser: '',
-        eatenToday: []
+        eatenToday: [],
+        water: 0
     }
 }
  

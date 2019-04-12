@@ -19,8 +19,9 @@
 <!-- Modal to have details pop-up -->
         <modal name="food-item-detail-view" :height="350">
         <!-- Gives the detailed view -->
-            <div class = "detail-food-view" >
-                <h4 id="detail-food-view-header">{{detailItem.name}}</h4>
+            <div >
+                <h3 id="detail-food-view-header">{{detailItem.name}}</h3>
+                    <div class = "detail-food-view">
                     <h4>Nutritional Value per Serving</h4>
                     <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
@@ -47,6 +48,7 @@
                     </select>
                     <button id="i-ate-this-btn" @click="addFood()">I ate this!</button>
                     <button id="not-this-one-btn" value="No, not this one!" @click="hide()">No, not this one!</button>
+                </div>
                 </div>
             </div>
         </modal>
@@ -134,7 +136,6 @@ export default {
     .search-results ul {
         color: black;
         /* text-align: right; */
-        margin: 0px 200px; 
     }
 
     .search-results li:nth-of-type(even){
@@ -204,11 +205,11 @@ export default {
 #detail-food-view-header {
     /* color:rgb(58, 151, 151); */
     color: #f7f7f7;
-    border: solid 1px black;
-    padding: 6px;
-    margin-right: 10px;
+    padding: 15px;
     /* background-color: #444; */
     background-color: #76a627;
+    width: 100%;
+    margin: 0;
 }
 
 #food-specs div:nth-child(even) {
@@ -223,6 +224,7 @@ export default {
 #i-ate-this-btn {
     margin-left: 15px;
     width: 100px;
+    padding: 5px;
 }
 
 #servings-detail {
@@ -232,6 +234,8 @@ export default {
 #not-this-one-btn {
     margin-left: 15px;
     width: 150px;
+    padding: 5px;
+
 }
 
 .item-text {

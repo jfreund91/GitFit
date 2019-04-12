@@ -82,8 +82,9 @@ namespace SampleApi
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
-
-
+            services.AddTransient<IFoodDAO>(j => new FoodSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<IProfileDAO>(t => new ProfileSqlDAO(Configuration.GetConnectionString("Default"))); 
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configure automatic model state validation

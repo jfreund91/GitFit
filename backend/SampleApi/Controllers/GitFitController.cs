@@ -11,7 +11,9 @@ namespace SampleApi.Controllers
     abstract public class GitFitController : ControllerBase
     {
         protected IUserDAO userDao;
+
         private SampleApi.Models.User currentUser = null;
+
         public SampleApi.Models.User CurrentUser
         {
             get

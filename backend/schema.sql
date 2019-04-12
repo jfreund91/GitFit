@@ -62,6 +62,16 @@ CREATE TABLE food_entries
 	constraint fk_userId_food_entry foreign key (userId) references users(id)
 );
 
+CREATE TABLE water_entries
+(
+	id				int			identity(1,1),
+	userId			int			not null,
+	entry_date		date		not null,
+
+	constraint pk_water_entry primary key (id),
+	constraint fk_user_water_entry foreign key (userId) references users(id)
+);
+
 CREATE TABLE quick_meals
 (
 	id				int				identity(1,1),
