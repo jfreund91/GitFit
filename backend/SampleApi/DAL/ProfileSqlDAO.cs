@@ -25,17 +25,18 @@ namespace SampleApi.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
 
                     // Open the connection
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
-                        "@currentWeight, @goalWeight, @age, @height, @activityLevel, @gender);", conn);
+                        "@currentWeight, @goalWeight, @birthDate, @height, @activityLevel, @gender);", conn);
                     cmd.Parameters.AddWithValue("@userId", profile.UserId);
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("goalWeight", profile.GoalWeight);
-                    cmd.Parameters.AddWithValue("@age", profile.Age);
+                    cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
@@ -72,7 +73,7 @@ namespace SampleApi.DAL
                         profile.Name = Convert.ToString(reader["[name]"]);
                         profile.CurrentWeight = Convert.ToInt32(reader["currentWeight"]);
                         profile.GoalWeight = Convert.ToInt32(reader["goalWeight"]);
-                        profile.Age = Convert.ToInt16(reader["age"]);
+                        profile.BirthDate = Convert.ToDateTime(reader["birthDate"]);
                         profile.Height = Convert.ToInt32(reader["height"]);
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);

@@ -35,7 +35,7 @@ CREATE TABLE user_profiles
 	[name]			varchar(50)	not null,
 	currentWeight	decimal		not null,
 	goalWeight		decimal		not null,
-	age				int			not null,
+	birthDate		date		not null,
 	height			int			not null,
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),

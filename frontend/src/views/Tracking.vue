@@ -140,7 +140,7 @@ export default {
             } else if (this.profile.water === 7) {
                 waterLevel.style.height = "87.5%";
             }
-            else if (this.profile.water === 8) {
+            else if (this.profile.water >= 8) {
                 waterLevel.style.height = "100%";
             }
         },
