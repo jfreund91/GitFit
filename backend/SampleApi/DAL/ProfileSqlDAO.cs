@@ -25,6 +25,7 @@ namespace SampleApi.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+
                     // Open the connection
                     conn.Open();
 

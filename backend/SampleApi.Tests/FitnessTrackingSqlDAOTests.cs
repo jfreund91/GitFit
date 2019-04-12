@@ -12,6 +12,7 @@ namespace SampleApi.Tests
     public class FitnessTrackingSqlDAOTests: FitnessTrackingAppTests
     {
         [TestMethod]
+        // This unit test is designed to verify the CreateUser method is adding a new row on the user db table
         public void CreateUser_ShouldAddNewRowItem()
         {
             //ARRANGE
@@ -27,13 +28,19 @@ namespace SampleApi.Tests
         }
 
         [TestMethod]
+        // This test is our first integration test comparing ability of adding an associated profile to a user
         public void CreateProfile_ShouldAddNewRowItem()
         {
             //ARRANGE
             ProfileSqlDAO profileDAO = new ProfileSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+            UserSqlDAO userDAO = new UserSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+
 
             //ACT
-            Profile profile  = new Profile() { UserId=1, Name = "Name", CurrentWeight = 100, GoalWeight=200, Age=100, Height=60, ActivityLevel="moderate", Gender='F'};
+            User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
+            userDAO.CreateUser(user);
+
+            Profile profile  = new Profile() { UserId=1, Name = "Name", CurrentWeight = 100, GoalWeight=200, BirthDate=DateTime.Today, Height=60, ActivityLevel="moderate", Gender='F'};
             profileDAO.CreateProfile(profile);
             int actual = this.GetRowCount("user_profiles");
 
