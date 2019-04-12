@@ -10,7 +10,7 @@ export default {
      * Parses and saves the authentication token.
      * @param {String} token A JWT encoded token.
      */
-    saveToken(token) {
+    saveToken(token) { // After you register puts in local storage. localstorage is api that's built into a browser***** access userName.sub for name
       localStorage.setItem("Authorization", token);
     },
     /**
@@ -25,7 +25,7 @@ export default {
      * @returns null if expired or user is not authenticated).
      * @function
      */
-    getUser() {
+    getUser() { //auth.getUser();
       const token = localStorage.getItem("Authorization");
       let user = null;
   
