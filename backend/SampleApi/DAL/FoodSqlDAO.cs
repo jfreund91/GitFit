@@ -15,6 +15,7 @@ namespace SampleApi.DAL
         {
             connectionString = databaseConnectionString;
         }
+
         /// <summary>
         /// Gets all the foods that a user has eaten.
         /// </summary>
@@ -46,6 +47,7 @@ namespace SampleApi.DAL
             }
             return foods;
         }
+
         /// <summary>
         /// Returns a list of foods between a date range. 
         /// </summary>
@@ -81,6 +83,7 @@ namespace SampleApi.DAL
             }
             return results;
         }
+
 
         private Food ConvertReaderToFood(SqlDataReader reader)
         {
