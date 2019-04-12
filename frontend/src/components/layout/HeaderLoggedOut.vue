@@ -7,7 +7,7 @@
         <span id="tagline2">Git your diet under version control.</span>
         <nav>
                 <ul id="main-nav">
-                    <li id="user-name-header">Welcome {{userName.sub}}!</li>
+                    <li id="user-name-header">Welcome {{userName}}!</li>
                      <li><router-link to="/">Home</router-link></li>
                      <li><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
