@@ -70,6 +70,7 @@
 <script>
 import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
+import auth from '@/shared/auth.js' // import whether user is logged in
  
 let initialState = {
     profile: {
@@ -100,7 +101,19 @@ export default {
     },
     methods: {
         saveProfile() {
-            // Redirect the user to the tracking page
+
+            let user = auth.getUser();
+
+            if(user == null) {
+                // User is not logged in so don't send the persistent state data
+            }
+            else {
+                // User is logged in so send the profile data to the database
+                
+            }
+
+
+            // Redirect the user to the tracking page if user is not logged in
             this.$router.push('Tracking')
 
             // this.reviewID === 0 ? this.createReview() : this.updateReview();

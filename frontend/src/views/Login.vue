@@ -107,6 +107,9 @@ export default {
     goHome() {
       this.$router.push("/");
     },
+    goToProfile() {
+      this.$router.push("/profile");
+    },
     /**
      * Logs the user in and then sends them to the dashboard.
      * NOTE: Uses async/await
@@ -133,13 +136,17 @@ export default {
         });
 
         if (response.status === 401) {
-          this.error = "Your username and/or password is invalid";
+          this.error = "Your username and/or password is invalid"; // print this to user
           this.loginForm.password = "";
         } else {
           // Parse output and save authentication token
-          const token = await response.json();
+          const token = await response.json(); // response json body
           auth.saveToken(token);
-          this.goHome();
+          //this.goHome(); // Run method to send user to homepage
+          // Make a call to get the profile stats from the database
+
+          // Send the user to the profile page with values populated from the database if any
+          this.goToProfile();
         }
       } catch (error) {
         console.error(error);
@@ -170,6 +177,7 @@ export default {
           this.error = data.message;
         } else {
           auth.saveToken(data);
+          const user = auth.getUser();
           this.goHome();
         }
       } catch (error) {
