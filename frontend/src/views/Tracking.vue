@@ -10,7 +10,7 @@
                 <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
-            
+            <!-- <GChart type="PieChart" data="chartData" options="chartOptions"></GChart> -->
             <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
             <div class="circle"><h2 class="circle-header">Calorie Budget: {{Math.trunc(calorieBudget - caloriesConsumed)}}</h2></div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="glass-container">
                     <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
                 <div class="water-glass">
-                    <h1>{{this.water}} glasses</h1>
+                    <h1>{{this.profile.water}} glasses</h1>
                     <div id="water">
                     </div>
                 </div>
@@ -105,35 +105,42 @@
 
 <script>
 // import ProgressBar from './ProgressBar'
+//import { GChart } from 'vue-google-charts'
 
 export default {
     name: 'tracking',
     // components: { ProgressBar},
     data() {
         return {
-            water: 0,
-        }
-    },
+            //chartData: [["Calories Consumed","Calorie Budget"],
+            //[caloriesConsumed(),calorieBudget()]],
+            //chartOptions: {
+               // title: "Calorie Tracking"
+            }
+        },
+    // components: {
+    //     GChart
+    // },
     methods: {
         addWater() {
-            this.water +=1;
+            this.profile.water +=1;
             let waterLevel = document.getElementById('water');
-            if(this.water === 1) {
+            if(this.profile.water === 1) {
                 waterLevel.style.height = "12.5%";
-            } else if (this.water === 2) {
+            } else if (this.profile.water === 2) {
                 waterLevel.style.height = "25%";
-            } else if (this.water === 3) {
+            } else if (this.profile.water === 3) {
                 waterLevel.style.height = "37.5%";
-            } else if (this.water === 4) {
+            } else if (this.profile.water === 4) {
                 waterLevel.style.height = "50%";
-            } else if (this.water === 5) {
+            } else if (this.profile.water === 5) {
                 waterLevel.style.height = "62.5%";
-            } else if (this.water === 6) {
+            } else if (this.profile.water === 6) {
                 waterLevel.style.height = "75%";
-            } else if (this.water === 7) {
+            } else if (this.profile.water === 7) {
                 waterLevel.style.height = "87.5%";
             }
-            else if (this.water === 8) {
+            else if (this.profile.water === 8) {
                 waterLevel.style.height = "100%";
             }
         },
