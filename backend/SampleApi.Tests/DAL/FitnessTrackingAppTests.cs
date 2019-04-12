@@ -23,31 +23,31 @@ namespace SampleApi.Tests.DAL
         public void Setup()
         {
             // Begin the transaction
-            //transaction = new TransactionScope();
+            transaction = new TransactionScope();
 
             // Run the SQL script
             string sql = File.ReadAllText("test-script.sql");
 
             // Execute the script
-            //using (SqlConnection conn = new SqlConnection(ConnectionString))
-            //{
-            //    conn.Open();
-            //    SqlCommand cmd = new SqlCommand(sql, conn);
-            //    SqlDataReader reader = cmd.ExecuteReader();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-            //    // If there is a row to read
-            //    if (reader.Read())
-            //    {
-            //        this.Id = Convert.ToInt32(reader["Id"]);
-            //    }
-            //}
+                // If there is a row to read
+                if (reader.Read())
+                {
+                    this.Id = Convert.ToInt32(reader["Id"]);
+                }
+            }
         }
 
         [TestCleanup]
         public void Cleanup()
         {
             // Roll back the transaction
-            //transaction.Dispose();
+            transaction.Dispose();
         }
 
         /// <summary>
