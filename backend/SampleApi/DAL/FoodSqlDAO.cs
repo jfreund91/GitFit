@@ -152,11 +152,25 @@ namespace SampleApi.DAL
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@entryId", entryId);
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch(SqlException x)
             {
                 throw;
+            }
+        }
+        public void AddWaterEntry(int currentUserId)
+        {
+            string sql = "INSERT INTO water_entries VALUES (@userId, @entryDate);";
+            
+            using(SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", currentUserId);
+                cmd.Parameters.AddWithValue("@entryDate", DateTime.Now);
+                cmd.ExecuteNonQuery();
             }
         }
     }
