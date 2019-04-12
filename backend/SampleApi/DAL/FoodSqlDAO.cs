@@ -11,7 +11,7 @@ namespace SampleApi.DAL
     {
         private readonly string connectionString;
 
-        public FoodSqlDAO(string databaseConnectionString)
+        public FoodSqlDAO (string databaseConnectionString)
         {
             connectionString = databaseConnectionString;
         }
@@ -20,10 +20,10 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="currentUserId"></param>
         /// <returns></returns>
-        public IList<Food> GetAllFoods(int currentUserId)
+        public IList<Food> GetLifetimeFoodEntries(int currentUserId)
         {
             List<Food> foods = new List<Food>();
-            string sql = "SELECT * FROM food_entries WHERE userId = @currentUserId";
+            string sql = "SELECT * FROM food_entries WHERE userId = @currentUserId;";
             try
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
