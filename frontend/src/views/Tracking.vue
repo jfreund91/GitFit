@@ -10,7 +10,6 @@
                 <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
-            <!-- <GChart type="PieChart" data="chartData" options="chartOptions"></GChart> -->
             <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
             <div class="circle"><h2 class="circle-header">Calorie Budget: {{Math.trunc(calorieBudget - caloriesConsumed)}}</h2></div>
         </div>
@@ -104,23 +103,13 @@
 </template>
 
 <script>
-// import ProgressBar from './ProgressBar'
-//import { GChart } from 'vue-google-charts'
 
 export default {
     name: 'tracking',
-    // components: { ProgressBar},
     data() {
         return {
-            //chartData: [["Calories Consumed","Calorie Budget"],
-            //[caloriesConsumed(),calorieBudget()]],
-            //chartOptions: {
-               // title: "Calorie Tracking"
             }
         },
-    // components: {
-    //     GChart
-    // },
     methods: {
         addWater() {
             this.profile.water +=1;
@@ -140,7 +129,7 @@ export default {
             } else if (this.profile.water === 7) {
                 waterLevel.style.height = "87.5%";
             }
-            else if (this.profile.water === 8) {
+            else if (this.profile.water >= 8) {
                 waterLevel.style.height = "100%";
             }
         },
