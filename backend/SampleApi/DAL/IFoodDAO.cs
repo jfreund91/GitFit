@@ -11,5 +11,13 @@ namespace SampleApi.DAL
         void AddFoodItem(int currentUserId, Food food);
 
         void RemoveFoodItem(int entryId);
+
+        IList<Food> GetLifetimeFoodEntries(int currentUser);
+
+        IList<Food> GetFoodEntriesInRange(int currentUser, DateTime start, DateTime finish);
+
+        void AddWaterEntry(int currentUser);
+
+        int GetWaterCountByDate(int currentUser, DateTime queryDate);
     }
 }
