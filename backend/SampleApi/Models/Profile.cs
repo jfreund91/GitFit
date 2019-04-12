@@ -24,7 +24,7 @@ namespace SampleApi.Models
         /// </summary>
         public decimal GoalWeight {get;set;}
         
-        public int Age { get; set; }
+        public DateTime BirthDate { get; set; }
         /// <summary>
         /// The user's height in inches.
         /// </summary>
