@@ -56,12 +56,12 @@
     padding-top: 40px;
 }
 
-#landing-menu {
-    /* position: ; */
-    /* top: 50%;
+/* #landing-menu {
+    position; 
+    top: 50%;
     left: 50%; */
     /* transform: translate(-50%, -50%); */
-}
+/* }  */
 
 #landing {
   background-image: url("../assets/food.jpg");

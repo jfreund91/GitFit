@@ -16,6 +16,8 @@
     export default {
         name: "header-logged-in"
     }
+    import getUser from '@/shared/auth.js'
+
 </script>
 <style>
     header {
