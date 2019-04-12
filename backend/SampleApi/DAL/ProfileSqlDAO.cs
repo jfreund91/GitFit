@@ -36,7 +36,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("goalWeight", profile.GoalWeight);
-                    cmd.Parameters.AddWithValue("@age", profile.BirthDate);
+                    cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);

@@ -14,9 +14,12 @@ namespace SampleApi.Controllers
     {
         protected IProfileDAO profileDao;
 
-        public TrackingController (IUserDAO userDao, IProfileDAO profileDao):base (userDao)
+        protected IFoodDAO foodDao;
+
+        public TrackingController (IUserDAO userDao, IProfileDAO profileDao, IFoodDAO foodDao):base (userDao)
         {
             this.profileDao = profileDao;
+            this.foodDao = foodDao;
         }
 
      
