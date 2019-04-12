@@ -29,6 +29,7 @@
                 <div class="glass-container">
                     <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
                 <div class="water-glass">
+                    <h1>{{this.water}} glasses</h1>
                     <div id="water">
                     </div>
                 </div>
@@ -279,6 +280,18 @@ export default {
 
     .meal-list-header h2 {
         margin-left: 100px;
+    }
+
+    .water-glass h1 {
+        position: relative;
+        top: 50%;
+        color: black;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        margin: 0;
+        z-index: 3;
+
     }
 
     .bars-container, .glass-container {
