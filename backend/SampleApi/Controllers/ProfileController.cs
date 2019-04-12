@@ -7,24 +7,35 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleApi.DAL;
 using SampleApi.Models;
+using SampleApi.Models.Account;
+using SampleApi.Providers.Security;
 
 namespace SampleApi.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// Creates a new profile controller for the user.
+    /// </summary>
+    [Authorize]
+    [Route("api/profile/[controller]")]
     [ApiController]
     public class ProfileController : GitFitController
     {
-        protected IProfileDAO profileDao;
+        private IProfileDAO profileDao;
 
+        /// <summary>
+        /// Creates a new profile controller.
+        /// </summary>
+        /// <param name="userDao"></param>
+        /// <param name="profileDao"></param>
         public ProfileController (IUserDAO userDao, IProfileDAO profileDao) : base(userDao)
         {
             this.profileDao = profileDao;
         }
 
         // GET: api/Profile
+        [Route("api/profile/[controller]")]
         [HttpGet]
-        [Authorize]
-        public Profile GetProfile()
+        public ActionResult GetProfile()
         {
             /* returns to Profile.vue page values:
                 profile.UserId
@@ -38,8 +49,9 @@ namespace SampleApi.Controllers
             */
 
             Profile p = profileDao.GetProfile(CurrentUser.Id);
+            // UserId Pulled from the login
 
-            return profileDao.GetProfile(CurrentUser.Id);
+            return Ok(profileDao.GetProfile(CurrentUser.Id));
         }
 
     }

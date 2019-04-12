@@ -72,35 +72,94 @@ import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
  
-let initialState = {
-    profile: {
-        age: '',
-        currentWeight: '',
-        goalWeight: '',
-        height: {
-        feet: '',
-        inches: ''
-        },
-        gender: '',
-        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
-        timeline: '',
-        nameOfUser: '',
-        eatenToday: [],
-        water: 0
+// Null if user is not logged in
+let user = auth.getUser();
+
+if(user == null) {
+    console.log("I am not logged in.");
+
+    let initialState = {
+        profile: {
+            age: '',
+            currentWeight: '',
+            goalWeight: '',
+            height: {
+            feet: '',
+            inches: ''
+            },
+            gender: '',
+            activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
+            timeline: '',
+            nameOfUser: '',
+            eatenToday: [],
+            water: 0
+        }
     }
+
+    Vue.use(persistentState, initialState)
+    // InitialState is injected as data in all vue instances
+    // Any changes to state will be stored in localStorage
+
+
 }
- 
-Vue.use(persistentState, initialState)
-// InitialState is injected as data in all vue instances
-// Any changes to state will be stored in localStorage
+
+else {
+    console.log("I am logged in.")
+    
+    
+    let initialState = {
+            profile: {
+                age: '',
+                currentWeight: '',
+                goalWeight: '',
+                height: {
+                feet: '',
+                inches: ''
+                },
+                gender: '',
+                activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
+                timeline: '',
+                nameOfUser: '',
+                eatenToday: [],
+                water: 0
+            }
+    }
+
+    Vue.use(persistentState, initialState)
+
+
+
+}
+
+
 
 export default {
     data() {
         return {
-
+            profile: {}
         }
     },
+    created() {
+        // Call the API to get the user's profile
+        //https://localhost:44392/api/profile
+        fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+        method: 'GET',
+        headers: {
+                "Authorization": 'Bearer ' + auth.getToken() 
+                }, 
+        })
+        .then((response) => {
+            console.log("I get here")
+        return response.json();
+        }).then ((json) => {
+        console.log(JSON.stringify(json));      
+        this.profile = json;
+        
+        })
+    },
     methods: {
+        
+
         saveProfile() {
 
             let user = auth.getUser();
