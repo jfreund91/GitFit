@@ -8,8 +8,6 @@
         </div>
         <div class="search-results">
             <ul>
-                
-                
                 <li v-for="item in this.searchResults" :key="item.ndbno">
                 <!-- Click plus to see detail view of an item -->
                 <span @click="viewDetail(item.ndbno)" class="i-span"><i class="fas fa-plus-circle"></i><span class="item-text">{{item.name}}</span></span>
