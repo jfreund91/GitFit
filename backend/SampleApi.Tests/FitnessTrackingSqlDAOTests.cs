@@ -38,7 +38,7 @@ namespace SampleApi.Tests
 
         //    //ACT
         //    User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
-        //    Food item = new Food() { Calories=1000, Name="Salami", Fat=20, Carbohydrates=10, Protein=30,
+        //    Food item = new Food() { Calories=1000, Name="Salami", Fat=20, Carbs=10, Protein=30,
         //        MealType ="Lunch", Servings=3, Date=DateTime.Now, ndbno=200};
 
         //    foodItemDAO.AddFoodItem(item);

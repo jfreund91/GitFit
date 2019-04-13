@@ -25,22 +25,22 @@
                     <h4>Nutritional Value per Serving</h4>
                     <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
-                        <div>{{Math.trunc(detailItem.kcal * detailItem.servingRate)}} Calories</div>
-                        <div>{{Math.trunc(detailItem.fat  * detailItem.servingRate)}}g Fat</div>
-                        <div>{{Math.trunc(detailItem.carbs * detailItem.servingRate)}}g Carbs</div>
-                        <div>{{Math.trunc(detailItem.protein * detailItem.servingRate)}}g Protein</div>
+                        <div>{{Math.trunc(detailItem.calories * servingRate)}} Calories</div>
+                        <div>{{Math.trunc(detailItem.fat  * servingRate)}}g Fat</div>
+                        <div>{{Math.trunc(detailItem.carbs * servingRate)}}g Carbs</div>
+                        <div>{{Math.trunc(detailItem.protein * servingRate)}}g Protein</div>
                     </div>
                 <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
                 <div id="servings-detail">
                     <label><strong> Servings: </strong></label>
-                    <select v-model="detailItem.servingsConsumed">
+                    <select v-model="detailItem.servings">
                         <option value="0.5">1/2</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
                     <label><strong> Meal: </strong></label>
-                    <select v-model="meal">
+                    <select v-model="detailItem.mealType">
                         <option value="Snack">Snack</option>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Lunch">Lunch</option>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import auth from '@/shared/auth.js'
+let user = auth.getUser();
 export default {
  name: 'search',
  data() {
@@ -66,15 +68,17 @@ export default {
          // showSearch: true,
          queryString: "",
          searchResults : [],
-         meal: '',
+         servingRate: Number,
          detailItem: {
+             ndbno: 0,
              name: "",
-             kcal: 0,
+             calories: 0,
              fat: 0,
              carbs: 0,
              protein: 0,
-             servingRate: Number,
-             servingsConsumed: 0,
+             servings: 0,
+             mealType: '',
+            
          }
      }
  },
@@ -104,29 +108,48 @@ export default {
                  'Content-Type': 'application/json',
                  'Accept': 'application/json'
              }}).then(response => response.json()).then(json => {
-                 this.detailItem.name = json.report.food.name;
-                 this.detailItem.kcal = json.report.food.nutrients[1].value;
-                 this.detailItem.protein = json.report.food.nutrients[2].value;
-                 this.detailItem.fat = json.report.food.nutrients[3].value;
-                 this.detailItem.carbs = json.report.food.nutrients[4].value;
-                 this.detailItem.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
+                 this.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
+                 this.detailItem.ndbno = json.report.food.ndbno * this.servingRate;
+                 this.detailItem.name = json.report.food.name * this.servingRate;
+                 this.detailItem.calories = json.report.food.nutrients[1].value * this.servingRate;
+                 this.detailItem.protein = json.report.food.nutrients[2].value * this.servingRate;
+                 this.detailItem.fat = json.report.food.nutrients[3].value * this.servingRate;
+                 this.detailItem.carbs = json.report.food.nutrients[4].value * this.servingRate;
+                 
                 //  this.showSearch = false;
              });
         },
         addFood() {
+            if (user == null) {
             this.profile.eatenToday.push(
                 {
                     id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
-                    kcal: this.detailItem.kcal * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    kcal: this.detailItem.calories * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     carbs: this.detailItem.carbs * this.detailItem.servingRate * this.detailItem.servingsConsumed,
                     protein: this.detailItem.protein * this.detailItem.servingRate * this.detailItem.servingsConsumed,
-                    meal: this.meal
+                    meal: this.detailItem.meal
                 }
-                
-            );
-            this.$router.push('/tracking')
+               
+            ) 
+            this.$router.push('/tracking');
+            } else if(user !== null)
+            {
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                },
+                body: JSON.stringify(this.detailItem)
+                }).then(response => {
+                    if(response.ok) {
+                        this.$router.push('/tracking');
+                    }
+                })
+            }
+            
         },
     }
 }
