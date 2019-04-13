@@ -104,11 +104,10 @@ if(user == null) {
 
 export default {
     data() {
-        //if(auth.getUser() != null){
             return {
-                profile2: {}
+                //profile2: {}
             }
-        //}
+
     },
     created() {
         let userInCreated = auth.getUser();
