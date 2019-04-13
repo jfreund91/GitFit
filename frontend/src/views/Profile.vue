@@ -128,6 +128,9 @@ export default {
           
             });
             console.log(this.profile)
+            // if(JSON.stringify(json).userId == "Tia"){
+            //     console.log("I AM HERE!!");
+            // }
         }
     },
     methods: {
