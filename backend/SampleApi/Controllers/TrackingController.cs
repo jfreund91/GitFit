@@ -25,8 +25,7 @@ namespace SampleApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public void LogFood([FromBody] Food food)
+        public void AddFoodItem([FromBody] Food food)
         {
             foodDao.AddFoodItem(CurrentUser.Id, food);
         }

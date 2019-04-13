@@ -11,20 +11,19 @@ namespace SampleApi.Models
     public class Food
     {
         /// <summary>
-        /// Represents the Id of the food item
+        /// The National database number of the food item.
         /// </summary>
-        public int FoodId { get; set; }
-
-        /// <summary>
-        /// Represents the amount of calories in a food item.
-        /// </summary>
-        public decimal Calories { get; set; }
-
+        public int ndbno { get; set; }
+     
         /// <summary>
         /// The name of the food
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Represents the amount of calories in a food item.
+        /// </summary>
+        public decimal Calories { get; set; }
         /// <summary>
         /// Represents the amout of fat(in grams) in a food item item.
         /// </summary>
@@ -33,7 +32,7 @@ namespace SampleApi.Models
         /// <summary>
         /// Represents the amount of carbohydrates(in grams) in a food item.
         /// </summary>
-        public decimal Carbohydrates { get; set; }
+        public decimal Carbs { get; set; }
         /// <summary>
         /// Represents the amount of protein(in grams) in a food item.
         /// </summary>
@@ -53,9 +52,6 @@ namespace SampleApi.Models
         /// </summary>
         public DateTime Date { get; set; }
 
-        /// <summary>
-        /// The National database number of the food item.
-        /// </summary>
-        public int ndbno { get; set; }
+
     }
 }

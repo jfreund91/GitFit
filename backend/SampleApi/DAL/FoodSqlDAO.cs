@@ -88,12 +88,11 @@ namespace SampleApi.DAL
         private Food ConvertReaderToFood(SqlDataReader reader)
         {
             Food food = new Food();
-            food.FoodId = Convert.ToInt32(reader["id"]);
             food.Name = Convert.ToString(reader["name"]);
             food.Calories = Convert.ToDecimal(reader["calories"]);
             food.Fat = Convert.ToDecimal(reader["fat"]);
             food.Protein = Convert.ToDecimal(reader["protein"]);
-            food.Carbohydrates = Convert.ToDecimal(reader["carbs"]);
+            food.Carbs = Convert.ToDecimal(reader["carbs"]);
             food.MealType = Convert.ToString(reader["meal_price"]);
             food.Servings = Convert.ToDecimal(reader["servings"]);
             food.Date = Convert.ToDateTime(reader["meal_date"]);
@@ -122,7 +121,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@calories", food.Calories);
                     cmd.Parameters.AddWithValue("@fat", food.Fat);
                     cmd.Parameters.AddWithValue("@protein", food.Protein);
-                    cmd.Parameters.AddWithValue("@carbs", food.Carbohydrates);
+                    cmd.Parameters.AddWithValue("@carbs", food.Carbs);
                     cmd.Parameters.AddWithValue("@meal_type", food.MealType);
                     cmd.Parameters.AddWithValue("@meal_date", DateTime.Today);
                     cmd.Parameters.AddWithValue("@servings", food.Servings);

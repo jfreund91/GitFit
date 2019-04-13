@@ -108,6 +108,7 @@ export default {
     name: 'tracking',
     data() {
         return {
+            
             }
         },
     methods: {
@@ -163,7 +164,7 @@ export default {
         let sum = 0;
         if(this.profile.eatenToday.length > 0) {
         this.profile.eatenToday.forEach(item => {
-            sum += item.kcal;
+            sum += item.calories;
         })}
         return sum;
     },
@@ -197,28 +198,28 @@ export default {
     snacks() {
         let snacks = [];
         snacks = this.profile.eatenToday.filter((snack) => {
-            return snack.meal === 'Snack'
+            return snack.mealType === 'Snack'
         });
         return snacks;
     },
     breakfasts () {
         let breakfasts = [];
         breakfasts = this.profile.eatenToday.filter((item) => {
-            return item.meal === 'Breakfast'
+            return item.mealType === 'Breakfast'
         });
         return breakfasts;
     },
     lunches () {
         let lunches = [];
         lunches = this.profile.eatenToday.filter((item) => {
-            return item.meal === 'Lunch'
+            return item.mealType === 'Lunch'
         });
         return lunches;
     },
     dinners() {
         let dinners = [];
         dinners = this.profile.eatenToday.filter((item)=> {
-            return item.meal === 'Dinner'
+            return item.mealType === 'Dinner'
         });
         return dinners;
     }
