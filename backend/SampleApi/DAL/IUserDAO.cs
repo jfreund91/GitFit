@@ -11,6 +11,7 @@ namespace SampleApi.DAL
     /// </summary>
     public interface IUserDAO
     {
+
         /// <summary>
         /// Retrieves a user from the system by username.
         /// </summary>
@@ -22,7 +23,7 @@ namespace SampleApi.DAL
         /// Creates a new user.
         /// </summary>
         /// <param name="user"></param>
-        void CreateUser(User user);
+        User CreateUser(User user);
 
         /// <summary>
         /// Updates a user.

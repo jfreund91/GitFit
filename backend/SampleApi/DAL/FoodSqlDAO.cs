@@ -108,9 +108,9 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="currentUserId">Current User's Id</param>
         /// <param name="food">Food to add</param>
-        public void AddFoodItem(int currentUserId, Food food)
+        public Food AddFoodItem(int currentUserId, Food food)
         {
-            string sql = "INSERT INTO food_entries VALUES(@userId, @name, @calories, @fat, @protein, @carbs, @meal_type, @meal_date, @servings, @ndbno)";
+            string sql = "INSERT INTO food_entries VALUES(@userId, @name, @calories, @fat, @protein, @carbs, @meal_type, @meal_date, @servings, @ndbno); SELECT @@IDENTITY;";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -128,7 +128,10 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@servings", food.Servings);
                     cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
 
-                    cmd.ExecuteNonQuery();
+                    int Id = Convert.ToInt32(cmd.ExecuteScalar());
+                    food.FoodId = Id;
+
+                    return food;
                 }
             }
             catch (SqlException ex)

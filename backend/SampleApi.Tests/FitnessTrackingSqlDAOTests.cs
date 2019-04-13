@@ -27,26 +27,37 @@ namespace SampleApi.Tests
             Assert.AreEqual(1, actual);
         }
 
-        //[TestMethod]
-        //// This unit test is designed to verify the AddFoodItem method is adding a new row on the user db table
-        //public void AddFoodItem_ShouldAddNewRowItem()
-        //{
-        //    //ARRANGE
-        //    FoodSqlDAO foodItemDAO = new FoodSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
-        //    UserSqlDAO userDAO = new UserSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+        [TestMethod]
+        // This unit test is designed to verify the AddFoodItem method is adding a new row on the user db table
+        public void AddFoodItem_ShouldAddNewRowItem()
+        {
+            //ARRANGE
+            FoodSqlDAO foodItemDAO = new FoodSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
+            UserSqlDAO userDAO = new UserSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
 
 
-        //    //ACT
-        //    User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
-        //    Food item = new Food() { Calories=1000, Name="Salami", Fat=20, Carbohydrates=10, Protein=30,
-        //        MealType ="Lunch", Servings=3, Date=DateTime.Now, ndbno=200};
+            //ACT
+            User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
+            userDAO.CreateUser(user);
+            Food item = new Food()
+            {
+                Calories = 1000,
+                Name = "Salami",
+                Fat = 20,
+                Carbohydrates = 10,
+                Protein = 30,
+                MealType = "Lunch",
+                Servings = 3,
+                Date = DateTime.Now,
+                ndbno = 200
+            };
 
-        //    foodItemDAO.AddFoodItem(item);
-        //    int actual = this.GetRowCount("food_entries");
+            foodItemDAO.AddFoodItem(user.Id, item);
+            int actual = this.GetRowCount("food_entries");
 
-        //    //ASSERT
-        //    Assert.AreEqual(1, actual);
-        //}
+            //ASSERT
+            Assert.AreEqual(1, actual);
+        }
 
 
         [TestMethod]
@@ -60,9 +71,9 @@ namespace SampleApi.Tests
 
             //ACT
             User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
-            userDAO.CreateUser(user);
+            user.Id = (userDAO.CreateUser(user)).Id;
 
-            Profile profile  = new Profile() { UserId=1, Name = "Name", CurrentWeight = 100, GoalWeight=200, BirthDate=DateTime.Today, Height=60, ActivityLevel="moderate", Gender='F'};
+            Profile profile  = new Profile() { UserId=user.Id, Name = "Name", CurrentWeight = 100, GoalWeight=200, BirthDate=DateTime.Today, Height=60, ActivityLevel="moderate", Gender='F'};
             profileDAO.CreateProfile(profile);
             int actual = this.GetRowCount("user_profiles");
 
