@@ -45,9 +45,9 @@
     getUser() {
       return auth.getUser();
     },
-                userName() {
-                return auth.getUser();
-            }
+    userName() {
+        return auth.getUser();
+    }
   }
 
 }
