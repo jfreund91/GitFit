@@ -23,12 +23,18 @@ namespace SampleApi.Models
         /// The user's goal weight in lbs.
         /// </summary>
         public decimal GoalWeight {get;set;}
-        
+        /// <summary>
+        /// The user's birthdate.
+        /// </summary>
         public DateTime BirthDate { get; set; }
+        /// <summary>
+        /// The user's height in feet.
+        /// </summary>
+        public int Feet { get; set; }
         /// <summary>
         /// The user's height in inches.
         /// </summary>
-        public int Height { get; set; }
+        public int Inches { get; set; }
         /// <summary>
         /// The user's level of activity.
         /// </summary>

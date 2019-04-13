@@ -6,13 +6,15 @@
         <div class="form">
             <div class="form-input">
                 <span class="label">Name:</span>
-                <input type="text" v-model="profile.nameOfUser" placeholder="Enter Your Name">
+                <input type="text" v-model="profile.name" placeholder="Enter Your Name">
             </div>
             <div class="form-input">
-                <span class="label">Age:</span>
-                <!-- <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
-                </select> -->
-                <input type="text" v-model="profile.age" placeholder="Enter Your Age">
+                <span class="label">Birthday:</span>
+                <input type="date" v-model="profile.birthDate" name="birthDate">
+                <!-- <span class="label">Age:</span>
+                <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
+                </select> 
+                <input type="text" v-model="profile.age" placeholder="Enter Your Age">-->
             </div>
             <div class="form-input">
                 <span class="label">Current Weight:</span>
@@ -39,8 +41,8 @@
             <div class="feet-inches">
                 <span class="label">Height:</span>
                 <div>
-                    <input type="text" v-model="profile.height.feet" placeholder="" id="feet"> ft
-                    <input type="text" v-model="profile.height.inches" placeholder="" id="inches"> in
+                    <input type="text" v-model="profile.feet" placeholder="" id="feet"> ft
+                    <input type="text" v-model="profile.inches" placeholder="" id="inches"> in
                 </div>
             </div>
             <div class="form-input">
@@ -80,14 +82,12 @@ if(user == null) {
 
     let initialState = {
         profile: {
-            nameOfUser: '',
-            age: '',
+            name: '',
+            birthDate: '',
             currentWeight: '',
             goalWeight: '',
-            height: {
             feet: '',
-            inches: ''
-            },
+            inches: '',
             gender: '',
             activityLevel: [],
             timeline: '',
@@ -105,7 +105,8 @@ if(user == null) {
 export default {
     data() {
         return {
-            profileLoggedIn: {}
+            profile: {}
+            
         }
     },
     created() {
@@ -124,8 +125,9 @@ export default {
             }).then ((json) => {
             console.log(JSON.stringify(json));      
             this.profile = json;
-            // this.profile.feet = json.height % 12
-            })
+          
+            });
+            console.log(this.profile)
         }
     },
     methods: {
@@ -162,7 +164,7 @@ export default {
     computed: {
     isValidForm() {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
-       && this.profile.height.feet != '' && this.profile.height.inches != '' 
+       && this.profile.feet != '' && this.profile.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '' && this.profile.timeline != '' && this.profile.nameOfUser != '';
     },
@@ -171,9 +173,19 @@ export default {
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
-
-
 #profile {
     padding: 2%;
     margin: 50px auto;
