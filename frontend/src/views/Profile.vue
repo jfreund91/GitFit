@@ -128,6 +128,7 @@ export default {
             this.profile = json;          
             });
             console.log(this.profile)
+            this.profile.age = 0;
         }
     },
     methods: {

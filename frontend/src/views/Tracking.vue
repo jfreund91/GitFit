@@ -4,7 +4,8 @@
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
-                <div>Age: {{profile.age}}</div>
+                <!-- <div>Age: {{profile.age}}</div> -->
+                <div>Age: 23</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
@@ -152,13 +153,13 @@ export default {
     calorieBudget () {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * this.profile.age)
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
             
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * this.profile.age)
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
         }
       
