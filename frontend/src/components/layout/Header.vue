@@ -14,7 +14,7 @@
                     <li v-if="isAuthenticated">
                         <a href="/logout" v-on:click.prevent="logout">Logout</a>
                     </li>
-                    <li v-else>
+                    <li v-if="isNotAuthenticated">
                         <router-link to="/login">Login</router-link>
                     </li>
                 </ul>
@@ -28,7 +28,8 @@
         name: "the-header",
           data() {
     return {
-      isAuthenticated: auth.getUser() !== null
+      isAuthenticated: auth.getUser() !== null,
+      isNotAuthenticated: auth.getUser() === null
     };
   },
   methods: {
