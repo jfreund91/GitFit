@@ -72,35 +72,64 @@ import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
  
-let initialState = {
-    profile: {
-        age: '',
-        currentWeight: '',
-        goalWeight: '',
-        height: {
-        feet: '',
-        inches: ''
-        },
-        gender: '',
-        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
-        timeline: '',
-        nameOfUser: '',
-        eatenToday: [],
-        water: 0
+// Null if user is not logged in
+let user = auth.getUser();
+
+if(user == null) {
+    console.log("I am not logged in.");
+
+    let initialState = {
+        profile: {
+            nameOfUser: '',
+            age: '',
+            currentWeight: '',
+            goalWeight: '',
+            height: {
+            feet: '',
+            inches: ''
+            },
+            gender: '',
+            activityLevel: [],
+            timeline: '',
+            eatenToday: [],
+            water: 0
+        }
     }
+
+    Vue.use(persistentState, initialState)
+     // InitialState is injected as data in all vue instances
+     // Any changes to state will be stored in localStorage
+
 }
- 
-Vue.use(persistentState, initialState)
-// InitialState is injected as data in all vue instances
-// Any changes to state will be stored in localStorage
 
 export default {
     data() {
         return {
-
+            profileLoggedIn: {}
+        }
+    },
+    created() {
+        let userInCreated = auth.getUser();
+        if(userInCreated != null) {
+            // Call the API to get the user's profile
+            //https://localhost:44392/api/profile
+            fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+            method: 'GET',
+            headers: {
+                    "Authorization": 'Bearer ' + auth.getToken() 
+                    }, 
+            })
+            .then((response) => {
+            return response.json();
+            }).then ((json) => {
+            console.log(JSON.stringify(json));      
+            this.profile = json;
+            // this.profile.feet = json.height % 12
+            })
         }
     },
     methods: {
+
         saveProfile() {
 
             let user = auth.getUser();
@@ -112,8 +141,6 @@ export default {
                 // User is logged in so send the profile data to the database
                 
             }
-
-
             // Redirect the user to the tracking page if user is not logged in
             this.$router.push('Tracking')
 

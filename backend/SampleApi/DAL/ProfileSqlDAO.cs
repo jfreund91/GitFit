@@ -69,10 +69,10 @@ namespace SampleApi.DAL
                     while (reader.Read())
                     {
                         profile.UserId = Convert.ToInt32(reader["userId"]);
-                        profile.Name = Convert.ToString(reader["[name]"]);
+                        profile.Name = Convert.ToString(reader["name"]);
                         profile.CurrentWeight = Convert.ToInt32(reader["currentWeight"]);
                         profile.GoalWeight = Convert.ToInt32(reader["goalWeight"]);
-                        profile.BirthDate = Convert.ToDateTime(reader["birthDate"]);
+                        //profile.BirthDate = Convert.ToDateTime(reader["birthDate"]);
                         profile.Height = Convert.ToInt32(reader["height"]);
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);
