@@ -128,7 +128,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
 
                     int Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    food.FoodId = Id;
+                    food.EntryId = Id;
 
                     return food;
                 }
