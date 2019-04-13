@@ -80,6 +80,7 @@ if(user == null) {
 
     let initialState = {
         profile: {
+            nameOfUser: '',
             age: '',
             currentWeight: '',
             goalWeight: '',
@@ -88,77 +89,46 @@ if(user == null) {
             inches: ''
             },
             gender: '',
-            activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
+            activityLevel: [],
             timeline: '',
-            nameOfUser: '',
             eatenToday: [],
             water: 0
         }
     }
 
     Vue.use(persistentState, initialState)
-    // InitialState is injected as data in all vue instances
-    // Any changes to state will be stored in localStorage
-
-
-}
-
-else {
-    console.log("I am logged in.")
-    
-    
-    let initialState = {
-            profile: {
-                age: '',
-                currentWeight: '',
-                goalWeight: '',
-                height: {
-                feet: '',
-                inches: ''
-                },
-                gender: '',
-                activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
-                timeline: '',
-                nameOfUser: '',
-                eatenToday: [],
-                water: 0
-            }
-    }
-
-    Vue.use(persistentState, initialState)
-
-
+     // InitialState is injected as data in all vue instances
+     // Any changes to state will be stored in localStorage
 
 }
-
-
 
 export default {
     data() {
         return {
-            profile: {}
+            profileLoggedIn: {}
         }
     },
     created() {
-        // Call the API to get the user's profile
-        //https://localhost:44392/api/profile
-        fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
-        method: 'GET',
-        headers: {
-                "Authorization": 'Bearer ' + auth.getToken() 
-                }, 
-        })
-        .then((response) => {
-        return response.json();
-        }).then ((json) => {
-        console.log("I get here")
-        console.log(JSON.stringify(json));      
-        this.profile = json;
-        
-        })
+        let userInCreated = auth.getUser();
+        if(userInCreated != null) {
+            // Call the API to get the user's profile
+            //https://localhost:44392/api/profile
+            fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+            method: 'GET',
+            headers: {
+                    "Authorization": 'Bearer ' + auth.getToken() 
+                    }, 
+            })
+            .then((response) => {
+            return response.json();
+            }).then ((json) => {
+            console.log(JSON.stringify(json));      
+            this.profile = json;
+            // this.profile.feet = json.height % 12
+            })
+        }
     },
     methods: {
-        
 
         saveProfile() {
 
@@ -171,8 +141,6 @@ export default {
                 // User is logged in so send the profile data to the database
                 
             }
-
-
             // Redirect the user to the tracking page if user is not logged in
             this.$router.push('Tracking')
 

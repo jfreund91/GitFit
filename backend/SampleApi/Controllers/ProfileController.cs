@@ -30,7 +30,7 @@ namespace SampleApi.Controllers
         }
 
         // GET: api/Profile
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult GetProfile()
         {
