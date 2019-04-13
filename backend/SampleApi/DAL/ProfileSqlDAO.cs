@@ -80,6 +80,7 @@ namespace SampleApi.DAL
                         profile.Inches = Convert.ToInt32(reader["inches"]);
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);
+                        profile.Timeline = Convert.ToString(reader["timeline"]);
                     }
 
                 }

@@ -44,6 +44,10 @@ namespace SampleApi.Models
         /// The user's gender.
         /// </summary>
         public char Gender { get; set; }
+        /// <summary>
+        /// The user's timeline to lose weight.
+        /// </summary>
+        public string Timeline { get; set; }
 
     }
 }
