@@ -36,7 +36,7 @@ const router = new Router({
       name: "profile",
       component: Profile,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -44,7 +44,7 @@ const router = new Router({
       name: "tracking",
       component: Tracking,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -52,7 +52,7 @@ const router = new Router({
       name: "search",
       component: Search,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     },
     {
@@ -60,7 +60,7 @@ const router = new Router({
       name: "landing",
       component: Landing,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     },
     {
@@ -68,7 +68,7 @@ const router = new Router({
       name: "modal",
       component: Modal,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     }
   ]
