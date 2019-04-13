@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-   <header-logged-out></header-logged-out>
+   <the-header></the-header>
    <router-view />
    <footer-bar id="footer"></footer-bar>
   </div>
 </template>
 
 <script>
-import HeaderLoggedOut from '@/components/layout/HeaderLoggedOut.vue'
+import TheHeader from '@/components/layout/Header.vue'
 import FooterBar from '@/components/layout/FooterBar.vue'
 
 export default {
   name: 'app',
   components: {
-    HeaderLoggedOut,
-    FooterBar,
+    TheHeader,
+    FooterBar
   }
 }
 </script>
