@@ -11,12 +11,12 @@ namespace SampleApi.Models
     public class Food
     {
         /// <summary>
-        /// The entry number in the database for an entry.
+        /// Represents the Id of the food item
         /// </summary>
         public int EntryId { get; set; }
 
         /// <summary>
-        /// The National database number of the food item.
+        /// Represents the amount of calories in a food item.
         /// </summary>
         public int ndbno { get; set; }
      
