@@ -36,7 +36,8 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
-                    cmd.Parameters.AddWithValue("@height", profile.Height);
+                    cmd.Parameters.AddWithValue("@feet", profile.Feet);
+                    cmd.Parameters.AddWithValue("@inches", profile.Inches);
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
 
@@ -69,11 +70,12 @@ namespace SampleApi.DAL
                     while (reader.Read())
                     {
                         profile.UserId = Convert.ToInt32(reader["userId"]);
-                        profile.Name = Convert.ToString(reader["[name]"]);
+                        profile.Name = Convert.ToString(reader["name"]);
                         profile.CurrentWeight = Convert.ToInt32(reader["currentWeight"]);
                         profile.GoalWeight = Convert.ToInt32(reader["goalWeight"]);
-                        profile.BirthDate = Convert.ToDateTime(reader["birthDate"]);
-                        profile.Height = Convert.ToInt32(reader["height"]);
+                        profile.BirthDate = Convert.ToDateTime(reader["birthDate"]).Date;
+                        profile.Feet = Convert.ToInt32(reader["feet"]);
+                        profile.Inches = Convert.ToInt32(reader["inches"]);
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);
                     }

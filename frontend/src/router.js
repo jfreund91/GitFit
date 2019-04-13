@@ -6,7 +6,7 @@ import Tracking from "./views/Tracking.vue";
 import Search from "./views/Search.vue";
 import Landing from "./views/Landing.vue";
 import Modal from "./views/Modal.vue";
-//import auth from "./shared/auth";
+import auth from "./shared/auth";
 
 Vue.use(Router);
 
@@ -36,7 +36,7 @@ const router = new Router({
       name: "profile",
       component: Profile,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -44,7 +44,7 @@ const router = new Router({
       name: "tracking",
       component: Tracking,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -52,7 +52,7 @@ const router = new Router({
       name: "search",
       component: Search,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     },
     {
@@ -60,7 +60,7 @@ const router = new Router({
       name: "landing",
       component: Landing,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     },
     {
@@ -68,24 +68,24 @@ const router = new Router({
       name: "modal",
       component: Modal,
       meta: {
-        requiesAuth: true
+        requiesAuth: false
       }
     }
   ]
 });
 
-// router.beforeEach((to, from, next) => {
-//   // Determine if the route requires Authentication
-//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-//   const user = auth.getUser();
+router.beforeEach((to, from, next) => {
+// Determine if the route requires Authentication
+const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+const user = auth.getUser();
 
-//   // If it does and they are not logged in, send the user to "/login"
-//   if (requiresAuth && !user) {
-//     next("/login");
-//   } else {
-//     // Else let them go to their next destination
-//     next();
-//   }
-// });
+// If it does and they are not logged in, send the user to "/login"
+if (requiresAuth && !user) {
+  next("/login");
+  } else {
+// Else let them go to their next destination
+    next();
+    }
+});
 
 export default router;

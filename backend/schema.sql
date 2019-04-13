@@ -36,7 +36,8 @@ CREATE TABLE user_profiles
 	currentWeight	decimal		not null,
 	goalWeight		decimal		not null,
 	birthDate		date		not null,
-	height			int			not null,
+	feet			int			not null,
+	inches			int			not null,
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),
 	
@@ -54,7 +55,7 @@ CREATE TABLE food_entries
 	protein			decimal		not null,
 	carbohydrates	decimal		not null,
 	meal_type		varchar(25)	not null,
-	meal_date			date	not null,
+	meal_date		date	not null,
 	servings		int			not null,
 	ndbno			int			not null,
 
