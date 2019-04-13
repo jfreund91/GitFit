@@ -7,7 +7,7 @@
                 <div>Age: {{profile.age}}</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
-                <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
+                <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
             <column-chart :colors="['#4169e1', '#1a174e']" :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]"></column-chart>
@@ -151,13 +151,13 @@ export default {
     calorieBudget () {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age)
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * this.profile.age)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
             
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age)
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * this.profile.age)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
         }
       

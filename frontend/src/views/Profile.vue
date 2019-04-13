@@ -104,10 +104,11 @@ if(user == null) {
 
 export default {
     data() {
-        return {
-            profile: {}
-            
-        }
+        //if(auth.getUser() != null){
+            return {
+                profile2: {}
+            }
+        //}
     },
     created() {
         let userInCreated = auth.getUser();
@@ -166,7 +167,7 @@ export default {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
        && this.profile.feet != '' && this.profile.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
-       && this.profile.gender != '' && this.profile.timeline != '' && this.profile.nameOfUser != '';
+       && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';
     },
   },
 }
