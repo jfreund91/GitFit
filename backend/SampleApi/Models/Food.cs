@@ -13,12 +13,7 @@ namespace SampleApi.Models
         /// <summary>
         /// Represents the Id of the food item
         /// </summary>
-        public int FoodId { get; set; }
-
-        /// <summary>
-        /// Represents the primary key for the User (foreign key constraing)
-        /// </summary>
-        public int UserId { get; set; }
+        public int EntryId { get; set; }
 
         /// <summary>
         /// Represents the amount of calories in a food item.
