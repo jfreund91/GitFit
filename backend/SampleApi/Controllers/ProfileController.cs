@@ -7,16 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleApi.DAL;
 using SampleApi.Models;
-using SampleApi.Models.Account;
-using SampleApi.Providers.Security;
 
 namespace SampleApi.Controllers
 {
     /// <summary>
     /// Creates a new profile controller for the user.
     /// </summary>
-    [Authorize]
-    [Route("api/profile/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProfileController : GitFitController
     {
@@ -33,7 +30,7 @@ namespace SampleApi.Controllers
         }
 
         // GET: api/Profile
-        [Route("api/profile/[controller]")]
+        [Authorize]
         [HttpGet]
         public ActionResult GetProfile()
         {
@@ -48,7 +45,7 @@ namespace SampleApi.Controllers
                 profile.Gender
             */
 
-            Profile p = profileDao.GetProfile(CurrentUser.Id);
+            //Profile p = profileDao.GetProfile(CurrentUser.Id);
             // UserId Pulled from the login
 
             return Ok(profileDao.GetProfile(CurrentUser.Id));

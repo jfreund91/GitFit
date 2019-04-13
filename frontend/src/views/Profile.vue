@@ -149,9 +149,9 @@ export default {
                 }, 
         })
         .then((response) => {
-            console.log("I get here")
         return response.json();
         }).then ((json) => {
+        console.log("I get here")
         console.log(JSON.stringify(json));      
         this.profile = json;
         
