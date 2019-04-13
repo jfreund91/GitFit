@@ -30,7 +30,7 @@ namespace SampleApi.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
-                        "@currentWeight, @goalWeight, @birthDate, @height, @activityLevel, @gender); SELECT @@IDENTITY;", conn);
+                        "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender); SELECT @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@userId", profile.UserId);
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
