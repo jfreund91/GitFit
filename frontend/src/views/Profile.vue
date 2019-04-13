@@ -10,7 +10,7 @@
             </div>
             <div class="form-input">
                 <span class="label">Birthday:</span>
-                <input type="date" v-model="profile.birthDate" name="birthDate">
+                <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
                 <!-- <span class="label">Age:</span>
                 <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
                 </select> 
@@ -92,7 +92,8 @@ if(user == null) {
             activityLevel: [],
             timeline: '',
             eatenToday: [],
-            water: 0
+            water: 0,
+            age: 0
         }
     }
 
@@ -105,7 +106,7 @@ if(user == null) {
 export default {
     data() {
             return {
-                //profile2: {}
+                profile: {}
             }
 
     },
@@ -124,13 +125,9 @@ export default {
             return response.json();
             }).then ((json) => {
             console.log(JSON.stringify(json));      
-            this.profile = json;
-          
+            this.profile = json;          
             });
             console.log(this.profile)
-            // if(JSON.stringify(json).userId == "Tia"){
-            //     console.log("I AM HERE!!");
-            // }
         }
     },
     methods: {
@@ -166,7 +163,8 @@ export default {
     // Check that all of the profile form fields are filled out
     computed: {
     isValidForm() {
-      return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
+      return this.profile.currentWeight != '' && this.profile.goalWeight != ''
+       // && this.profile.age != ''
        && this.profile.feet != '' && this.profile.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';
