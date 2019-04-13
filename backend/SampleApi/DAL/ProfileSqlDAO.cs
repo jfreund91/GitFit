@@ -19,7 +19,7 @@ namespace SampleApi.DAL
         /// Creates a user profile and saves it to the database.
         /// </summary>
         /// <param name="profile"></param>
-        public void CreateProfile(Profile profile)
+        public Profile CreateProfile(Profile profile)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace SampleApi.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
-                        "@currentWeight, @goalWeight, @birthDate, @height, @activityLevel, @gender);", conn);
+                        "@currentWeight, @goalWeight, @birthDate, @height, @activityLevel, @gender); SELECT @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@userId", profile.UserId);
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
@@ -42,6 +42,8 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
 
                     cmd.ExecuteScalar();
+
+                    return profile;
                 }
             }
             catch (Exception ex)

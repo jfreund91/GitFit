@@ -27,22 +27,22 @@ namespace SampleApi.DAL
         /// Saves the user to the database.
         /// </summary>
         /// <param name="user"></param>
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role); SELECT @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);
 
-                    cmd.ExecuteNonQuery();
-
-                    return;
+                    int Id = Convert.ToInt32(cmd.ExecuteScalar());
+                    user.Id = Id;
+                    return user;
                 }
             }
             catch(SqlException ex)

@@ -11,7 +11,21 @@ namespace SampleApi.Models
     public class Food
     {
         /// <summary>
+<<<<<<< HEAD
+        /// Represents the Id of the food item
+        /// </summary>
+        public int FoodId { get; set; }
+
+        /// <summary>
+        /// Represents the primary key for the User (foreign key constraing)
+        /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Represents the amount of calories in a food item.
+=======
         /// The National database number of the food item.
+>>>>>>> 0f2bd58b6da08652f6c18f78704e71219ac32904
         /// </summary>
         public int ndbno { get; set; }
      
