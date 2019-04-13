@@ -93,7 +93,6 @@ if(user == null) {
             timeline: '',
             eatenToday: [],
             water: 0,
-            age: 0
         }
     }
 
@@ -106,7 +105,7 @@ if(user == null) {
 export default {
     data() {
             return {
-                profile: {}
+                //profile: {}
             }
 
     },
@@ -128,7 +127,6 @@ export default {
             this.profile = json;          
             });
             console.log(this.profile)
-            this.profile.age = 0;
         }
     },
     methods: {
@@ -160,6 +158,7 @@ export default {
                 select.add(option);
             }
         },
+        
     },
     // Check that all of the profile form fields are filled out
     computed: {

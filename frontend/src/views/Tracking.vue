@@ -5,7 +5,7 @@
             <div id="profile-stats">
                 <h3>User Stats</h3>
                 <!-- <div>Age: {{profile.age}}</div> -->
-                <div>Age: 23</div>
+                <div>Age: {{calculateAge}}</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
@@ -106,6 +106,7 @@
 import Vue from 'vue'
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+import auth from '@/shared/auth.js' // import whether user is logged in
 
 Vue.use(VueChartkick, {adapter: Chart})
 export default {
@@ -115,6 +116,25 @@ export default {
             
             }
         },
+    created() {
+        let userInCreated = auth.getUser();
+        if(userInCreated != null) {
+            // Call the API to get the user's profile
+            //https://localhost:44392/api/profile
+            fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+            method: 'GET',
+            headers: {
+                    "Authorization": 'Bearer ' + auth.getToken() 
+                    }, 
+            })
+            .then((response) => {
+            return response.json();
+            }).then ((json) => {
+            console.log(JSON.stringify(json));      
+            this.profile = json;          
+            });
+        }
+    },
     methods: {
         addWater() {
             this.profile.water +=1;
@@ -150,19 +170,26 @@ export default {
         }
     },
     computed: {
+        calculateAge() {
+        let DateOfBirth = new Date(this.profile.birthDate);
+        let currentDate = new Date();
+        let dateDiff = currentDate-DateOfBirth; // This is the difference in milliseconds
+        let age = Math.floor(dateDiff/31557600000); // Divide by 1000*60*60*24*365.25
+
+        return age;
+    },
     calorieBudget () {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
             (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23)
-            )* this.profile.activityLevel + (this.profile.timeline * 1)
+            * this.profile.activityLevel + (this.profile.timeline * 1))
             
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23)
-            )* this.profile.activityLevel + (this.profile.timeline * 1)
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23
+            )* this.profile.activityLevel + (this.profile.timeline * 1))
         }
-      
     },
     caloriesConsumed() {
         let sum = 0;
@@ -199,6 +226,7 @@ export default {
         }
         return totalProtein;
     },
+    
     snacks() {
         let snacks = [];
         snacks = this.profile.eatenToday.filter((snack) => {
