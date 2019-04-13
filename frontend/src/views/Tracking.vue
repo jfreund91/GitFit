@@ -7,23 +7,22 @@
                 <div>Age: {{profile.age}}</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
-                <div>Height(in): {{profile.height.feet*12+ +profile.height.inches}}</div>
+                <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
-            <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
-            <div class="circle"><h2 class="circle-header">Calorie Budget: {{Math.trunc(calorieBudget - caloriesConsumed)}}</h2></div>
+            <column-chart :colors="['#4169e1', '#1a174e']" :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]"></column-chart>
+            <!-- <div class="circle"><h2 class="circle-header">Calories Consumed: {{Math.trunc(caloriesConsumed)}} </h2></div>
+            <div class="circle"><h2 class="circle-header">Calorie Budget: {{Math.trunc(calorieBudget - caloriesConsumed)}}</h2></div> -->
         </div>
         <div class="container bars-container">
-            <div>
-                <h1>Macro Nutrients</h1>
-                <h2>Protein</h2>
-                <div class="macro" id="protein"><strong>{{Math.trunc(this.proteinConsumed)}} g</strong></div>
-                <h2>Carbs</h2>
-                <div class="macro" id="carbs"><strong>{{Math.trunc(this.carbsConsumed)}} g</strong></div>
-                <h2>Fat</h2>
-                <div class="macro" id="fat"><strong>{{Math.trunc(this.fatConsumed)}} g</strong></div>
+            <div class="macros">
+                <h1>% Based On FDA Recommended Value</h1>
+            <bar-chart suffix="%"  :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
+            <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
+            <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
+            <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
             </div>
-            <div>
+            <div class="water-container">
                 <h1>Water</h1>
                 <div class="glass-container">
                     <i @click="addWater()" class="fas fa-plus-circle large-plus"></i>
@@ -103,11 +102,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
 
+Vue.use(VueChartkick, {adapter: Chart})
 export default {
     name: 'tracking',
     data() {
         return {
+            
             }
         },
     methods: {
@@ -148,13 +152,13 @@ export default {
     calorieBudget () {
         if(this.profile.gender === 'F') { 
             return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (4.7 * this.profile.age)
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * this.profile.age)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
             
         }
         else {
             return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.height.feet*12+ +this.profile.height.inches) - (6.8 * this.profile.age)
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * this.profile.age)
             )* this.profile.activityLevel + (this.profile.timeline * 1)
         }
       
@@ -163,7 +167,7 @@ export default {
         let sum = 0;
         if(this.profile.eatenToday.length > 0) {
         this.profile.eatenToday.forEach(item => {
-            sum += item.kcal;
+            sum += item.calories;
         })}
         return sum;
     },
@@ -197,28 +201,28 @@ export default {
     snacks() {
         let snacks = [];
         snacks = this.profile.eatenToday.filter((snack) => {
-            return snack.meal === 'Snack'
+            return snack.mealType === 'Snack'
         });
         return snacks;
     },
     breakfasts () {
         let breakfasts = [];
         breakfasts = this.profile.eatenToday.filter((item) => {
-            return item.meal === 'Breakfast'
+            return item.mealType === 'Breakfast'
         });
         return breakfasts;
     },
     lunches () {
         let lunches = [];
         lunches = this.profile.eatenToday.filter((item) => {
-            return item.meal === 'Lunch'
+            return item.mealType === 'Lunch'
         });
         return lunches;
     },
     dinners() {
         let dinners = [];
         dinners = this.profile.eatenToday.filter((item)=> {
-            return item.meal === 'Dinner'
+            return item.mealType === 'Dinner'
         });
         return dinners;
     }
@@ -239,6 +243,15 @@ export default {
         height: 0%;
         background-color: lightskyblue;
         transform: translate(-50%);
+    }
+
+    .water-container {
+        width: 30%;
+    }
+
+    .macros {
+        width: 70%;
+        margin-right: 20px;
     }
 
     .water-glass {
@@ -289,10 +302,13 @@ export default {
         z-index: 3;
 
     }
-
-    .bars-container, .glass-container {
+ .glass-container {
         display: flex;
         justify-content: space-between;
+    }
+
+    .bars-container {
+        display: flex;
     }
 
     .circle-container {

@@ -3,7 +3,6 @@
         <div class="img-container">
         <router-link to="/"><img src="../../assets/logo.png"></router-link>  
         </div>
-        <!-- <span id="tagline1">Git fit programming your diet!</span> -->
         <span id="tagline2">Git your diet under version control.</span>
         <nav>
                 <ul id="main-nav">
@@ -12,7 +11,12 @@
                      <li><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
                      <li><router-link to="/search">Search</router-link></li>
-                     <li><router-link to="/login">Register/Login</router-link></li>
+                    <li v-if="isAuthenticated">
+                        <a href="/logout" v-on:click.prevent="logout">Logout</a>
+                    </li>
+                    <li v-if="isNotAuthenticated">
+                        <router-link to="/login">Login</router-link>
+                    </li>
                 </ul>
         </nav>
     </header>
@@ -21,14 +25,33 @@
     import auth from '@/shared/auth.js'
 
     export default {
-        name: "header-logged-out",
-        computed: {
-            userName() {
-                return auth.getUser();
-            }
-        }
-
+        name: "the-header",
+          data() {
+    return {
+      isAuthenticated: auth.getUser() !== null,
+      isNotAuthenticated: auth.getUser() === null
+    };
+  },
+  methods: {
+    /**
+     * Logs the user out and takes them to the login page
+     * @function
+     */
+    logout() {
+      auth.destroyToken();
+      this.$router.push("/login");
     }
+  },
+  computed: {
+    getUser() {
+      return auth.getUser();
+    },
+    userName() {
+        return auth.getUser();
+    }
+  }
+
+}
 </script>
 <style >
     header {

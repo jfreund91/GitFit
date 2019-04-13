@@ -36,6 +36,7 @@ namespace SampleApi.Tests
             UserSqlDAO userDAO = new UserSqlDAO("Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;");
 
 
+<<<<<<< HEAD
             //ACT
             User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
             userDAO.CreateUser(user);
@@ -51,6 +52,12 @@ namespace SampleApi.Tests
                 Date = DateTime.Now,
                 ndbno = 200
             };
+=======
+        //    //ACT
+        //    User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
+        //    Food item = new Food() { Calories=1000, Name="Salami", Fat=20, Carbs=10, Protein=30,
+        //        MealType ="Lunch", Servings=3, Date=DateTime.Now, ndbno=200};
+>>>>>>> 0f2bd58b6da08652f6c18f78704e71219ac32904
 
             foodItemDAO.AddFoodItem(user.Id, item);
             int actual = this.GetRowCount("food_entries");

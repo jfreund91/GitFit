@@ -6,13 +6,15 @@
         <div class="form">
             <div class="form-input">
                 <span class="label">Name:</span>
-                <input type="text" v-model="profile.nameOfUser" placeholder="Enter Your Name">
+                <input type="text" v-model="profile.name" placeholder="Enter Your Name">
             </div>
             <div class="form-input">
-                <span class="label">Age:</span>
-                <!-- <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
-                </select> -->
-                <input type="text" v-model="profile.age" placeholder="Enter Your Age">
+                <span class="label">Birthday:</span>
+                <input type="date" v-model="profile.birthDate" name="birthDate">
+                <!-- <span class="label">Age:</span>
+                <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
+                </select> 
+                <input type="text" v-model="profile.age" placeholder="Enter Your Age">-->
             </div>
             <div class="form-input">
                 <span class="label">Current Weight:</span>
@@ -39,8 +41,8 @@
             <div class="feet-inches">
                 <span class="label">Height:</span>
                 <div>
-                    <input type="text" v-model="profile.height.feet" placeholder="" id="feet"> ft
-                    <input type="text" v-model="profile.height.inches" placeholder="" id="inches"> in
+                    <input type="text" v-model="profile.feet" placeholder="" id="feet"> ft
+                    <input type="text" v-model="profile.inches" placeholder="" id="inches"> in
                 </div>
             </div>
             <div class="form-input">
@@ -72,35 +74,64 @@ import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
  
-let initialState = {
-    profile: {
-        age: '',
-        currentWeight: '',
-        goalWeight: '',
-        height: {
-        feet: '',
-        inches: ''
-        },
-        gender: '',
-        activityLevel: ['Sedentary', 'Lightly Active', 'Moderately Active', 'An Exercise Beast' ],
-        timeline: '',
-        nameOfUser: '',
-        eatenToday: [],
-        water: 0
+// Null if user is not logged in
+let user = auth.getUser();
+
+if(user == null) {
+    console.log("I am not logged in.");
+
+    let initialState = {
+        profile: {
+            name: '',
+            birthDate: '',
+            currentWeight: '',
+            goalWeight: '',
+            feet: '',
+            inches: '',
+            gender: '',
+            activityLevel: [],
+            timeline: '',
+            eatenToday: [],
+            water: 0
+        }
     }
+
+    Vue.use(persistentState, initialState)
+     // InitialState is injected as data in all vue instances
+     // Any changes to state will be stored in localStorage
+
 }
- 
-Vue.use(persistentState, initialState)
-// InitialState is injected as data in all vue instances
-// Any changes to state will be stored in localStorage
 
 export default {
     data() {
-        return {
+            return {
+                //profile2: {}
+            }
 
+    },
+    created() {
+        let userInCreated = auth.getUser();
+        if(userInCreated != null) {
+            // Call the API to get the user's profile
+            //https://localhost:44392/api/profile
+            fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+            method: 'GET',
+            headers: {
+                    "Authorization": 'Bearer ' + auth.getToken() 
+                    }, 
+            })
+            .then((response) => {
+            return response.json();
+            }).then ((json) => {
+            console.log(JSON.stringify(json));      
+            this.profile = json;
+          
+            });
+            console.log(this.profile)
         }
     },
     methods: {
+
         saveProfile() {
 
             let user = auth.getUser();
@@ -112,8 +143,6 @@ export default {
                 // User is logged in so send the profile data to the database
                 
             }
-
-
             // Redirect the user to the tracking page if user is not logged in
             this.$router.push('Tracking')
 
@@ -135,18 +164,28 @@ export default {
     computed: {
     isValidForm() {
       return this.profile.age != '' && this.profile.currentWeight != '' && this.profile.goalWeight != ''
-       && this.profile.height.feet != '' && this.profile.height.inches != '' 
+       && this.profile.feet != '' && this.profile.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
-       && this.profile.gender != '' && this.profile.timeline != '' && this.profile.nameOfUser != '';
+       && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';
     },
   },
 }
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
-
-
 #profile {
     padding: 2%;
     margin: 50px auto;
