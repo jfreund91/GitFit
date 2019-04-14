@@ -22,7 +22,7 @@
         <div class="box">
             <h2>Track Your Progress</h2>
             <img src="../assets/measure.gif">
-            <p>View your daily, weekly, monthly, an annual progress on your fitness joruney! </p>
+            <p>View your daily, weekly, monthly, and annual progress on your fitness journey! </p>
         </div>
     </div>
     </div>
