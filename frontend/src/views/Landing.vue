@@ -9,10 +9,10 @@
     <h2 class="links"><router-link to="/profile">Continue as Guest</router-link></h2>
     <div id="box-container" class="container">
         <div class="box">
-            <h2>Make Healthy Choies</h2>
+            <h2>Healthy Choies</h2>
             <img src="../assets/healthyeating.gif">
             <p>Keep track of your calorie intake based on your nurition goals! 
-                You can see the breakdown nutritional breakdown in your favorite foods to make healthier choices.</p>
+                You can see the nutritional breakdown in your favorite foods to make healthier choices.</p>
         </div>
         <div class="box">
             <h2>Git Moving</h2>
