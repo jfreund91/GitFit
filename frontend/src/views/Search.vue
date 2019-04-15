@@ -129,7 +129,7 @@ export default {
                     fat: this.detailItem.fat,
                     carbs: this.detailItem.carbs, 
                     protein: this.detailItem.protein,
-                    meal: this.detailItem.meal
+                    mealType: this.detailItem.mealType
                 }
                
             ) 

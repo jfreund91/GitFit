@@ -180,6 +180,7 @@ namespace SampleApi.DAL
                 cmd.ExecuteNonQuery();
             }
         }
+
         /// <summary>
         /// Gets the number of 8oz cups of water a user consumed on a given date.
         /// </summary>
