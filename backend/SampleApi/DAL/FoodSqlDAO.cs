@@ -127,8 +127,8 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@servings", food.Servings);
                     cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
 
-                    int Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    food.EntryId = Id;
+                   
+                    food.EntryId = Convert.ToInt32(cmd.ExecuteScalar());
 
                     return food;
                 }
@@ -180,6 +180,7 @@ namespace SampleApi.DAL
                 cmd.ExecuteNonQuery();
             }
         }
+
         /// <summary>
         /// Gets the number of 8oz cups of water a user consumed on a given date.
         /// </summary>

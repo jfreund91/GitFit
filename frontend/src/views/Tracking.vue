@@ -22,6 +22,7 @@
             <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
             <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
             <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
+            <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
             </div>
             <div class="water-container">
                 <h1>Water</h1>
@@ -46,9 +47,11 @@
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
                         <li v-for="item in snacks" :key="item.id">
+                            {{item.name}}
+                            <span class="edit-food"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>{{item.name}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -61,9 +64,11 @@
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
                         <li v-for="item in breakfasts" :key="item.id">
+                            {{item.name}}
+                            <span class="edit-food"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>{{item.name}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -76,9 +81,11 @@
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
                         <li class = "meal-items" v-for="item in lunches" :key="item.id">
+                            {{item.name}}
+                            <span class="edit-food"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>{{item.name}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -91,9 +98,11 @@
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
                     <ul>
                         <li v-for="item in dinners" :key="item.id">
+                            {{item.name}}
+                            <span class="edit-food"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                                </span>{{item.name}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -345,8 +354,12 @@ export default {
         justify-content:space-evenly;
     }
 
-    .remove-food {
-        padding-right: 50px;
+    .remove-food, .edit-food {
+        padding-left: 50px;
+    }
+
+    i.far.fa-edit {
+        color: black;
     }
 
     .large-plus {

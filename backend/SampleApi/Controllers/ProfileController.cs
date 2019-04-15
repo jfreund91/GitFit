@@ -30,25 +30,28 @@ namespace SampleApi.Controllers
         }
 
         // GET: api/Profile
-        //[Authorize]
+        [Authorize]
         [HttpGet]
-        public ActionResult GetProfile()
+        [Route("/api/profile")]
+        public ActionResult<Profile> GetProfile()
         {
-            /* returns to Profile.vue page values:
-                profile.UserId
-                profile.Name
-                profile.CurrentWeight
-                profile.GoalWeight
-                profile.BirthDate
-                profile.Height
-                profile.ActivityLevel
-                profile.Gender
-            */
+            //returns to Profile.vue page values:
+            //profile.UserId
+            //    profile.Name
+            //    profile.CurrentWeight
+            //    profile.GoalWeight
+            //    profile.BirthDate
+            //    profile.Feet
+            //    profile.Inches
+            //    profile.ActivityLevel
+            //    profile.Gender
+            //    profile.Timeline
 
-            //Profile p = profileDao.GetProfile(CurrentUser.Id);
-            // UserId Pulled from the login
 
-            return Ok(profileDao.GetProfile(CurrentUser.Id));
+            Profile p = profileDao.GetProfile(CurrentUser.Id);
+            //UserId Pulled from the login
+
+            return Ok(p);
         }
 
         // POST: api/Profile
