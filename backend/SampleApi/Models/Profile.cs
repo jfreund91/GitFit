@@ -8,9 +8,9 @@ namespace SampleApi.Models
     public class Profile
     {
         //public int ProfileId { get; set; }
-        ///// <summary>
-        ///// The user's Id.
-        ///// </summary>
+        /// <summary>
+        /// The user's Id.
+        /// </summary>
         public int UserId { get; set; }
         /// <summary>
         /// Name of the user.

@@ -51,5 +51,15 @@ namespace SampleApi.Controllers
             return Ok(profileDao.GetProfile(CurrentUser.Id));
         }
 
+        // POST: api/Profile
+        [HttpPost]
+        public void CreateProfile([FromBody] Profile profile)
+        {
+            profile.UserId = CurrentUser.Id;
+            this.profileDao.CreateProfile(profile);
+
+            //return Ok(this.profileDao.CreateProfile(profile));
+        }
+
     }
 }

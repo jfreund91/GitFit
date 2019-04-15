@@ -110,6 +110,9 @@ export default {
     goToProfile() {
       this.$router.push("/profile");
     },
+    goToTracking() {
+      this.$router.push("/tracking");
+    },
     /**
      * Logs the user in and then sends them to the dashboard.
      * NOTE: Uses async/await
@@ -145,8 +148,8 @@ export default {
           //this.goHome(); // Run method to send user to homepage
           // Make a call to get the profile stats from the database
 
-          // Send the user to the profile page with values populated from the database if any
-          this.goToProfile();
+          // Send the user to the tracking page with values populated from the database if any
+          this.goToTracking();
         }
       } catch (error) {
         console.error(error);
@@ -154,7 +157,7 @@ export default {
       }
     },
     /**
-     * Signs the user up and then redirects them to the dashboard.
+     * Signs the user up and then redirects them to the create profile page.
      */
     async signup() {
       this.error = "";
@@ -178,7 +181,7 @@ export default {
         } else {
           auth.saveToken(data);
           const user = auth.getUser();
-          this.goHome();
+          this.goToProfile(); // Send the user to the profile page to create a profile after sign-up
         }
       } catch (error) {
         console.error(error);

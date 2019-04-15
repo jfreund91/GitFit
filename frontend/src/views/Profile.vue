@@ -105,9 +105,20 @@ if(user == null) {
 export default {
     data() {
             return {
-                //profile: {}
+                profile: {
+                    name: "",
+                    birthDate: "",
+                    currentWeight: "",
+                    goalWeight: "",
+                    feet: "",
+                    inches: "",
+                    gender: "",
+                    activityLevel: [],
+                    timeline: "",
+                    eatenToday: [],
+                    water: 0,
+                    }
             }
-
     },
     created() {
         let userInCreated = auth.getUser();
@@ -130,7 +141,6 @@ export default {
         }
     },
     methods: {
-
         saveProfile() {
 
             let user = auth.getUser();
@@ -140,7 +150,19 @@ export default {
             }
             else {
                 // User is logged in so send the profile data to the database
-                
+                fetch(process.env.VUE_APP_REMOTE_API + '/profile', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Bearer " + auth.getToken()
+                        },
+                        body: JSON.stringify(this.profile)
+                        })
+                        .then((response) => {
+                        if(response.ok) {
+                        this.$router.push('/tracking');
+                        }
+                        });               
             }
             // Redirect the user to the tracking page if user is not logged in
             this.$router.push('Tracking')
