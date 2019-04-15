@@ -125,11 +125,11 @@ export default {
                 {
                     id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
-                    calories: this.detailItem.calories,
-                    fat: this.detailItem.fat,
-                    carbs: this.detailItem.carbs, 
-                    protein: this.detailItem.protein,
-                    mealType: this.detailItem.mealType
+                    calories: this.detailItem.calories * this.detailItem.servings,
+                    fat: this.detailItem.fat * this.detailItem.servings,
+                    carbs: this.detailItem.carbs * this.detailItem.servings, 
+                    protein: this.detailItem.protein * this.detailItem.servings,
+                    mealType: this.detailItem.mealType * this.detailItem.servings
                 }
                
             ) 

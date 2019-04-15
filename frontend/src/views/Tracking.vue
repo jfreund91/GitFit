@@ -122,15 +122,15 @@ export default {
     name: 'tracking',
     data() {
         return {
-            
+                
             }
         },
     created() {
         let userInCreated = auth.getUser();
-        if(userInCreated != null) {
+        if(userInCreated !== null) {
             // Call the API to get the user's profile
             //https://localhost:44392/api/profile
-            fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+            fetch(`${process.env.VUE_APP_REMOTE_API}/tracking`, {
             method: 'GET',
             headers: {
                     "Authorization": 'Bearer ' + auth.getToken() 
@@ -139,8 +139,19 @@ export default {
             .then((response) => {
             return response.json();
             }).then ((json) => {
-            console.log(JSON.stringify(json));      
-            this.profile = json;          
+                this.profile.eatenToday = [];
+                json.forEach(item => {
+                this.profile.eatenToday.push({
+                    
+                    id: item.entryId,
+                    name: item.name,
+                    calories: item.calories,
+                    fat: item.fat * item.servings,
+                    carbs: item.carbs, 
+                    protein: item.protein,
+                    mealType: item.mealType,
+
+                })})
             });
         }
     },
@@ -246,7 +257,7 @@ export default {
     breakfasts () {
         let breakfasts = [];
         breakfasts = this.profile.eatenToday.filter((item) => {
-            return item.mealType === 'Breakfast'
+            return item.mealType === 'Breakfast';
         });
         return breakfasts;
     },

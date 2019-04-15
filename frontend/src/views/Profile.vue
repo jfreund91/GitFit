@@ -77,8 +77,6 @@ import auth from '@/shared/auth.js' // import whether user is logged in
 // Null if user is not logged in
 let user = auth.getUser();
 
-if(user == null) {
-    console.log("I am not logged in.");
 
     let initialState = {
         profile: {
@@ -100,29 +98,17 @@ if(user == null) {
      // InitialState is injected as data in all vue instances
      // Any changes to state will be stored in localStorage
 
-}
+
 
 export default {
     data() {
             return {
-                profile: {
-                    name: "",
-                    birthDate: "",
-                    currentWeight: "",
-                    goalWeight: "",
-                    feet: "",
-                    inches: "",
-                    gender: "",
-                    activityLevel: [],
-                    timeline: "",
-                    eatenToday: [],
-                    water: 0,
-                    }
+               // profile: {}
             }
     },
     created() {
         let userInCreated = auth.getUser();
-        if(userInCreated != null) {
+        if(userInCreated !== null) {
             // Call the API to get the user's profile
             //https://localhost:44392/api/profile
             fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
@@ -135,7 +121,14 @@ export default {
             return response.json();
             }).then ((json) => {
             console.log(JSON.stringify(json));      
-            this.profile = json;          
+            this.profile.name = json.name;
+            this.profile.goalWeight = json.goalWeight;
+            this.profile.currentWeight = json.currentWeight;
+            this.profile.birthDate = json.birthDate;
+            this.profile.feet = json.feet;
+            this.profile.inches = json.inches;
+            this.profile.activityLevel = json.activityLevel;
+            this.profile.timeline = json.timeline;
             });
             console.log(this.profile)
         }
