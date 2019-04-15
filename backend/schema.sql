@@ -100,3 +100,5 @@ CREATE TABLE quick_meal_food_items
 );
 
 COMMIT TRANSACTION;
+
+select * from users;
