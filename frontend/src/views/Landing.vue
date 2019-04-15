@@ -20,7 +20,7 @@
             <p>A healthy lifestyle is a combonination of diet and exercise. Track your calorie intake along with calories burned during exercise.</p>
         </div>
         <div class="box">
-            <h2>Track Your Progress</h2>
+            <h2>Track Progress</h2>
             <img src="../assets/measure.gif">
             <p>View your daily, weekly, monthly, and annual progress on your fitness journey! </p>
         </div>
@@ -51,6 +51,7 @@
 .box {
     width: 30%;
 }
+
 
 .box h2 {
     text-align: center;
