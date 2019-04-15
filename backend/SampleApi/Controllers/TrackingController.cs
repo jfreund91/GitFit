@@ -32,9 +32,9 @@ namespace SampleApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public IEnumerable<Food> GetLifetimeFoodEntries()
+        public IEnumerable<Food> GetTodaysFoodEntries()
         {
-            return foodDao.GetLifetimeFoodEntries(CurrentUser.Id);
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today, DateTime.Today);
         }
      
     }

@@ -50,7 +50,7 @@ CREATE TABLE food_entries
 (
 	id				int			identity(1,1),
 	userId			int			not null,
-	[name]			varchar(50) not null,
+	[name]			varchar(100) not null,
 	calories		decimal		not null,
 	fat				decimal		not null,
 	protein			decimal		not null,

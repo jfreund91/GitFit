@@ -88,12 +88,13 @@ namespace SampleApi.DAL
         private Food ConvertReaderToFood(SqlDataReader reader)
         {
             Food food = new Food();
+            food.EntryId = Convert.ToInt32(reader["id"]);
             food.Name = Convert.ToString(reader["name"]);
             food.Calories = Convert.ToDecimal(reader["calories"]);
             food.Fat = Convert.ToDecimal(reader["fat"]);
             food.Protein = Convert.ToDecimal(reader["protein"]);
-            food.Carbs = Convert.ToDecimal(reader["carbs"]);
-            food.MealType = Convert.ToString(reader["meal_price"]);
+            food.Carbs = Convert.ToDecimal(reader["carbohydrates"]);
+            food.MealType = Convert.ToString(reader["meal_type"]);
             food.Servings = Convert.ToDecimal(reader["servings"]);
             food.Date = Convert.ToDateTime(reader["meal_date"]);
             food.ndbno = Convert.ToInt32(reader["ndbno"]);
