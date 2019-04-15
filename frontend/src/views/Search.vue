@@ -25,10 +25,10 @@
                     <h4>Nutritional Value per Serving</h4>
                     <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
-                        <div>{{Math.trunc(detailItem.calories * servingRate)}} Calories</div>
-                        <div>{{Math.trunc(detailItem.fat  * servingRate)}}g Fat</div>
-                        <div>{{Math.trunc(detailItem.carbs * servingRate)}}g Carbs</div>
-                        <div>{{Math.trunc(detailItem.protein * servingRate)}}g Protein</div>
+                        <div>{{Math.trunc(detailItem.calories)}} Calories</div>
+                        <div>{{Math.trunc(detailItem.fat)}}g Fat</div>
+                        <div>{{Math.trunc(detailItem.carbs)}}g Carbs</div>
+                        <div>{{Math.trunc(detailItem.protein)}}g Protein</div>
                     </div>
                 <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
                 <div id="servings-detail">
@@ -68,7 +68,6 @@ export default {
          // showSearch: true,
          queryString: "",
          searchResults : [],
-         servingRate: Number,
          detailItem: {
              ndbno: 0,
              name: "",
@@ -78,6 +77,7 @@ export default {
              protein: 0,
              servings: 0,
              mealType: '',
+             servingRate: 1,
             
          }
      }
@@ -108,13 +108,13 @@ export default {
                  'Content-Type': 'application/json',
                  'Accept': 'application/json'
              }}).then(response => response.json()).then(json => {
-                 this.servingRate = json.report.food.nutrients[0].measures[0].eqv/100;
-                 this.detailItem.ndbno = json.report.food.ndbno * this.servingRate;
-                 this.detailItem.name = json.report.food.name * this.servingRate;
-                 this.detailItem.calories = json.report.food.nutrients[1].value * this.servingRate;
-                 this.detailItem.protein = json.report.food.nutrients[2].value * this.servingRate;
-                 this.detailItem.fat = json.report.food.nutrients[3].value * this.servingRate;
-                 this.detailItem.carbs = json.report.food.nutrients[4].value * this.servingRate;
+                 this.detailItem.servingRate = json.report.food.nutrients[0].measures[0].eqv / 100;
+                 this.detailItem.ndbno = json.report.food.ndbno;
+                 this.detailItem.name = json.report.food.name;
+                 this.detailItem.calories = json.report.food.nutrients[1].value *this.detailItem.servingRate;
+                 this.detailItem.protein = json.report.food.nutrients[2].value * this.detailItem.servingRate;
+                 this.detailItem.fat = json.report.food.nutrients[3].value * this.detailItem.servingRate;
+                 this.detailItem.carbs = json.report.food.nutrients[4].value * this.detailItem.servingRate;
                  
                 //  this.showSearch = false;
              });
@@ -125,10 +125,10 @@ export default {
                 {
                     id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
-                    kcal: this.detailItem.calories * this.detailItem.servingRate * this.detailItem.servingsConsumed,
-                    fat: this.detailItem.fat * this.detailItem.servingRate * this.detailItem.servingsConsumed,
-                    carbs: this.detailItem.carbs * this.detailItem.servingRate * this.detailItem.servingsConsumed,
-                    protein: this.detailItem.protein * this.detailItem.servingRate * this.detailItem.servingsConsumed,
+                    calories: this.detailItem.calories,
+                    fat: this.detailItem.fat,
+                    carbs: this.detailItem.carbs, 
+                    protein: this.detailItem.protein,
                     meal: this.detailItem.meal
                 }
                

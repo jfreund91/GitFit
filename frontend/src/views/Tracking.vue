@@ -22,6 +22,7 @@
             <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
             <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
             <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
+            <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
             </div>
             <div class="water-container">
                 <h1>Water</h1>
