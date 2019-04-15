@@ -30,9 +30,10 @@ namespace SampleApi.Controllers
         }
 
         // GET: api/Profile
-        //[Authorize]
+        [Authorize]
         [HttpGet]
-        public ActionResult GetProfile()
+        [Route("/api/profile")]
+        public ActionResult<Profile> GetProfile()
         {
             //returns to Profile.vue page values:
             //profile.UserId
@@ -50,7 +51,7 @@ namespace SampleApi.Controllers
             Profile p = profileDao.GetProfile(CurrentUser.Id);
             //UserId Pulled from the login
 
-            return Ok(profileDao.GetProfile(CurrentUser.Id));
+            return Ok(p);
         }
 
     }
