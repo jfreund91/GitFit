@@ -10,12 +10,8 @@
             </div>
             <div class="form-input">
                 <span class="label">Birthday:</span>
-                <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
-                <!-- <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
-                <span class="label">Age:</span>
-                <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
-                </select> 
-                <input type="text" v-model="profile.age" placeholder="Enter Your Age">-->
+                <input type="datetime-local" v-model="profile.birthDate" name="birthDate"
+                value="2017-06-13T13:00">
             </div>
             <div class="form-input">
                 <span class="label">Current Weight:</span>
@@ -82,7 +78,7 @@ let user = auth.getUser();
     let initialState = {
         profile: {
             name: '',
-            birthDate: '',
+            birthDate: '1910-01-01T00:00:00',
             currentWeight: '',
             goalWeight: '',
             feet: '',
