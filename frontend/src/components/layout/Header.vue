@@ -47,7 +47,11 @@
       return auth.getUser();
     },
     userName() {
+        if(auth.getUser() != null){
+        return auth.getUser().sub;
+        }
         return auth.getUser();
+
     }
   }
 
