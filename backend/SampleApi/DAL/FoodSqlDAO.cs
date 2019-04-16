@@ -200,5 +200,34 @@ namespace SampleApi.DAL
             }
             return output;
         }
+        /// <summary>
+        /// Edit a perviously entered food entry.
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
+        public void EditEntry(Food food, int userId)
+        {
+            string sql = @"UPDATE food_entries
+                           SET servings = @newServings, mealType = @newMealType
+                           WHERE id = @entryId AND userId = @userId;";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@newServings", food.Servings);
+                    cmd.Parameters.AddWithValue("@newMealType", food.MealType);
+                    cmd.Parameters.AddWithValue("@entryId", food.EntryId);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+        }
     }
 }
