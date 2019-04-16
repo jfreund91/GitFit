@@ -11,12 +11,12 @@
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
-            <column-chart :colors="['#b00', '#1a174e']" :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]"></column-chart>
+            <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart>
         </div>
         <div class="container bars-container">
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
-            <bar-chart suffix="%" :colors="['#b00', '#666', '#1a174e']"  :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
+            <bar-chart suffix="%" :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
             <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
             <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
             <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
@@ -120,7 +120,7 @@ export default {
     name: 'tracking',
     data() {
         return {
-                
+            
             }
         },
     created() {
