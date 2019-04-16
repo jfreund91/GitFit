@@ -40,6 +40,7 @@ CREATE TABLE user_profiles
 	inches			int			not null,
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),
+	timeline		varchar(10)	not null
 	
 	constraint pk_user_profile primary key (userId),
 	constraint fk_user_id foreign key (userId) REFERENCES users(id)
