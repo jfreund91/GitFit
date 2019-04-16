@@ -108,7 +108,6 @@ export default {
       this.$router.push("/");
     },
     goToProfile() {
-      this.$emit('loginForm');
       this.$router.push("/profile");
     },
     /**
