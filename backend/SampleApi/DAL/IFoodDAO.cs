@@ -19,5 +19,7 @@ namespace SampleApi.DAL
         void AddWaterEntry(int currentUser);
 
         int GetWaterCountByDate(int currentUser, DateTime queryDate);
+
+        void EditEntry(Food food, int currentUser);
     }
 }

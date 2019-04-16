@@ -10,7 +10,7 @@
             </div>
             <div class="form-input">
                 <span class="label">Birthday:</span>
-                <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
+                <input type="date" v-model="profile.birthDate" name="birthDate">
                 <!-- <span class="label">Age:</span>
                 <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
                 </select> 

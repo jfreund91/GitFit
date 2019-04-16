@@ -144,11 +144,11 @@ export default {
                     id: item.entryId,
                     name: item.name,
                     calories: item.calories,
-                    fat: item.fat * item.servings,
+                    fat: item.fat,
                     carbs: item.carbs, 
                     protein: item.protein,
                     mealType: item.mealType,
-
+                    servings: item.servings
                 })})
             });
         }

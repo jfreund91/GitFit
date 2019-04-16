@@ -3,7 +3,7 @@
         <div class="img-container">
         <router-link to="/"><img src="../../assets/logo.png"></router-link>  
         </div>
-        <span id="tagline2">Git your diet under version control.</span>
+        <span id="tagline2"></span>
         <nav>
                 <ul id="main-nav">
                     <li id="user-name-header">Welcome {{userName}}!</li>

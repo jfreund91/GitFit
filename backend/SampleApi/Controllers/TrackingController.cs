@@ -48,6 +48,23 @@ namespace SampleApi.Controllers
             return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today.AddYears(-1), DateTime.Today);
         }
 
+        /// <summary>
+        /// Deletes an entry from the user's food log.
+        /// </summary>
+        [HttpDelete("remove")]
+        [Authorize]
+        public IActionResult DeleteEntry([FromBody]Food food)
+        {
+            foodDao.RemoveFoodItem(food.EntryId);
+            return Ok();
+        }
      
+        [HttpPatch("update")]
+        [Authorize]
+        public IActionResult UpdateEntry([FromBody]Food food)
+        {
+            foodDao.EditEntry(food, CurrentUser.Id);
+            return Ok();
+        }
     }
 }
