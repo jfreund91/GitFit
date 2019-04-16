@@ -1,5 +1,9 @@
 ﻿--This page will contain the sql statements and data for testing 
 -- DELETE DATABASE DATA
+DELETE FROM quick_meal_food_items;
+DELETE FROM quick_meals;
+DELETE FROM food_entries;
+DELETE FROM water_entries;
 DELETE FROM user_profiles;
 DELETE FROM users;
 

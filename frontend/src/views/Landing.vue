@@ -35,18 +35,18 @@
 #landing {
     text-align: center;
 }
-#landing-menu h2 a {
-    color: white;
-    text-decoration: none;
-    text-shadow: 2px 2px #6856b9;
-    font-size: 1.5rem;
-}
+
 
 #box-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 150px;
 }
+
+#landing-menu h1 {
+    color: white;
+}
+
 
 .box {
     width: 30%;
@@ -56,6 +56,7 @@
 .box h2 {
     text-align: center;
 }
+
 
 .links a:hover {
     text-transform: uppercase;

@@ -23,7 +23,7 @@ namespace SampleApi.Controllers
             this.profileDao = profileDao;
             this.foodDao = foodDao;
         }
-
+        [Authorize]
         [HttpPost]
         public void AddFoodItem([FromBody] Food food)
         {
@@ -36,6 +36,18 @@ namespace SampleApi.Controllers
         {
             return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today, DateTime.Today);
         }
+        
+        /// <summary>
+        /// Gets the user's food entries dating back 1 year from current date.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("year")]
+        [Authorize]
+        public IEnumerable<Food> GetYearlyFoodEntries()
+        {
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today.AddYears(-1), DateTime.Today);
+        }
+
      
     }
 }
