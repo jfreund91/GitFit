@@ -43,22 +43,42 @@ namespace SampleApi.DAL
             return meal;
         }
 
-        //public void DeleteMeal(Meal meal, int currentUser)
+        public void DeleteMeal(Meal meal, int currentUser)
+        {
+            string sql2 = "DELETE FROM quick_meals WHERE id = @mealId;";
+            string sql = "DELETE FROM quick_meal_food_items WHERE meal_id = @mealId;";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@mealId", meal.Id);
+                    cmd.ExecuteNonQuery();
+
+                    SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                    cmd2.Parameters.AddWithValue("@mealId", meal.Id);
+                    cmd2.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        //public Food AddFoodToMeal(Food food, Meal meal, int currentUser)
         //{
-        //    string sql = "DELETE FROM quick_meals WHERE id = @mealId;";
+        //    string sql = "INSERT INTO quick_meal_food_items VALUES(@mealId, @foodName, @calories, @fat, @protein, @carbs, @servings);";
         //    try
         //    {
-        //        using(SqlConnection conn = new SqlConnection(this.connectionString))
-        //        {
-        //            conn.Open();
-                    
-        //        }
+        //        using(SqlCon)
         //    }
         //    catch(SqlException ex)
         //    {
         //        throw;
         //    }
+        //    return food;
         //}
-        
     }
 }

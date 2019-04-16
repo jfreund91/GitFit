@@ -20,11 +20,11 @@ BEGIN TRANSACTION;
 
 CREATE TABLE users
 (
-	id			int			identity(1,1),
-	username	varchar(50)	not null,
+	id			int				identity(1,1),
+	username	varchar(50)		not null,
 	password	nvarchar(50)	not null,
-	salt		varchar(50)	not null,
-	role		varchar(50)	default('user'),
+	salt		varchar(50)		not null,
+	role		varchar(50)		default('user'),
 
 	constraint pk_users primary key (id)
 );
@@ -88,7 +88,7 @@ CREATE TABLE quick_meal_food_items
 (
 	id				int				identity(1,1),
 	meal_id			int					not null,
-	[name]			varchar(50)			not null,
+	[name]			varchar(300)			not null,
 	calories		decimal				not null,
 	fat				decimal				not null,
 	protein			decimal				not null,

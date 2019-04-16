@@ -16,6 +16,6 @@ using SampleApi.Models;
 
         //IList<Food> GetMeal(int mealId);
 
-        //void DeleteMeal(Meal meal);
+        void DeleteMeal(Meal meal, int currentUser);
     }
 }
