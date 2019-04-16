@@ -23,11 +23,11 @@ namespace SampleApi.Models
         /// <summary>
         /// The user's goal weight in lbs.
         /// </summary>
-        public decimal GoalWeight {get;set;}
+        public decimal GoalWeight { get; set; }
         /// <summary>
         /// The user's birthdate.
         /// </summary>
-        public DateTime BirthDate { get; set; } = new DateTime(1910, 2, 1, 0, 0, 0, DateTimeKind.Utc);
+        public DateTime BirthDate { get; set; }
         /// <summary>
         /// The user's height in feet.
         /// </summary>
