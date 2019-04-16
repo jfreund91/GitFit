@@ -54,12 +54,12 @@ namespace SampleApi.Controllers
         [Route("/api/[controller]/remove")]
         [HttpDelete("remove")]
         [Authorize]
-        public IActionResult DeleteEntry([FromBody]Food food)
+        public IActionResult DeleteEntry([FromBody]int foodId)
         {
-            foodDao.RemoveFoodItem(food.EntryId);
+            foodDao.RemoveFoodItem(foodId);
             return Ok();
         }
-     
+        [Route("/api/[controller]/updatefood")]
         [HttpPatch("update")]
         [Authorize]
         public IActionResult UpdateEntry([FromBody]Food food)

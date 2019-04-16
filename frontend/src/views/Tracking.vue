@@ -196,16 +196,17 @@ export default {
             } else if (user != null) {
                 let output = [];
                 output = this.profile.eatenToday.filter((item)=> {
-                    return item.id === foodId;
-                });
+                    return item.id !== foodId;
+                 });
                 fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/remove`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + auth.getToken()
                 },
-                body: JSON.stringify(output[0])
+                body: JSON.stringify(foodId)
                 })
+                this.profile.eatenToday = output;
             }
         }
     },
