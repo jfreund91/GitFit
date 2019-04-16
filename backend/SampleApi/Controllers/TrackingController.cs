@@ -51,6 +51,7 @@ namespace SampleApi.Controllers
         /// <summary>
         /// Deletes an entry from the user's food log.
         /// </summary>
+        [Route("/api/[controller]/remove")]
         [HttpDelete("remove")]
         [Authorize]
         public IActionResult DeleteEntry([FromBody]Food food)

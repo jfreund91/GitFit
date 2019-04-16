@@ -82,7 +82,7 @@
                             {{item.name}}
                             <span class="edit-food"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
-                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item)"></i>
                             </span>
                         </li>
                     </ul>
@@ -154,6 +154,12 @@ export default {
         }
     },
     methods: {
+         show () {
+            this.$modal.show('food-item-detail-view');
+        },
+        hide () {
+            this.$modal.hide('food-item-detail-view');
+        },
         addWater() {
             this.profile.water +=1;
             let waterLevel = document.getElementById('water');
@@ -180,11 +186,27 @@ export default {
         this.profile.eatenToday.pop();
         },
         removeFood(foodId) {
+            let user = auth.getUser();
+            if (user == null) {
             let output = [];
             output = this.profile.eatenToday.filter((item)=> {
                 return item.id !== foodId;
             });
             this.profile.eatenToday = output;
+            } else if (user != null) {
+                let output = [];
+                output = this.profile.eatenToday.filter((item)=> {
+                    return item.id === foodId;
+                });
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/remove`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                },
+                body: JSON.stringify(output[0])
+                })
+            }
         }
     },
     computed: {
