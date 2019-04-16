@@ -6,13 +6,13 @@
         <span id="tagline2">Git your diet under version control.</span>
         <nav>
                 <ul id="main-nav">
-                    <li id="user-name-header">Welcome {{userName.sub}}!</li>
+                    <li id="user-name-header">Welcome {{userName}}!</li>
                      <li><router-link to="/">Home</router-link></li>
                      <li><router-link to="/profile">Profile</router-link></li>
                      <li><router-link to="/tracking">Tracking</router-link></li>
                      <li><router-link to="/search">Search</router-link></li>
                     <li v-if="isAuthenticated">
-                        <a href="/logout" v-on:click="logout">Logout</a>
+                        <a href="/logout" v-on:click.prevent="logout">Logout</a>
                     </li>
                     <li v-if="isNotAuthenticated">
                         <router-link to="/login">Login</router-link>
@@ -39,7 +39,6 @@
      */
     logout() {
       auth.destroyToken();
-      this.$emit('logout'); // Added to remove login details from header
       this.$router.push("/login");
     }
   },
