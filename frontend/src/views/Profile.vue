@@ -176,7 +176,6 @@ export default {
     computed: {
     isValidForm() {
       return this.profile.currentWeight != '' && this.profile.goalWeight != ''
-       // && this.profile.age != ''
        && this.profile.feet != '' && this.profile.inches != '' 
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';

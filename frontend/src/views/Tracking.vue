@@ -11,12 +11,12 @@
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
             </div>
-            <column-chart :colors="['#b00', '#1a174e']" :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]"></column-chart>
+            <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart>
         </div>
         <div class="container bars-container">
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
-            <bar-chart suffix="%" :colors="['#b00', '#666', '#1a174e']"  :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
+            <bar-chart suffix="%" :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
             <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
             <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
             <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
@@ -46,7 +46,7 @@
                     <ul>
                         <li v-for="item in snacks" :key="item.id">
                             {{item.name}}
-                            <span class="edit-food"><i class="far fa-edit"></i></span>
+                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
@@ -63,7 +63,7 @@
                     <ul>
                         <li v-for="item in breakfasts" :key="item.id">
                             {{item.name}}
-                            <span class="edit-food"><i class="far fa-edit"></i></span>
+                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
@@ -80,7 +80,7 @@
                     <ul>
                         <li class = "meal-items" v-for="item in lunches" :key="item.id">
                             {{item.name}}
-                            <span class="edit-food"><i class="far fa-edit"></i></span>
+                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
@@ -97,7 +97,7 @@
                     <ul>
                         <li v-for="item in dinners" :key="item.id">
                             {{item.name}}
-                            <span class="edit-food"><i class="far fa-edit"></i></span>
+                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                             <span class="remove-food">
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
@@ -106,6 +106,39 @@
                 </div>
             </div>
         </div>
+        <modal name="food-item-detail-view" :height="350">
+        <!-- Gives the detailed view -->
+            <div >
+                <h3 id="detail-food-view-header">{{detailItem.name}}</h3>
+                    <div class = "detail-food-view">
+                    <h4>Nutritional Value per Serving</h4>
+                    <div id="food-specs">
+                        <div>{{Math.trunc(detailItem.calories) * detailItem.servings}} Calories</div>
+                        <div>{{Math.trunc(detailItem.fat) * detailItem.servings}}g Fat</div>
+                        <div>{{Math.trunc(detailItem.carbs) * detailItem.servings }}g Carbs</div>
+                        <div>{{Math.trunc(detailItem.protein) * detailItem.servings}}g Protein</div>
+                    </div>
+                <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
+                <div id="servings-detail">
+                    <label><strong> Servings: </strong></label>
+                    <select v-model="detailItem.servings">
+                        <option value="0.5">1/2</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <label><strong> Meal: </strong></label>
+                    <select v-model="detailItem.mealType">
+                        <option value="Snack">Snack</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                    <button id="i-ate-this-btn" @click="editFood()">I ate this!</button>
+                </div>
+                </div>
+            </div>
+        </modal>
     </div>
 </template>
 
@@ -120,7 +153,18 @@ export default {
     name: 'tracking',
     data() {
         return {
-                
+            detailItem: {
+             ndbno: 0,
+             name: "",
+             calories: 0,
+             fat: 0,
+             carbs: 0,
+             protein: 0,
+             servings: 0,
+             mealType: '',
+             servingRate: 1,
+            
+         }
             }
         },
     created() {
@@ -154,6 +198,12 @@ export default {
         }
     },
     methods: {
+         show () {
+            this.$modal.show('food-item-detail-view');
+        },
+        hide () {
+            this.$modal.hide('food-item-detail-view');
+        },
         addWater() {
             this.profile.water +=1;
             let waterLevel = document.getElementById('water');
@@ -179,12 +229,47 @@ export default {
         removeLastEntry(){
         this.profile.eatenToday.pop();
         },
+         viewDetail(itemId) {
+         this.$modal.show('food-item-detail-view');
+         let result = [];
+         result = this.profile.eatenToday.filter((item) => {
+             return item.id === itemId;
+         });
+         this.detailItem.ndbno = result[0].ndbno;
+         this.detailItem.name = result[0].name;
+         this.detailItem.calories = result[0].calories;
+         this.detailItem.fat = result[0].fat;
+         this.detailItem.protein = result[0].protein;
+         this.detailItem.carbs = result[0].carbs;
+         this.detailItem.servings = result[0].servings;
+         this.detailItem.mealType = result[0].mealType;
+        },
         removeFood(foodId) {
+            let user = auth.getUser();
+            if (user == null) {
             let output = [];
             output = this.profile.eatenToday.filter((item)=> {
                 return item.id !== foodId;
             });
             this.profile.eatenToday = output;
+            } else if (user != null) {
+                let output = [];
+                output = this.profile.eatenToday.filter((item)=> {
+                    return item.id !== foodId;
+                 });
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/remove`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                },
+                body: JSON.stringify(foodId)
+                })
+                this.profile.eatenToday = output;
+            }
+        },
+        editFood() {
+            
         }
     },
     computed: {
@@ -384,15 +469,6 @@ export default {
        transform: translate(-50%, -50%);
     }
 
-    .circle {
-        width: 250px;
-        height: 250px;
-        background-color:royalblue;
-        border-radius: 50%;
-        position: relative;
-        color: white;
-
-    }
     .search-results ul {
         color: black;
         text-align: left;
