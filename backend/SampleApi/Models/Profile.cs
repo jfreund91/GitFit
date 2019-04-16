@@ -27,7 +27,7 @@ namespace SampleApi.Models
         /// <summary>
         /// The user's birthdate.
         /// </summary>
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = new DateTime(1910, 2, 1, 0, 0, 0, DateTimeKind.Utc);
         /// <summary>
         /// The user's height in feet.
         /// </summary>
