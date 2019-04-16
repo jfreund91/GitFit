@@ -10,8 +10,9 @@
             </div>
             <div class="form-input">
                 <span class="label">Birthday:</span>
-                <input type="date" v-model="profile.birthDate" name="birthDate">
-                <!-- <span class="label">Age:</span>
+                <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
+                <!-- <input type="datetime-local" v-model="profile.birthDate" name="birthDate">
+                <span class="label">Age:</span>
                 <select name="age" id="age" v-on:click="populateSelect('age', 9, 125)">
                 </select> 
                 <input type="text" v-model="profile.age" placeholder="Enter Your Age">-->
@@ -217,6 +218,7 @@ export default {
 #profile img {
     width: 570px;
     height: 570px;
+    border: solid 2px red;
     margin-right: 30px;
     margin-top: 30px;
 }
@@ -253,6 +255,13 @@ span.label {
     align-self: center;
 }
 
+h1 {
+    /* color: #777; */
+    color: whitesmoke;
+    text-shadow: 1px 1px 2px black, 0 0 25px #777, 0 0 5px darkblue;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
 
 button, a {
     margin-top: 10px;
@@ -260,7 +269,7 @@ button, a {
     width: 100%;
 }
 
-.h1-img { 
+.h1-img {
     color: rgb(216, 48, 48);
 }
 
@@ -280,7 +289,7 @@ select {
 .goal-timeline {
     height: 35px;
     width: 215px;
-    font-size: 17px;
+    /* font-size: 17px; */
 }
 
 

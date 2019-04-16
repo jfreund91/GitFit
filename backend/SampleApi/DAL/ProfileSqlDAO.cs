@@ -30,7 +30,7 @@ namespace SampleApi.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
-                        "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender); SELECT @@IDENTITY;", conn);
+                        "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender, @timeline); SELECT @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@userId", profile.UserId);
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
@@ -40,6 +40,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@inches", profile.Inches);
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
+                    cmd.Parameters.AddWithValue("@timeline", profile.Timeline);
 
                     cmd.ExecuteScalar();
 
@@ -80,6 +81,7 @@ namespace SampleApi.DAL
                         profile.Inches = Convert.ToInt32(reader["inches"]);
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);
+                        profile.Timeline = Convert.ToString(reader["timeline"]);
                     }
 
                 }
