@@ -38,10 +38,12 @@ namespace SampleApi.DAL
                     if (reader.Read())
                     {
                         userExists = 1;
-                        reader.Close();
+                        
                     }
 
-                    if(userExists > 0) // Then the user exists and run an update statement
+                    reader.Close();
+
+                    if (userExists > 0) // Then the user exists and run an update statement
                     {
                         cmd = new SqlCommand("UPDATE user_profiles SET name=@name, currentWeight=@currentWeight, goalWeight = @goalWeight, " +
                             "birthDate = @birthDate, feet = @feet, inches = @inches, activityLevel = @activityLevel, gender = @gender, " +
