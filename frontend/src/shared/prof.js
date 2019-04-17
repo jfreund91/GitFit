@@ -7,13 +7,6 @@ export default {
       return localStorage.getItem("profile");
     },
     /**
-     * Parses and saves the authentication token.
-     * @param {String} token A JWT encoded token.
-     */
-    saveProfile(token) { // After you login puts in local storage. localstorage is api that's built into a browser***** access userName.sub for name
-      localStorage.setItem("Authorization", token);
-    },
-    /**
      * Remove profile from local storage
      */
     destroyProfile() {
