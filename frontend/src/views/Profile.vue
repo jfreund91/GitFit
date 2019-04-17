@@ -1,7 +1,14 @@
 <template>
     <div id="profile">
         <img src="../assets/action-athlete-barbell.jpg" id="side-image"> 
+        
         <div id="profile-section">
+            <!-- Show the Change Password field if the user is logged in -->
+            <!-- <a v-if="(isAuthenticated)" href="/changePassword">Change password</a> -->
+            <router-link v-if="(isAuthenticated)" to="/ChangePassword">Change Password</router-link>
+            <!-- Show the form if the user clicks change password -->
+            <!-- <div class="form" v-show="ChangeUserPassword"> -->
+
         <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
             <div class="form-input">
@@ -120,6 +127,7 @@ export default {
     },
     data() {
             return {
+               isAuthenticated: auth.getUser() !== null,
                dropzoneOptions: {
                 // https://danhough.com/blog/dropzone-cloudinary/
                 // https://alligator.io/vuejs/vue-dropzone/
@@ -168,6 +176,10 @@ export default {
         console.log(this.profile);
     },
     methods: {
+        ChangeUserPassword() {
+            // Show form to change user password
+            return true;
+        },
         saveProfile() {
 
             let user = auth.getUser();
