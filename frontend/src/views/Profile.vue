@@ -127,7 +127,13 @@ export default {
             this.profile.activityLevel = json.activityLevel;
             this.profile.timeline = json.timeline;
             });
-            console.log(this.profile)
+            console.log(this.profile);
+
+            // Data is pulled back from database
+            // If name is null, hide Tracking and Search in Header.vue
+            // If name is null, then save isSomething to return data
+
+
         }
     },
     methods: {
