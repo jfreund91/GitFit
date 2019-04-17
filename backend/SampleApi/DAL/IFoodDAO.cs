@@ -16,10 +16,8 @@ namespace SampleApi.DAL
 
         IList<Food> GetFoodEntriesInRange(int currentUser, DateTime start, DateTime finish);
 
-        void AddWaterEntry(int currentUser);
-
-        int GetWaterCountByDate(int currentUser, DateTime queryDate);
-
         void EditEntry(Food food, int currentUser);
+
+        List<int> GetTimelineCaloriesByDay(int currentUser, int timeline);
     }
 }

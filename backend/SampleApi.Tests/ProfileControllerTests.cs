@@ -13,17 +13,14 @@ using System.Text;
 namespace SampleApi.Tests
 {
     [TestClass]
-    public class ProfileControllerTests 
-        //: FitnessTrackingAppTests
+    public class ProfileControllerTests: FitnessTrackingAppTests
     {
-        protected string ConnectionString { get; } = "Server=.\\SQLEXPRESS;Database=DemoDB;Trusted_Connection=True;";
-
         private ProfileController NewController()
         {
             List<Claim> claims = new List<Claim>()
                 {
-                // Passing in as parameter username value
-                new Claim(ClaimTypes.Name, "trevorwerner@hotmail.com"),
+                // Passing in username as parameter
+                new Claim(ClaimTypes.Name, "KennyPowers"),
 
                 };
             ClaimsIdentity identity = new ClaimsIdentity(claims, "TestAuthType");
@@ -85,13 +82,15 @@ namespace SampleApi.Tests
             // Cast ActionResult to an ObjectResult
             ObjectResult result = viewresult.Result as ObjectResult;
 
-            profile = (Profile)result.Value;
             profile = result.Value as Profile;
-            
+
+            //Alternative syntax for calling profile
+            //profile = (Profile)result.Value;
+
             // ASSERT
 
             // The new profile username is correctly returned from the database
-            Assert.AreEqual("Trevor", profile.Name);
+            Assert.AreEqual("KennyPowers", profile.Name);
         }
     }
 }
