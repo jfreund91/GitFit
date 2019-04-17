@@ -142,6 +142,40 @@ namespace SampleApi.DAL
             return output;
         }
 
+        public IList<Meal> GetAllMeals(int mealId)
+        {
+            IList<Meal> output = new List<Meal>();
+            string sql = "SELECT * FROM quick_meals WHERE userId = @userId;";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@userId", mealId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        output.Add(ConvertReaderToMeal(reader));
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return output;
+        }
+
+        private Meal ConvertReaderToMeal(SqlDataReader reader)
+        {
+            Meal meal = new Meal();
+            meal.Id = Convert.ToInt32(reader["userId"]);
+            meal.Name = Convert.ToString(reader["name"]);
+
+            return meal;
+        }
+
         private Food ConvertReaderToFood(SqlDataReader reader)
         {
             Food food = new Food();
