@@ -100,4 +100,18 @@ CREATE TABLE quick_meal_food_items
 	constraint fk_meal_id foreign key (meal_id) references quick_meals(id)
 );
 
+CREATE TABLE favorites
+(
+	id				int				identity(1,1),
+	userId			int				not null,
+	[name]			varchar(300)	not null,
+	calories		decimal			not null,
+	fat				decimal			not null,
+	protein			decimal			not null,
+	ndbno			int				not null,
+
+	constraint pk_favorites	primary key (id),
+	constraint fk_user_favorites foreign key (userId) references users(id)
+);
+
 COMMIT TRANSACTION;

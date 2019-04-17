@@ -6,6 +6,7 @@ import Tracking from "./views/Tracking.vue";
 import Search from "./views/Search.vue";
 import Landing from "./views/Landing.vue";
 import auth from "./shared/auth";
+import LongTermTrack from "./views/LongTermTrack.vue";
 
 Vue.use(Router);
 
@@ -61,7 +62,15 @@ const router = new Router({
       meta: {
         requiesAuth: false
       }
-    }
+    },
+      {
+        path: "/long-term-tracking",
+        name: "long-term-tracking",
+        component: LongTermTrack,
+        meta: {
+          requiesAuth: true
+        }
+      }
   ]
 });
 
