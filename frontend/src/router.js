@@ -5,8 +5,8 @@ import Profile from "./views/Profile.vue";
 import Tracking from "./views/Tracking.vue";
 import Search from "./views/Search.vue";
 import Landing from "./views/Landing.vue";
-import Modal from "./views/Modal.vue";
 import auth from "./shared/auth";
+import LongTermTrack from "./views/LongTermTrack.vue";
 
 Vue.use(Router);
 
@@ -63,14 +63,14 @@ const router = new Router({
         requiesAuth: false
       }
     },
-    {
-      path: "/modal",
-      name: "modal",
-      component: Modal,
-      meta: {
-        requiesAuth: false
+      {
+        path: "/long-term-tracking",
+        name: "long-term-tracking",
+        component: LongTermTrack,
+        meta: {
+          requiesAuth: true
+        }
       }
-    }
   ]
 });
 
