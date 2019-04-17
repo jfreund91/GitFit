@@ -70,10 +70,10 @@
 import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
+import Header from 'C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/components/layout/Header.vue'
  
 // Null if user is not logged in
 let user = auth.getUser();
-
 
     let initialState = {
         profile: {
@@ -95,8 +95,6 @@ let user = auth.getUser();
      // InitialState is injected as data in all vue instances
      // Any changes to state will be stored in localStorage
 
-
-
 export default {
     data() {
             return {
@@ -105,7 +103,7 @@ export default {
     },
     created() {
         let userInCreated = auth.getUser();
-        if(userInCreated !== null) {
+            if(userInCreated !== null) {
             // Call the API to get the user's profile
             //https://localhost:44392/api/profile
             fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {

@@ -9,8 +9,9 @@
                     <li id="user-name-header">Welcome {{userName}}!</li>
                      <li><router-link to="/">Home</router-link></li>
                      <li><router-link to="/profile">Profile</router-link></li>
-                     <li><router-link to="/tracking">Tracking</router-link></li>
-                     <li><router-link to="/search">Search</router-link></li>
+                     <!-- Don't show these if user hasn't filled out profile yet. -->        
+                        <li v-if="isValidProfile"><router-link to="/tracking">Tracking</router-link></li>
+                        <li v-if="isValidProfile"><router-link to="/search">Search</router-link></li>
                     <li v-if="isAuthenticated">
                         <a href="/login" v-on:click="logout">Logout</a>
                     </li>
@@ -23,13 +24,15 @@
 </template>
 <script>
     import auth from '@/shared/auth.js'
+    import prof from '@/shared/prof.js'
 
     export default {
         name: "the-header",
           data() {
-    return {
-      isAuthenticated: auth.getUser() !== null,
-      isNotAuthenticated: auth.getUser() === null
+            return {
+                isAuthenticated: auth.getUser() !== null,
+                isNotAuthenticated: auth.getUser() === null,
+                isValidProfile: prof.isValidProfile() === true // If profile already exists, this will be true
     };
   },
   methods: {
@@ -41,8 +44,8 @@
       auth.destroyToken();
       this.$emit('logout'); // Added to remove login details from header
       this.$router.push("/login");
-    }
-  },
+    },
+  }, 
   computed: {
     getUser() {
       return auth.getUser();
