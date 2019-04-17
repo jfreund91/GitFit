@@ -1,9 +1,24 @@
 <template>
     <div id="profile">
-        <img src="../assets/action-athlete-barbell.jpg"> 
+        <img src="../assets/action-athlete-barbell.jpg" id="side-image"> 
         <div id="profile-section">
         <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
+            <div class="form-input">
+                <h2>Upload profile photo</h2>
+                    <vue-dropzone
+                        id="dropzone"
+                        v-bind:options="dropzoneOptions"
+                        @vdropzone-file-added="afterComplete"
+                        @vdropzone-sending="sending"
+                        @vdropzone-success="success"
+                    ></vue-dropzone>
+                <!-- Show this if the user has already created a profile -->
+                <!-- Should be able to edit this -->
+            <img class="profile-photo small" v-bind:src="profile.userImage" v-show="!(initialProfile)" />
+                <!-- Show this if the user hasn't created a profile -->
+            <img v-show="initialProfile" class="profile-photo small" src="https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru" />
+            </div>
             <div class="form-input">
                 <span class="label">Name:</span>
                 <input type="text" v-model="profile.name" placeholder="Enter Your Name">
@@ -71,7 +86,9 @@ import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
 //import Header from 'C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/components/layout/Header.vue'
- 
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
+
 // Null if user is not logged in
 let user = auth.getUser();
 
@@ -88,6 +105,7 @@ let user = auth.getUser();
             timeline: '',
             eatenToday: [],
             water: 0,
+            userImage: "https://res.cloudinary.com/gitfit/image/upload/v1555524869/true_gpo4zq.png"
         }
     }
 
@@ -96,9 +114,22 @@ let user = auth.getUser();
      // Any changes to state will be stored in localStorage
 
 export default {
+    name: "profile",
+    components: {
+        vueDropzone: vue2Dropzone
+    },
     data() {
             return {
-               // profile: {}
+               dropzoneOptions: {
+                // https://danhough.com/blog/dropzone-cloudinary/
+                // https://alligator.io/vuejs/vue-dropzone/
+                // Destination
+                url: "https://api.cloudinary.com/v1_1/gitfit/image/upload",
+                thumbnailWidth: 250,
+                maxFilesize: 2.0,
+                acceptedFiles: ".jpg, .jpeg, .png, .gif",
+                uploadMultiple: false
+                }
             }
     },
     created() {
@@ -124,6 +155,8 @@ export default {
             this.profile.inches = json.inches;
             this.profile.activityLevel = json.activityLevel;
             this.profile.timeline = json.timeline;
+            this.profile.gender = json.gender;
+            this.profile.userImage = json.userImage; 
             });
             console.log(this.profile);
 
@@ -131,8 +164,8 @@ export default {
             // If name is null, hide Tracking and Search in Header.vue
             // If name is null, then save isSomething to return data
 
-
         }
+        console.log(this.profile);
     },
     methods: {
         saveProfile() {
@@ -174,7 +207,18 @@ export default {
                 select.add(option);
             }
         },
-        
+
+        afterComplete() {
+            this.hasImage = true;
+        },
+        sending: function(file, xhr, formData) {
+        formData.append("api_key", 547454926622156);
+        formData.append("timestamp", (Date.now() / 1000) | 0);
+        formData.append("upload_preset", "xrkbu7hz");
+        },
+        success: function(file, response) {
+        this.profile.userImage = response.secure_url;
+        },
     },
     // Check that all of the profile form fields are filled out
     computed: {
@@ -184,6 +228,9 @@ export default {
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';
     },
+    initialProfile() {
+        return this.profile.userImage === null;
+    }
   },
 }
 
@@ -192,16 +239,28 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
 <style>
+
+/* @media screen and (min-width: 768px) {
+  img.profile-photo {
+    height: 145px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  img.profile-photo {
+    height: 160px;
+  }
+} */
+.profile-photo {
+  border-radius: 50%;
+}
+
+.profile-photo.small {
+  height: 200px;
+  width: 200px;
+}
+
 #profile {
     padding: 2%;
     margin: 50px auto;
@@ -214,7 +273,7 @@ export default {
     
 }
 
-#profile img {
+#side-image {
     width: 570px;
     height: 570px;
     border: solid 2px red;
