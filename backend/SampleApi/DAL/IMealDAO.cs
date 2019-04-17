@@ -8,13 +8,13 @@ using SampleApi.Models;
 {
     public interface IMealDAO
     {
-        //void RemoveFoodFromMeal(Food food);
+        void RemoveFoodFromMeal(Food food);
 
-        //Food AddFoodToMeal(Food food);
+        Food AddFoodToMeal(Food food, Meal meal, int currentUser);
 
         Meal CreateMeal(Meal meal, int currentUser);
 
-        //IList<Food> GetMeal(int mealId);
+        IList<Food> GetMeal(int mealId);
 
         void DeleteMeal(Meal meal, int currentUser);
     }

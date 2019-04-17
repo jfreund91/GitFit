@@ -67,18 +67,97 @@ namespace SampleApi.DAL
             }
         }
 
-        //public Food AddFoodToMeal(Food food, Meal meal, int currentUser)
-        //{
-        //    string sql = "INSERT INTO quick_meal_food_items VALUES(@mealId, @foodName, @calories, @fat, @protein, @carbs, @servings);";
-        //    try
-        //    {
-        //        using(SqlCon)
-        //    }
-        //    catch(SqlException ex)
-        //    {
-        //        throw;
-        //    }
-        //    return food;
-        //}
+        public Food AddFoodToMeal(Food food, Meal meal, int currentUser)
+        {
+            string sql = "INSERT INTO quick_meal_food_items VALUES(@mealId, @foodName, @calories, @fat, @protein, @carbs, @servings);";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@mealId", meal.Id);
+                    cmd.Parameters.AddWithValue("@foodName", food.Name);
+                    cmd.Parameters.AddWithValue("@calories", food.Calories);
+                    cmd.Parameters.AddWithValue("@fat", food.Fat);
+                    cmd.Parameters.AddWithValue("@protein", food.Protein);
+                    cmd.Parameters.AddWithValue("@carbs", food.Carbs);
+                    cmd.Parameters.AddWithValue("@servings", food.Servings);
+                    food.EntryId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return food;
+        }
+
+        /// <summary>
+        /// Removes a food from a quick-meal.
+        /// </summary>
+        /// <param name="food"></param>
+        /// <param name="meal"></param>
+        public void RemoveFoodFromMeal(Food food)
+        {
+            string sql = "DELETE FROM quick_meal_food_items WHERE id = @entryId;";
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@entryId", food.EntryId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+        }
+       public IList<Food> GetMeal(int mealId)
+        {
+            IList<Food> output = new List<Food>();
+            string sql = "SELECT * FROM quick_meal_food_items WHERE meal_id = @mealId;";
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@mealId", mealId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        output.Add(ConvertReaderToFood(reader));
+                    }
+
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+            return output;
+        }
+
+        private Food ConvertReaderToFood(SqlDataReader reader)
+        {
+            Food food = new Food();
+            food.EntryId = Convert.ToInt32(reader["id"]);
+            food.Name = Convert.ToString(reader["name"]);
+            food.Calories = Convert.ToDecimal(reader["calories"]);
+            food.Fat = Convert.ToDecimal(reader["fat"]);
+            food.Protein = Convert.ToDecimal(reader["protein"]);
+            food.Carbs = Convert.ToDecimal(reader["carbohydrates"]);
+            food.MealType = Convert.ToString(reader["meal_type"]);
+            food.Servings = Convert.ToDecimal(reader["servings"]);
+            food.Date = Convert.ToDateTime(reader["meal_date"]);
+            food.ndbno = Convert.ToInt32(reader["ndbno"]);
+
+            return food;
+
+        }
     }
 }
