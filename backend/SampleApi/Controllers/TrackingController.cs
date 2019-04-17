@@ -29,7 +29,10 @@ namespace SampleApi.Controllers
         {
             foodDao.AddFoodItem(CurrentUser.Id, food);
         }
-
+        /// <summary>
+        /// Gets the user's daily log of food entries.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
         public IEnumerable<Food> GetTodaysFoodEntries()
@@ -38,14 +41,51 @@ namespace SampleApi.Controllers
         }
         
         /// <summary>
+        /// Gets the user's lifetime entries.
+        /// </summary>
+        /// <returns></returns>
+        [Route("/api/[controller]/lifetime")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<Food> GetLifeTimeEntries()
+        {
+            return foodDao.GetLifetimeFoodEntries(CurrentUser.Id);
+        }
+
+        /// <summary>
         /// Gets the user's food entries dating back 1 year from current date.
         /// </summary>
         /// <returns></returns>
+        [Route("/api/[controller]/year")]
         [HttpGet("year")]
         [Authorize]
         public IEnumerable<Food> GetYearlyFoodEntries()
         {
             return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today.AddYears(-1), DateTime.Today);
+        }
+
+        /// <summary>
+        /// Gets the user's entries dating back 1 month from current date.
+        /// </summary>
+        /// <returns></returns>
+        [Route("/api/[controller]/month")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<Food> GetMonthlyEntries()
+        {
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today.AddDays(-30), DateTime.Today);
+        }
+
+        /// <summary>
+        /// Gets the user's entries dating back 1 week.
+        /// </summary>
+        /// <returns></returns>
+        [Route("/api/[controller]/week")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<Food> GetWeeklyEntries()
+        {
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today.AddDays(-7), DateTime.Today);
         }
 
         /// <summary>
@@ -59,6 +99,12 @@ namespace SampleApi.Controllers
             foodDao.RemoveFoodItem(foodId);
             return Ok();
         }
+
+        /// <summary>
+        /// Updates a user's food entry.
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         [Route("/api/[controller]/updatefood")]
         [HttpPatch("update")]
         [Authorize]
