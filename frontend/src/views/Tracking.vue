@@ -114,10 +114,10 @@
                     <div class = "detail-food-view">
                     <h4>Nutritional Value per Serving</h4>
                     <div id="food-specs">
-                        <div>{{Math.trunc(detailItem.calories) * detailItem.servings}} Calories</div>
-                        <div>{{Math.trunc(detailItem.fat) * detailItem.servings}}g Fat</div>
-                        <div>{{Math.trunc(detailItem.carbs) * detailItem.servings }}g Carbs</div>
-                        <div>{{Math.trunc(detailItem.protein) * detailItem.servings}}g Protein</div>
+                        <div id="calories">{{Math.trunc(detailItem.calories) * detailItem.servings}} Calories</div>
+                        <div id="fat">{{Math.trunc(detailItem.fat) * detailItem.servings}}g Fat</div>
+                        <div id="carbs">{{Math.trunc(detailItem.carbs) * detailItem.servings }}g Carbs</div>
+                        <div id="protein">{{Math.trunc(detailItem.protein) * detailItem.servings}}g Protein</div>
                     </div>
                 <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
                 <div id="servings-detail">
@@ -270,8 +270,7 @@ export default {
                 this.profile.eatenToday = output;
             }
         },
-        editFood() {
-            
+        editFood(itemId) {
         }
     },
     computed: {

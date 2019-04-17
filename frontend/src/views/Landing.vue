@@ -41,6 +41,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 150px;
+    flex-wrap: wrap;
 }
 
 #landing-menu h1 {
@@ -108,5 +109,14 @@
     padding: 0px;
 }
 
+@media screen and (max-width: 789px) {
+    #box-container {
+        display: block;
+    }
+    
+    .box {
+        width: 100%;
+    }
+}
 
 </style>
