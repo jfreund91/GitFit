@@ -136,7 +136,7 @@ export default {
             this.$router.push('/tracking');
             } else if(user !== null)
             {
-                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking`, {
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

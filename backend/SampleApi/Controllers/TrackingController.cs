@@ -23,6 +23,7 @@ namespace SampleApi.Controllers
             this.profileDao = profileDao;
             this.foodDao = foodDao;
         }
+        [Route("/api/[controller]/addfood")]
         [Authorize]
         [HttpPost]
         public void AddFoodItem([FromBody] Food food)
