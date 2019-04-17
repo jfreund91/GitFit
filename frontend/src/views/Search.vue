@@ -25,10 +25,10 @@
                     <h4>Nutritional Value per Serving</h4>
                     <h5>Serving Size: {{detailItem.servingRate * 100}}g</h5>
                     <div id="food-specs">
-                        <div>{{Math.trunc(detailItem.calories)}} Calories</div>
-                        <div>{{Math.trunc(detailItem.fat)}}g Fat</div>
-                        <div>{{Math.trunc(detailItem.carbs)}}g Carbs</div>
-                        <div>{{Math.trunc(detailItem.protein)}}g Protein</div>
+                        <div>{{Math.trunc(detailItem.calories)* detailItem.servings}} Calories</div>
+                        <div>{{Math.trunc(detailItem.fat) * detailItem.servings}}g Fat</div>
+                        <div>{{Math.trunc(detailItem.carbs * detailItem.servings)}}g Carbs</div>
+                        <div>{{Math.trunc(detailItem.protein * detailItem.servings)}}g Protein</div>
                     </div>
                 <!-- <button value="No, not this one!" @click="()=>{this.showSearch = true}">No, not this one!</button> -->
                 <div id="servings-detail">
