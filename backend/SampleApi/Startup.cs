@@ -85,7 +85,7 @@ namespace SampleApi
             services.AddTransient<IFoodDAO>(j => new FoodSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IProfileDAO>(t => new ProfileSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IMealDAO>(a => new MealSqlDAO(Configuration.GetConnectionString("Default")));
-
+            services.AddTransient<IFavoritesDAO>(t => new FavoritesSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configure automatic model state validation
