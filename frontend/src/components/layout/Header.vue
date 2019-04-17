@@ -12,10 +12,10 @@
                      <!-- Don't show these if user hasn't filled out profile yet. -->        
                         <li v-if="isValidProfile"><router-link to="/tracking">Tracking</router-link></li>
                         <li v-if="isValidProfile"><router-link to="/search">Search</router-link></li>
-                    <li v-if="isAuthenticated">
+                    <li v-if="(isAuthenticated)">
                         <a href="/login" v-on:click="logout">Logout</a>
                     </li>
-                    <li v-if="isNotAuthenticated">
+                    <li v-if="!(isAuthenticated)">
                         <router-link to="/login">Login</router-link>
                     </li>
                 </ul>
@@ -30,9 +30,9 @@
         name: "the-header",
           data() {
             return {
-                isAuthenticated: auth.getUser() !== null,
-                isNotAuthenticated: auth.getUser() === null,
-                isValidProfile: prof.isValidProfile() === true // If profile already exists, this will be true
+                 isAuthenticated: auth.getUser() !== null,
+                 isValidProfile: prof.isValidProfile() === true, // If profile already exists, this will be true
+                 userName: this.getUserName()
     };
   },
   methods: {
@@ -45,18 +45,27 @@
       this.$emit('logout'); // Added to remove login details from header
       this.$router.push("/login");
     },
-  }, 
-  computed: {
-    getUser() {
-      return auth.getUser();
-    },
-    userName() {
+    getUserName() {
         if(auth.getUser() != null){
         return auth.getUser().sub;
         }
         return auth.getUser();
 
+    },
+  }, 
+  watch: {
+    '$route' (to, from) {
+      // react to route changes...
+      this.isAuthenticated = auth.getUser() !== null
+      this.isValidProfile = prof.isValidProfile() === true
+      this.userName = this.getUserName()
     }
+  },
+  computed: {
+    getUser() {
+      return auth.getUser();
+    },
+    
   }
 
 }
