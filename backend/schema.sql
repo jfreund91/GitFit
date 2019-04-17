@@ -41,7 +41,7 @@ CREATE TABLE user_profiles
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),
 	timeline		varchar(10)	not null,
-	[image]			varchar(200) DEFAULT 'https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru'	
+	[image]			varchar(200) DEFAULT 'https://res.cloudinary.com/gitfit/image/upload/v1555524869/true_gpo4zq.png'	
 	
 	constraint pk_user_profile primary key (userId),
 	constraint fk_user_id foreign key (userId) REFERENCES users(id)
