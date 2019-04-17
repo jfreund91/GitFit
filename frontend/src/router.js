@@ -5,7 +5,6 @@ import Profile from "./views/Profile.vue";
 import Tracking from "./views/Tracking.vue";
 import Search from "./views/Search.vue";
 import Landing from "./views/Landing.vue";
-import Modal from "./views/Modal.vue";
 import auth from "./shared/auth";
 
 Vue.use(Router);
@@ -59,14 +58,6 @@ const router = new Router({
       path: "/",
       name: "landing",
       component: Landing,
-      meta: {
-        requiesAuth: false
-      }
-    },
-    {
-      path: "/modal",
-      name: "modal",
-      component: Modal,
       meta: {
         requiesAuth: false
       }
