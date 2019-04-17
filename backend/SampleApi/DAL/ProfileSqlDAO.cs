@@ -47,13 +47,13 @@ namespace SampleApi.DAL
                     {
                         cmd = new SqlCommand("UPDATE user_profiles SET name=@name, currentWeight=@currentWeight, goalWeight = @goalWeight, " +
                             "birthDate = @birthDate, feet = @feet, inches = @inches, activityLevel = @activityLevel, gender = @gender, " +
-                            "timeline = @timeline WHERE userId = @userId", conn);
+                            "timeline = @timeline, [image] = @userImage WHERE userId = @userId", conn);
                     }
 
                     else
                     {
                         cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
-                        "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender, @timeline); SELECT @@IDENTITY;", conn);
+                        "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender, @timeline, @userImage); SELECT @@IDENTITY;", conn);
                         
                     }
 
@@ -67,6 +67,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
                     cmd.Parameters.AddWithValue("@timeline", profile.Timeline);
+                    cmd.Parameters.AddWithValue("@userImage", "https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru");
 
                     cmd.ExecuteScalar();
 
@@ -108,6 +109,7 @@ namespace SampleApi.DAL
                         profile.ActivityLevel = Convert.ToString(reader["activityLevel"]);
                         profile.Gender = Convert.ToChar(reader["gender"]);
                         profile.Timeline = Convert.ToString(reader["timeline"]);
+                        profile.UserImage = Convert.ToString(reader["image"]);
                     }
 
                 }

@@ -1,9 +1,16 @@
 <template>
     <div id="profile">
-        <img src="../assets/action-athlete-barbell.jpg"> 
+        <img src="../assets/action-athlete-barbell.jpg" id="side-image"> 
         <div id="profile-section">
         <h1><i class="fas fa-heartbeat h1-img"></i> Profile</h1>
         <div class="form">
+            <div class="form-input">
+                <!-- Show this if the user has already created a profile -->
+                <!-- Should be able to edit this -->
+                <img class="profile-photo small" v-bind:src="profile.userImage" v-show="!(initialProfile)" />
+                <!-- Show this if the user hasn't created a profile -->
+                <img v-show="initialProfile" class="profile-photo small" src="https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru" />
+            </div>
             <div class="form-input">
                 <span class="label">Name:</span>
                 <input type="text" v-model="profile.name" placeholder="Enter Your Name">
@@ -88,6 +95,7 @@ let user = auth.getUser();
             timeline: '',
             eatenToday: [],
             water: 0,
+            userImage: "https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru"
         }
     }
 
@@ -124,13 +132,14 @@ export default {
             this.profile.inches = json.inches;
             this.profile.activityLevel = json.activityLevel;
             this.profile.timeline = json.timeline;
+            this.profile.gender = json.gender;
+            this.profile.userImage = json.userImage; 
             });
             console.log(this.profile);
 
             // Data is pulled back from database
             // If name is null, hide Tracking and Search in Header.vue
             // If name is null, then save isSomething to return data
-
 
         }
     },
@@ -184,6 +193,9 @@ export default {
        && (this.profile.activityLevel === '1.2' || this.profile.activityLevel === '1.375' || this.profile.activityLevel === '1.55' || this.profile.activityLevel === '1.9')
        && this.profile.gender != '' && this.profile.timeline != '' && this.profile.name != '';
     },
+    initialProfile() {
+        return this.profile.userImage === null;
+    }
   },
 }
 
@@ -192,16 +204,28 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
 <style>
+
+/* @media screen and (min-width: 768px) {
+  img.profile-photo {
+    height: 145px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  img.profile-photo {
+    height: 160px;
+  }
+} */
+.profile-photo {
+  border-radius: 50%;
+}
+
+.profile-photo.small {
+  height: 200px;
+  width: 200px;
+}
+
 #profile {
     padding: 2%;
     margin: 50px auto;
@@ -214,7 +238,7 @@ export default {
     
 }
 
-#profile img {
+#side-image {
     width: 570px;
     height: 570px;
     border: solid 2px red;

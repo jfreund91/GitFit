@@ -72,6 +72,7 @@
 
 <script>
 import auth from "@/shared/auth";
+import prof from "@/shared/prof"
 
 export default {
   data() {
@@ -152,6 +153,7 @@ export default {
         console.error(error);
         this.error = "There was an error logging in";
       }
+      //prof.destroyProfile(); // Remove profile from local storage upon login so Header logic works
     },
     /**
      * Signs the user up and then redirects them to the dashboard.
