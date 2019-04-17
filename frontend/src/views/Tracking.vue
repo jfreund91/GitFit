@@ -10,6 +10,7 @@
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
+                <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
             <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart>
         </div>
@@ -153,6 +154,7 @@ export default {
     name: 'tracking',
     data() {
         return {
+            isAuthenticated: auth.getUser() !== null,
             detailItem: {
              ndbno: 0,
              name: "",
