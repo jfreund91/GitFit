@@ -7,6 +7,7 @@ import Search from "./views/Search.vue";
 import Landing from "./views/Landing.vue";
 import auth from "./shared/auth";
 import LongTermTrack from "./views/LongTermTrack.vue";
+import ChangePassword from "./views/ChangePassword.vue";
 
 Vue.use(Router);
 
@@ -28,7 +29,7 @@ const router = new Router({
       name: "login",
       component: Login,
       meta: {
-        requiesAuth: false
+        requiresAuth: false
       }
     },
     {
@@ -52,7 +53,7 @@ const router = new Router({
       name: "search",
       component: Search,
       meta: {
-        requiesAuth: false
+        requiresAuth: false
       }
     },
     {
@@ -60,7 +61,7 @@ const router = new Router({
       name: "landing",
       component: Landing,
       meta: {
-        requiesAuth: false
+        requiresAuth: false
       }
     },
       {
@@ -68,7 +69,15 @@ const router = new Router({
         name: "long-term-tracking",
         component: LongTermTrack,
         meta: {
-          requiesAuth: true
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/change-password",
+        name: "change-password",
+        component: ChangePassword,
+        meth: {
+          requiresAuth: false
         }
       }
   ]
