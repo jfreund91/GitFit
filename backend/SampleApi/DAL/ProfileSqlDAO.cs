@@ -45,16 +45,17 @@ namespace SampleApi.DAL
                     {
                         cmd = new SqlCommand("UPDATE user_profiles SET name=@name, currentWeight=@currentWeight, goalWeight = @goalWeight, " +
                             "birthDate = @birthDate, feet = @feet, inches = @inches, activityLevel = @activityLevel, gender = @gender, " +
-                            "timeline = @timeline", conn);
+                            "timeline = @timeline WHERE userId = @userId", conn);
                     }
 
                     else
                     {
                         cmd = new SqlCommand("INSERT INTO user_profiles VALUES (@userId, @name, " +
                         "@currentWeight, @goalWeight, @birthDate, @feet, @inches, @activityLevel, @gender, @timeline); SELECT @@IDENTITY;", conn);
-                        cmd.Parameters.AddWithValue("@userId", profile.UserId);
+                        
                     }
-                    
+
+                    cmd.Parameters.AddWithValue("@userId", profile.UserId);
                     cmd.Parameters.AddWithValue("@name", profile.Name);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
