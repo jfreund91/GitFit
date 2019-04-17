@@ -113,5 +113,28 @@ namespace SampleApi.Controllers
             foodDao.EditEntry(food, CurrentUser.Id);
             return Ok();
         }
+
+        [Route("/api/[controller]/yearlycals")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<int> GetYearlyCalories()
+        {
+            return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 365);
+        }
+
+        [Route("/api/[controller]/monthlycals")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<int> GetMonthlyCalories()
+        {
+            return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 30);
+        }
+        [Route("/api/[controller]/weeklycals")]
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<int> GetWeeklyCalories()
+        {
+            return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 7);
+        }
     }
 }
