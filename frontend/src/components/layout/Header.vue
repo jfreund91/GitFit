@@ -44,6 +44,7 @@
       auth.destroyToken();
       this.$emit('logout'); // Added to remove login details from header
       this.$router.push("/login");
+      //prof.destroyProfile(); // Remove profile from local storage upon logout
     },
     getUserName() {
         if(auth.getUser() != null){
