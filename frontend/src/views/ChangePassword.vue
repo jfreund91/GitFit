@@ -10,6 +10,7 @@
             <span class="label">Confirm New Password:</span>
             <input type="text" placeholder="Confirm New Password">
         </div>
+        <button class="change-password-btn">ChangePassword</button>
     </div>
 </div>
 </template>
