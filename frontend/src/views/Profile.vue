@@ -70,7 +70,7 @@
 import Vue from 'vue'
 import persistentState from 'vue-persistent-state'
 import auth from '@/shared/auth.js' // import whether user is logged in
-import Header from 'C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/components/layout/Header.vue'
+//import Header from 'C:/Users/Tia Smith/Pairs/c-final-capstone-tech-fitness-pal/frontend/src/components/layout/Header.vue'
  
 // Null if user is not logged in
 let user = auth.getUser();

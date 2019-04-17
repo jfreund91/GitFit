@@ -105,7 +105,7 @@ export default {
      * @function
      */
     goHome() {
-      this.$router.push("/profile");
+      this.$router.push("/");
     },
     goToProfile() {
       this.$router.push("/profile");
