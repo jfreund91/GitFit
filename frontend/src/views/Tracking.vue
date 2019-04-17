@@ -44,7 +44,38 @@
                 </div>
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
-                    <ul>
+                    <table class="snacksTable">
+                        <thead>
+                            <th>
+                                <td>Description</td>
+                                <td>Servings</td>
+                                <td>Calories</td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.name}}                               
+                                </td>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.calories}}                               
+                                </td>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.servings}}
+                                    <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
+                                    <span class="remove-food">
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                    </span>                                
+                                </td>     
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    
+                    
+                    <!-- <ul>
                         <li v-for="item in snacks" :key="item.id">
                             {{item.name}}
                             <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
@@ -52,7 +83,10 @@
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
                         </li>
-                    </ul>
+                    </ul> -->
+
+
+
                 </div>
             </div>
             <div>                

@@ -4,11 +4,11 @@
     <div class="form">
         <div class="form-input">
             <span class="label">New Password:</span>
-            <input type="text" placeholder="Enter New Password">
+            <input type="password" placeholder="Enter New Password">
         </div>
         <div class="form-input">
             <span class="label">Confirm New Password:</span>
-            <input type="text" placeholder="Confirm New Password">
+            <input type="password" placeholder="Confirm New Password">
         </div>
         <button class="change-password-btn">ChangePassword</button>
     </div>
