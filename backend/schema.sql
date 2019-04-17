@@ -40,7 +40,8 @@ CREATE TABLE user_profiles
 	inches			int			not null,
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),
-	timeline		varchar(10)	not null
+	timeline		varchar(10)	not null,
+	[image]			varchar(200) DEFAULT 'https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru'	
 	
 	constraint pk_user_profile primary key (userId),
 	constraint fk_user_id foreign key (userId) REFERENCES users(id)

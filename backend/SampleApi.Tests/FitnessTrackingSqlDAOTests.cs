@@ -114,6 +114,5 @@ namespace SampleApi.Tests
             Assert.AreEqual(0, actual);
         }
 
-
     }
 }

@@ -48,6 +48,10 @@ namespace SampleApi.Models
         /// The user's timeline to lose weight.
         /// </summary>
         public string Timeline { get; set; }
+        /// <summary>
+        /// A URL to the user's image
+        /// </summary>
+        public string UserImage { get; set; }
 
     }
 }
