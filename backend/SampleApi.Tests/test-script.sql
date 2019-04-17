@@ -8,9 +8,12 @@ DELETE FROM user_profiles;
 DELETE FROM users;
 
 
----- INSERT sample park
---INSERT INTO park VALUES ('CVNP','name','st',10,11,12,13,'tropical',2000,100,'look out','abraham lincoln','oh what a park',6000,1)
---DECLARE @parkCode varchar(4) = ('CVNP')
+---- INSERT sample user
+SET IDENTITY_INSERT users ON;
+INSERT INTO users VALUES (1, 'KennyPowers', 'Eastbound&Down', 'laskdjf;laskjf', 'user');
+SET IDENTITY_INSERT users OFF;
+INSERT INTO user_profiles VALUES (1, 'KennyPowers', 180, 200, 1980, 6, 2, 1.55,'M', 
+
 
 ---- INSERT sample survey
 --INSERT INTO survey_result VALUES (@parkCode,'email@email.com','PA','active')
