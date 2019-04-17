@@ -2,7 +2,6 @@
     <div id="long-term-tracking">
         <h1>Long Term Tracking</h1>
         <div class="btn-container">
-        <button id="today" v-on:click="getToday">Today</button>
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
         <button id="monthly" v-on:click="getMonthly">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
@@ -11,51 +10,71 @@
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
             <ul>
-                <li></li>
+                <li v-for="item in this.results" :key="item.ndbno"></li>
             </ul>
         </div>
     </div>
 </template>
 <script>
+import auth from '@/shared/auth.js'
 export default {
     data(){
         return {
-             tracking : ""
+             tracking : "",
+             results: []
         }
     },
     methods: {
-        getToday(){
-            let today = [];
-            this.tracking = "Today"
-        },
         getWeekly(){
-            let weekly = [];
             this.tracking = "This Week";
-             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking`, {
-                 method: "POST",
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/week`, {
+                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + auth.getToken()
                 }
              }).then(response => response.json()).then(json => {
-             weekly = json.list.item;
+             this.results = json.list.item;
              });
-             return weekly;
              },
         getMonthly() {
-            let monthly = [];
             this.tracking = "This Month"; 
-            return monthly;
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/month`, {
+                 method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                }
+             }).then(response => response.json()).then(json => {
+             this.results = json.list.item;
+             });
+             return this.results;
         },
         getYearly() {
-            let yearly = [];
             this.tracking = "This Year";
-            return yearly;
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/year`, {
+                 method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                }
+             }).then(response => response.json()).then(json => {
+             this.results = json.list.item;
+             });
+             return this.results;
         },
         getLifetime() {
-            let lifetime = [];
             this.tracking = "Lifetime";
-            return lifetime;
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/life`, {
+                 method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                }
+             }).then(response => response.json()).then(json => {
+             this.results = json.list.item;
+             });
+             return this.results;
         }
     }
 }
@@ -66,7 +85,7 @@ export default {
         margin: 0 auto;
     }
 
-    #weekly, #monthly, #yearly, #lifetime, #today {
+    #weekly, #monthly, #yearly, #lifetime {
         width: 200px;
         padding: 10px 0px;
     }
