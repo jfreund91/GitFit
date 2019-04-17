@@ -67,7 +67,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@activityLevel", profile.ActivityLevel);
                     cmd.Parameters.AddWithValue("@gender", profile.Gender);
                     cmd.Parameters.AddWithValue("@timeline", profile.Timeline);
-                    cmd.Parameters.AddWithValue("@userImage", "https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru");
+                    cmd.Parameters.AddWithValue("@userImage", "https://res.cloudinary.com/gitfit/image/upload/v1555524869/true_gpo4zq.png");
 
                     cmd.ExecuteScalar();
 
