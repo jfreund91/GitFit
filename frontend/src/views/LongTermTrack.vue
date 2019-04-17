@@ -2,6 +2,7 @@
     <div id="long-term-tracking">
         <h1>Long Term Tracking</h1>
         <div class="btn-container">
+        <button id="today" v-on:click="getToday">Today</button>
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
         <button id="monthly" v-on:click="getMonthly">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
@@ -23,19 +24,32 @@ export default {
         }
     },
     methods: {
+        getToday(){
+            let today = [];
+            this.tracking = "Today"
+        },
         getWeekly(){
             let weekly = [];
-            this.tracking = "Weekly";
-            return weekly;
-        }, 
+            this.tracking = "This Week";
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking`, {
+                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                }
+             }).then(response => response.json()).then(json => {
+             weekly = json.list.item;
+             });
+             return weekly;
+             },
         getMonthly() {
             let monthly = [];
-            this.tracking = "Monthly"; 
+            this.tracking = "This Month"; 
             return monthly;
         },
         getYearly() {
             let yearly = [];
-            this.tracking = "Yearly";
+            this.tracking = "This Year";
             return yearly;
         },
         getLifetime() {
@@ -52,7 +66,7 @@ export default {
         margin: 0 auto;
     }
 
-    #weekly, #monthly, #yearly, #lifetime {
+    #weekly, #monthly, #yearly, #lifetime, #today {
         width: 200px;
         padding: 10px 0px;
     }
