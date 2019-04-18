@@ -14,16 +14,25 @@
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
                 <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
-            <!-- <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart> -->
-        
+            <!-- The Calories consumed bars -->
             <column-chart :data="[
                 ['Calories Consumed', Math.trunc(caloriesConsumed)], 
                 ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]
             ]" :colors="[['#b00', 'rgba(199, 100, 170, 0.99)'],['#b00', '#aaa']]"></column-chart>
             <!-- color of first bar, color of 2nd bar -->
-            
-
         </div>
+        <!-- Graph for tracking calories: goal/actual based on date -->
+        <div id="tracking-calories-graph">
+                <h2 id="track-calories-header">Track Calories Comparison - Goal/Actual</h2>
+                <div id="track-cals-line">
+                <line-chart 
+                    :data = "[
+                    {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
+                    {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
+                    xtitle="Date" ytitle="Calories"
+                ></line-chart>
+                </div>
+                </div>
         <div class="container bars-container">
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
@@ -638,5 +647,13 @@ li {
     text-align: center;
 }
 
+#track-calories-header {
+    text-align: center;
+}
+
+#track-cals-line {
+    padding: 0px 25%;
+    width: 50%;
+}
 
 </style>
