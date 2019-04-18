@@ -120,7 +120,7 @@ export default {
                             protein: item.protein,
                             carbs: item.carbs,
                             ndbno: item.ndbno,
-                            servings: 1,
+                            servings: '1',
                             mealType: 'Snack'
                         })})
                     });
@@ -174,7 +174,8 @@ export default {
                     fat: this.detailItem.fat * this.detailItem.servings,
                     carbs: this.detailItem.carbs * this.detailItem.servings, 
                     protein: this.detailItem.protein * this.detailItem.servings,
-                    mealType: this.detailItem.mealType
+                    // mealType: this.detailItem.mealType
+                    mealType: this.detailItem.mealType * this.detailItem.servings
                 }
             ) 
             this.$router.push('/tracking');

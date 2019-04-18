@@ -40,7 +40,7 @@ CREATE TABLE user_profiles
 	activityLevel	varchar(25) not null,
 	gender			char		check(gender = 'M' OR gender='F'),
 	timeline		varchar(10)	not null,
-	[image]			varchar(200) DEFAULT 'https://res.cloudinary.com/gitfit/image/upload/v1555524869/true_gpo4zq.png'	
+	[image]			varchar(200) default('https://res.cloudinary.com/gitfit/image/upload/v1555524869/true_gpo4zq.png')
 	
 	constraint pk_user_profile primary key (userId),
 	constraint fk_user_id foreign key (userId) REFERENCES users(id)
@@ -114,7 +114,10 @@ CREATE TABLE favorites
 	constraint fk_user_favorites foreign key (userId) references users(id)
 );
 
+--Seed the data------------
 INSERT INTO users VALUES('bob','6XBYZ2aLj4ZuTkhdIh9cxtGTel4=','+gmsp403F6Q=','User');
+INSERT INTO user_profiles VALUES
+(1, 'Bob', 350, 501, '2000-10-10', 6, 7, '1.375', 'F', '+998', 'https://res.cloudinary.com/gitfit/image/upload/v1555628872/fitbar_pruoo9.jpg');
 INSERT INTO food_entries VALUES
 (1,'TACO BELL, Taco Salad',906,49,36,80,'Snack','2019-04-16',1,21270),
 (1,'TACO BELL, Taco Salad',906,49,36,80,'Snack','2019-04-15',1,21270),
