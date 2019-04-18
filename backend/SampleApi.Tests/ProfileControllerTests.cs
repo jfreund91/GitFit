@@ -63,7 +63,7 @@ namespace SampleApi.Tests
             // ASSERT
 
             // The new profile username is correctly returned from the database
-            Assert.AreEqual("Trevor", profile.Name);
+            Assert.AreEqual("KennyPowers", profile.Name);
         }
 
         [TestMethod]

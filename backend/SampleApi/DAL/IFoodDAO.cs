@@ -18,6 +18,6 @@ namespace SampleApi.DAL
 
         void EditEntry(Food food, int currentUser);
 
-        List<int> GetTimelineCaloriesByDay(int currentUser, int timeline);
+        List<decimal> GetTimelineCaloriesByDay(int currentUser, int timeline);
     }
 }

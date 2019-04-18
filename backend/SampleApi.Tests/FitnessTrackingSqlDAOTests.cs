@@ -24,7 +24,7 @@ namespace SampleApi.Tests
             int actual = this.GetRowCount("users");
 
             //ASSERT
-            Assert.AreEqual(1, actual);
+            Assert.AreEqual(2, actual);
         }
 
         [TestMethod]
@@ -73,12 +73,12 @@ namespace SampleApi.Tests
             User user = new User() { Username = "Name", Password = "Password", Salt = "salt", Role = "role" };
             user.Id = (userDAO.CreateUser(user)).Id;
 
-            Profile profile  = new Profile() { UserId=user.Id, Name = "Name", CurrentWeight = 100, GoalWeight=200, BirthDate=DateTime.Today, Feet=6, Inches =9, ActivityLevel="moderate", Gender='F', Timeline="Maintain"};
+            Profile profile  = new Profile() { UserId=user.Id, Name = "Name", CurrentWeight = 100, GoalWeight=200, BirthDate=DateTime.Today, Feet=6, Inches =9, ActivityLevel="moderate", Gender='F', Timeline="Maintain", UserImage=""};
             profileDAO.CreateProfile(profile);
             int actual = this.GetRowCount("user_profiles");
 
             //ASSERT
-            Assert.AreEqual(1, actual);
+            Assert.AreEqual(2, actual);
         }
 
         [TestMethod]
