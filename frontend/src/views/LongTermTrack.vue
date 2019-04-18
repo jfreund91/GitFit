@@ -3,16 +3,20 @@
         <h1>Long Term Tracking</h1>
         <div class="btn-container">
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
-        <button id="monthly" v-on:click="getMonthly; getChartData;">Monthly</button>
+        <button id="monthly" v-on:click="getMonthly">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
         <button id="lifetime" v-on:click="getLifetime">Lifetime</button>
         </div>
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
             <div id="tracking-graph">
-            <line-chart v-if="(weekly)" :data="{'Day 1': this.results[0] , 'Day 2': this.results[1], 'Day 3': this.results[2], 'Day 4': this.results[3], 'Day 5': this.results[4], 'Day 6': this.results[5], 'Day 7': this.results[6] }"></line-chart>
+            <line-chart v-if="(weekly)" :data="chartData"></line-chart>
             <line-chart v-if="(monthly)" :data="chartData"></line-chart>
-            <line-chart v-if="(yearly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
+            <line-chart v-if="(yearly)" :data="chartData"></line-chart>
+            <h2>Daily Goal: {{calorieBudget}} Calories</h2>
+            <h2 v-if="(weekly)">Daily Average: {{dailyAverage}}</h2>
+            <h2 v-if="(monthly)">Daily Average: {{dailyAverage}}</h2>
+            <h2 v-if="(yearly)">Daily Average: {{dailyAverage}}</h2>
         </div>
         </div>
     </div>
@@ -36,6 +40,7 @@ export default {
     },
     methods: {
         getWeekly(){
+            this.chartData = [];
             this.tracking = "This Week";
             this.weekly = true;
             this.monthly = false;
@@ -48,9 +53,11 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             this.getChartData();
              });
              },
         getMonthly() {
+             this.chartData = [];
             this.tracking = "This Month"; 
             this.monthly = true;
             this.weekly =false;
@@ -64,10 +71,12 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             this.getChartData();
              });
 
         },
         getYearly() {
+             this.chartData = [];
             this.tracking = "This Year";
             this.yearly = true;
             this.weekly = false;
@@ -80,6 +89,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             this.getChartData();
              });
         },
         getLifetime() {
@@ -94,19 +104,40 @@ export default {
              }).then(response => response.json()).then(json => {
              this.results = json;
              });
-        }
-    },
-    computed: {
-        getChartData() {
+        },
+            getChartData() {
             for(let i = 0; i<this.results.length; i++ ) {
                 let day = i + 1;
                 const foo = `Day ${day}`;
+                if(this.results[i] > 0 || day === 1 || day === this.results.length){
                 this.chartData.push( [foo, this.results[i] ])
+                }
             }
-            console.log(chartData); 
         }
+    },
+    computed: {
+        calorieBudget () {
+        if(this.profile.gender === 'F') { 
+            return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23)
+            * this.profile.activityLevel + (this.profile.timeline * 1))
+            
+        }
+        else {
+            return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23
+            )* this.profile.activityLevel + (this.profile.timeline * 1))
+        }
+    },
+    dailyAverage() {
+        let dailyCalAvg = 0;
+        for(let i=0; i<this.results.length; i++) {
+            dailyCalAvg += this.results[i];
+        }
+        dailyCalAvg =  Math.trunc(dailyCalAvg/this.results.length);
+        return dailyCalAvg;
     }
-
+}
 }
 </script>
 <style>
