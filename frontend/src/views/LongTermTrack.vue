@@ -3,7 +3,7 @@
         <h1>Long Term Tracking</h1>
         <div class="btn-container">
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
-        <button id="monthly" v-on:click="getMonthly">Monthly</button>
+        <button id="monthly" v-on:click="getMonthly; getChartData;">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
         <button id="lifetime" v-on:click="getLifetime">Lifetime</button>
         </div>
@@ -11,7 +11,7 @@
             <h2>{{tracking}}</h2>
             <div id="tracking-graph">
             <line-chart v-if="(weekly)" :data="{'Day 1': this.results[0] , 'Day 2': this.results[1], 'Day 3': this.results[2], 'Day 4': this.results[3], 'Day 5': this.results[4], 'Day 6': this.results[5], 'Day 7': this.results[6] }"></line-chart>
-            <line-chart v-if="(monthly)" :data="{'Day 1': this.results[0] , 'Day 2': this.results[1], 'Day 3': this.results[2], 'Day 4': this.results[3], 'Day 5': this.results[4], 'Day 6': this.results[5], 'Day 7': this.results[6] }"></line-chart>
+            <line-chart v-if="(monthly)" :data="chartData"></line-chart>
             <line-chart v-if="(yearly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
         </div>
         </div>
@@ -30,7 +30,8 @@ export default {
              results: [],
              weekly: false,
              monthly:false,
-             yearly: false
+             yearly: false,
+             chartData: []
         }
     },
     methods: {
@@ -95,11 +96,14 @@ export default {
              });
         }
     },
-    compute: {
-        getTotalCalories() {
-            for(let i = 0; i<this.results; i++ ) {
-                this.totalCalories += this.results[0].item.calories;
+    computed: {
+        getChartData() {
+            for(let i = 0; i<this.results.length; i++ ) {
+                let day = i + 1;
+                const foo = `Day ${day}`;
+                this.chartData.push( [foo, this.results[i] ])
             }
+            console.log(chartData); 
         }
     }
 
