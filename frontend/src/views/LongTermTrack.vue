@@ -144,6 +144,7 @@ export default {
     #long-term-tracking {
         width: 80%;
         margin: 0 auto;
+        padding-bottom: 60px;
     }
 
     #weekly, #monthly, #yearly, #lifetime {
@@ -153,6 +154,10 @@ export default {
 
     #tracking-list h2 {
         text-align: center;
+    }
+
+    #tracking-graph {
+        margin-bottom: 50px;
     }
 
     #tracking-list {
