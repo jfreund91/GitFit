@@ -5,7 +5,6 @@
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
         <button id="monthly" v-on:click="getMonthly">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
-        <button id="lifetime" v-on:click="getLifetime">Lifetime</button>
         </div>
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
