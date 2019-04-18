@@ -1,12 +1,10 @@
 <template>
-    <div>
+    <div id="landing-page">
     <div id="landing">
         <div id="landing-menu">
             <h1>Welcome</h1>
         </div>
     </div>
-    <h2 class="links landing-opts"><router-link to="/login">Login</router-link></h2>
-    <h2 class="links landing-opts"><router-link to="/profile">Continue as Guest</router-link></h2>
     <div id="box-container" class="container">
         <div class="box">
             <h2>Healthy Choices</h2>
@@ -25,6 +23,39 @@
             <p>View your daily, weekly, monthly, and annual progress on your fitness journey! </p>
         </div>
     </div>
+    <div class="table-container">
+    <table class="landing-table">
+        <tr>
+            <th>Feature</th>
+            <th>Guest</th>
+            <th>Account</th>
+        </tr>
+        <tr>
+            <td>Track Daily Calories</td>
+            <td><i id="check" class="fas fa-check"></i></td>
+            <td><i id="check" class="fas fa-check"></i></td>
+        </tr>
+        <tr>
+            <td>Long Term Tracking</td>
+            <td><i id="x" class="fas fa-times"></i></td>
+            <td><i id="check" class="fas fa-check"></i></td>
+        </tr>
+                <tr>
+            <td>Quick Meals</td>
+            <td><i id="x" class="fas fa-times"></i></td>
+            <td><i id="check" class="fas fa-check"></i></td>
+        </tr>
+                <tr>
+            <td>Favorites</td>
+            <td><i id="x" class="fas fa-times"></i></td>
+            <td><i id="check" class="fas fa-check"></i></td>
+        </tr>
+    </table>
+    <div id="btn-container">
+    <router-link to="/profile"><button id="landing-btn">Continue As Guest</button></router-link>
+    <router-link to="/login"><button id="landing-btn">Sign Up</button></router-link>
+    </div>
+    </div>
     </div>
 </template>
 <script>
@@ -36,11 +67,50 @@
     text-align: center;
 }
 
+#btn-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.landing-table th {
+    text-align: left;
+}
+
+#landing-page {
+padding-bottom: 60px;
+}
+
+#landing-btn {
+    width: 25%;
+    margin: 10px;
+}
+
+.table-container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+i#x.fas.fa-times {
+    color: red;
+}
+
+i#x.fas.fa-times:hover {
+    cursor: default;
+}
+
+i#check.fas.fa-check:hover {
+    cursor: default;
+}
+
+.landing-table {
+    width: 100%;
+}
+
 
 #box-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 150px;
     flex-wrap: wrap;
 }
 
@@ -92,12 +162,6 @@
     padding-top: 40px;
 }
 
-/* #landing-menu {
-    position; 
-    top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
-/* }  */
 
 #landing {
   background-image: url("../assets/food.jpg");
