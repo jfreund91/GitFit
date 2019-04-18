@@ -9,9 +9,17 @@
         <!-- Display "favorites" or frequently used foods here -->
         <!-- Every time a user adds a food item, it should go into favories -->
         <!-- This should pull from those favorites and popolate a list -->
-
-
         <h2 id="favorite-foods">Favorites</h2>
+        <div class="search-results">
+            <ul>
+                <li v-for="item in this.favoriteResults" :key="item.ndbno">
+                <span @click="viewDetail(item.ndbno)" class="i-span"><i class="fas fa-plus-circle"></i><span class="item-text">{{item.name}}</span></span>
+                
+                </li>
+            </ul>
+        </div>
+
+<!-- Search Results -->
         <div class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">
@@ -67,6 +75,9 @@
 <script>
 import auth from '@/shared/auth.js'
 let user = auth.getUser();
+
+
+
 export default {
  name: 'search',
  data() {
@@ -74,6 +85,7 @@ export default {
          // showSearch: true,
          queryString: "",
          searchResults : [],
+         favoriteResults : [],
          detailItem: {
              ndbno: 0,
              name: "",
@@ -84,10 +96,37 @@ export default {
              servings: 0,
              mealType: '',
              servingRate: 1,
-            
          }
      }
  },
+ created() {
+     let userInCreated = auth.getUser();
+        if(userInCreated !== null) {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/favorites`, {
+                    method: 'GET',
+                    headers: {
+                            "Authorization": 'Bearer ' + auth.getToken() 
+                            }, 
+                    })
+                    .then((response) => {
+                    return response.json();
+                    }).then ((json) => {
+                        this.favoriteResults = [];
+                        json.forEach(item => {
+                        this.favoriteResults.push({
+                            name: item.name,
+                            calories: item.calories,
+                            fat: item.fat,
+                            protein: item.protein,
+                            carbs: item.carbs,
+                            ndbno: item.ndbno,
+                            servings: 1,
+                            mealType: 'Snack'
+                        })})
+                    });
+        }
+ },
+
  methods: {
      show () {
         this.$modal.show('food-item-detail-view');
@@ -137,7 +176,6 @@ export default {
                     protein: this.detailItem.protein * this.detailItem.servings,
                     mealType: this.detailItem.mealType * this.detailItem.servings
                 }
-               
             ) 
             this.$router.push('/tracking');
             } 
@@ -168,12 +206,9 @@ export default {
                     body: JSON.stringify(this.detailItem)
                     }).then(response => {
                     if(response.ok) {
-                        this.$router.push('/favorites');
+                        this.$router.push('/tracking');
                     }
                 });
-
-
-
 
 
             }
