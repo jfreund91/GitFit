@@ -2,7 +2,8 @@
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
         <!-- <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3> -->
-        <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0]" ></h3>
+        <!-- <h3 id="track-date">Date:  <input type="date" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3> -->
+        <!-- <h3 id="track-date">Date:  <input type="date" v-model="profile.eatenToday[0]" ></h3> -->
         <h4>Date: {{profile.eatenToday[0]}} **The date picker needs to update the date for the data below</h4>
 
         <div class="container circle-container">
@@ -361,12 +362,12 @@ export default {
                     return item.date == dateToDisplay;
                  });
                 fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/dailyfood`, {
-                method: "GET",
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + auth.getToken()
                 },
-                //body: JSON.stringify(dateToDisplay)
+                body: JSON.stringify(dateToDisplay)
                 })
                 .then((response) => {
                     return response.json();
