@@ -69,6 +69,19 @@ namespace SampleApi.Controllers
             return Ok(token);
         }
 
+        [HttpPut("updatePassword")]
+        public IActionResult UpdatePassword(AuthenticationModel model)
+        {
+            var passwordHash = passwordHasher.ComputeHash(model.Password);
+
+            var user = userDao;
+
+            //userDao.UpdateUser(user);
+
+            
+            return Ok();
+        }
+
 
         /// <summary>
         /// Authenticates the user and provides a bearer token.

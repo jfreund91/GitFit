@@ -14,10 +14,13 @@ INSERT INTO users ([id]
       ,[username]
       ,[password]
       ,[salt]
-      ,[role]) VALUES (1, 'KennyPowers', 'Eastbound&Down', 'laskdjf;laskjf', null);
+      ,[role]) VALUES (1, 'Ted', 'Eastbound&Down', 'laskdjf;laskjf', null);
 SET IDENTITY_INSERT users OFF;
 
-INSERT INTO user_profiles VALUES (1, 'KennyPowers', 180, 200, '1980-01-01', 6, 2, '1.55','M', '1.55', null);
+INSERT INTO user_profiles VALUES (1, 'TedKennedy', 180, 200, '1980-01-01', 6, 2, '1.55','M', '1.55', null);
+
+INSERT INTO food_entries VALUES (1, 1, 'TedKennedy', 1000, 100, 20, 1, 'Snack', '2019-01-01', 1, 3);  
+
 
 
 ---- INSERT sample survey
