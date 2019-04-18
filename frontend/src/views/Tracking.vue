@@ -58,10 +58,10 @@
                                     {{item.name}}                               
                                 </td>
                                 <td v-for="item in snacks" :key="item.id">
-                                    {{item.calories}}                               
+                                    {{item.servings}}                               
                                 </td>
                                 <td v-for="item in snacks" :key="item.id">
-                                    {{item.servings}}
+                                    {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
                                         <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
@@ -141,6 +141,7 @@
                 </div>
             </div>
         </div>
+        <!-- Modal for the food item details -->
         <modal name="food-item-detail-view" :height="350">
         <!-- Gives the detailed view -->
             <div >
@@ -169,7 +170,7 @@
                         <option value="Lunch">Lunch</option>
                         <option value="Dinner">Dinner</option>
                     </select>
-                    <button id="i-ate-this-btn" @click="editFood()">I ate this!</button>
+                    <button id="i-ate-this-btn" @click="editFood(detailItem)">I ate this!</button>
                 </div>
                 </div>
             </div>
@@ -265,8 +266,8 @@ export default {
         removeLastEntry(){
         this.profile.eatenToday.pop();
         },
-         viewDetail(itemId) {
-         this.$modal.show('food-item-detail-view');
+        viewDetail(itemId) {
+         this.$modal.show('food-item-detail-view'); // Opens the modal to edit the servings
          let result = [];
          result = this.profile.eatenToday.filter((item) => {
              return item.id === itemId;
@@ -304,10 +305,28 @@ export default {
                 this.profile.eatenToday = output;
             }
         },
-        editFood() {
-            
+        editFood(detailItem) {
+            console.log("I get here.");
+            console.log(detailItem)
+            //this.item.servings = this.detailItem.servings;
+
+
+
+            // Change the values that are displayed in the table
+            //this.detailItem.calories = 89;
+            // this.item.servings = this.detailItem.servings;
+
+
+
+
         }
     },
+
+
+
+
+
+
     computed: {
         calculateAge() {
         let DateOfBirth = new Date(this.profile.birthDate);
