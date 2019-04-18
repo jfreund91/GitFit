@@ -1,7 +1,7 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
-        <h3 id="track-date">Date:  <input type="date" v-model="pullDate" 
+        <h3 v-if="(isAuthenticated)" id="track-date">Date:  <input type="date" v-model="pullDate" 
         id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(pullDate + 'T00:00')"></h3>
         <div class="container circle-container">
             <div id="profile-stats">
