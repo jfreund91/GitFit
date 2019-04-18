@@ -1,6 +1,9 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
+        <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" name="birthDate" ></h3>
+        <h4>Date: {{profile.eatenToday[0]}} **The date picker needs to update the date for the data below</h4>
+
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
@@ -29,7 +32,9 @@
                         ['Protein', Math.trunc((this.proteinConsumed/50)*100)], 
                         ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], 
                         ['Fat', Math.trunc((this.fatConsumed/80)*100)]
-                    ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]">
+                    ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]"
+                    :display="Tia"
+                    >
                     </bar-chart>
                 <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
                 <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
@@ -242,7 +247,8 @@ export default {
                     carbs: item.carbs, 
                     protein: item.protein,
                     mealType: item.mealType,
-                    servings: item.servings
+                    servings: item.servings,
+                    date: item.date
                 })})
             });
         }
@@ -322,12 +328,38 @@ export default {
             console.log("I get here.");
             console.log(detailItem)
             //this.item.servings = this.detailItem.servings;
-
-
-
             // Change the values that are displayed in the table
             //this.detailItem.calories = 89;
             // this.item.servings = this.detailItem.servings;
+            // if (user == null) {
+            // this.profile.eatenToday[0](
+            //     {
+            //         id: this.profile.eatenToday.length + 1,
+            //         name: this.detailItem.name,
+            //         calories: this.detailItem.calories * this.detailItem.servings,
+            //         fat: this.detailItem.fat * this.detailItem.servings,
+            //         carbs: this.detailItem.carbs * this.detailItem.servings, 
+            //         protein: this.detailItem.protein * this.detailItem.servings,
+            //         mealType: this.detailItem.mealType * this.detailItem.servings
+            //     }
+               
+            // ) 
+            // this.$router.push('/tracking');
+            // } else if(user !== null)
+            // {
+            //     fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
+            //     method: "POST",
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         Authorization: "Bearer " + auth.getToken()
+            //     },
+            //     body: JSON.stringify(this.detailItem)
+            //     }).then(response => {
+            //         if(response.ok) {
+            //             this.$router.push('/tracking');
+            //         }
+            //     })
+            // }
 
 
 
@@ -336,11 +368,11 @@ export default {
     },
 
 
-
-
-
-
     computed: {
+        // Get the date
+        getDate() {
+
+        },
         calculateAge() {
         let DateOfBirth = new Date(this.profile.birthDate);
         let currentDate = new Date();
@@ -601,4 +633,10 @@ li {
     list-style: none;
     padding-bottom: 25px;
 }
+
+#track-date {
+    text-align: center;
+}
+
+
 </style>

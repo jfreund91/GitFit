@@ -98,7 +98,6 @@ namespace SampleApi.DAL
             food.Servings = Convert.ToDecimal(reader["servings"]);
             food.Date = Convert.ToDateTime(reader["meal_date"]);
             food.ndbno = Convert.ToInt32(reader["ndbno"]);
-            food.Date = Convert.ToDateTime(reader["meal_date"]);
 
             return food;
 
