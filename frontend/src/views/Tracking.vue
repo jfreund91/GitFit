@@ -82,7 +82,7 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Snack Food</span></i></router-link>
                     <table class="snacksTable">
-                        <tr>
+                        <tr v-if="snacks.length !== 0">
                             <th>Description</th>
                             <th>Servings</th>
                             <th>Calories</th>
@@ -112,7 +112,7 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Breakfast Food</span></i></router-link>
                     <table class="snacksTable">
-                        <tr>
+                        <tr v-if="breakfasts.length !== 0">
                             <th>Description</th>
                             <th>Servings</th>
                             <th>Calories</th>
@@ -142,7 +142,7 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Lunch Food</span></i></router-link>
                     <table class="snacksTable">
-                        <tr>
+                        <tr v-if="lunches.length !== 0">
                             <th>Description</th>
                             <th>Servings</th>
                             <th>Calories</th>
@@ -172,7 +172,7 @@
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Dinner Food</span></i></router-link>
                     <table class="snacksTable">
-                        <tr>
+                        <tr v-if="dinners.length !== 0">
                             <th>Description</th>
                             <th>Servings</th>
                             <th>Calories</th>
