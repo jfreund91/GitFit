@@ -89,6 +89,9 @@ export default {
 
 <style scoped>
 .change-password {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
     padding: 2%;
     /* margin: 50px auto;
     text-align: center;
