@@ -6,6 +6,12 @@
             <input class="search" type="text" name="queryString" v-model="queryString" @keyup.enter="searchFoods()">
             <input class="search-btn" type ="submit" value="Search" @click="searchFoods()">
         </div>
+        <!-- Display "favorites" or frequently used foods here -->
+        <!-- Every time a user adds a food item, it should go into favories -->
+        <!-- This should pull from those favorites and popolate a list -->
+
+
+        <h2 id="favorite-foods">Favorites</h2>
         <div class="search-results">
             <ul>
                 <li v-for="item in this.searchResults" :key="item.ndbno">
@@ -134,8 +140,11 @@ export default {
                
             ) 
             this.$router.push('/tracking');
-            } else if(user !== null)
-            {
+            } 
+            
+            // User is is logged in, Add to database and also favorites
+            else if(user !== null)
+            {   // Add to database
                 fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
                 method: "POST",
                 headers: {
@@ -147,7 +156,26 @@ export default {
                     if(response.ok) {
                         this.$router.push('/tracking');
                     }
-                })
+                });
+
+                // Add to favorites
+                fetch(`${process.env.VUE_APP_REMOTE_API}/favorites`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Bearer " + auth.getToken()
+                    },
+                    body: JSON.stringify(this.detailItem)
+                    }).then(response => {
+                    if(response.ok) {
+                        this.$router.push('/favorites');
+                    }
+                });
+
+
+
+
+
             }
             
         }

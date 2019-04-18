@@ -24,7 +24,7 @@ namespace SampleApi.DAL
         /// <returns></returns>
         public Food AddFavorite(Food food, int currentUser)
         {
-            string sql = "INSERT INTO favorites VALUES (@userId, @name, @calories, @fat, @protein, @carbs, @ndbno);";
+            string sql = "INSERT INTO favorites VALUES (@userId, @name, @calories, @fat, @protein, @carbs, @ndbno); SELECT @@IDENTITY;";
             try
             {
                 using(SqlConnection conn = new SqlConnection(this.connectionString))
@@ -36,7 +36,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@calories", food.Calories);
                     cmd.Parameters.AddWithValue("@fat", food.Fat);
                     cmd.Parameters.AddWithValue("@protein", food.Protein);
-                    //cmd.Parameters.AddWithValue("@carbs", food.Carbs);
+                    cmd.Parameters.AddWithValue("@carbs", food.Carbs);
                     cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
                     food.EntryId=Convert.ToInt32(cmd.ExecuteScalar());
                 }
