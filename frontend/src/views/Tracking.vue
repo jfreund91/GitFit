@@ -1,11 +1,8 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
-        <!-- <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3> -->
-        <!-- <h3 id="track-date">Date:  <input type="date" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3> -->
-        <!-- <h3 id="track-date">Date:  <input type="date" v-model="profile.eatenToday[0]" ></h3> -->
-        <h4>Date: {{profile.eatenToday[0]}} **The date picker needs to update the date for the data below</h4>
-
+        <h3 id="track-date">Date:  <input type="date" v-model="pullDate" 
+        id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(pullDate + 'T00:00')"></h3>
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
@@ -110,11 +107,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    
-                    
-                    
-                    
-                    
                     <!-- <ul>
                         <li v-for="item in snacks" :key="item.id">
                             {{item.name}}
@@ -124,9 +116,6 @@
                             </span>
                         </li>
                     </ul> -->
-
-
-
                 </div>
             </div>
             <div>                
@@ -224,6 +213,9 @@ import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 import auth from '@/shared/auth.js' // import whether user is logged in
 
+let dateFormat = require('dateformat');
+let now = new Date();
+
 Vue.use(VueChartkick, {adapter: Chart})
 export default {
     name: 'tracking',
@@ -240,8 +232,8 @@ export default {
              servings: 0,
              mealType: '',
              servingRate: 1,
-            
-         }
+            },
+            pullDate: dateFormat(new Date(), "yyyy-mm-dd")
             }
         },
     created() {
@@ -349,6 +341,8 @@ export default {
         // Change food items based on date being updated
         updateDate(dateToDisplay) {
             // console.log(dateToDisplay) --2019-04-17T00:00
+            console.log("Datttte:")
+            console.log(dateToDisplay)
             let user = auth.getUser();
             if (user == null) { // Not logged in
             let output = [];
@@ -389,8 +383,10 @@ export default {
             });
             }
             //this.profile.eatenToday = output;
-            console.log("The date is:")
-            console.log(this.profile.eatenToday[0])
+            // console.log("The date is:")
+            // console.log(this.profile.eatenToday[0].date)
+            // console.log("The date in pull is")
+            console.log(this.pullDate)
         },
 
         editFood(detailItem) {
