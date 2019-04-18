@@ -52,7 +52,7 @@
         </tr>
     </table>
     <div id="btn-container">
-    <router-link to="/profile"><button id="landing-btn">Continue As Guest</button></router-link>
+    <router-link to="/profile"><button id="landing-btn">Guest</button></router-link>
     <router-link to="/login"><button id="landing-btn">Sign Up</button></router-link>
     </div>
     </div>
