@@ -725,5 +725,16 @@ input[type=date]::-webkit-clear-button {
 .snacksTable th {
     background-color: lightblue;
     text-align: left;
+    border: solid black 1px;
 }
+
+.snacksTable {
+    margin-top: 17px;
+    border: solid black 1px;
+}
+
+.snacksTable td {
+    border: solid midnightblue 2px;
+}
+
 </style>
