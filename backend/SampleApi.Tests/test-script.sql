@@ -31,7 +31,7 @@ INSERT INTO food_entries ([id]
 		,[meal_type]
 		,[meal_date]
 		,[servings]
-		,[ndbno]) VALUES (1, 1, 'TedKennedy', 1000, 100, 20, 1, 'Snack', '2019-01-01', 1, 3);  
+		,[ndbno]) VALUES (1, 1, 'TedKennedy', 1000, 100, 20, 1, 'Snack', getdate(), 1, 3);  
 
 SET IDENTITY_INSERT food_entries OFF;
 
