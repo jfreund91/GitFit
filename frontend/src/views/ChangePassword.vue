@@ -4,6 +4,7 @@
     <form v-on:submit.prevent="changepword">
         <div class="form-input">
             <label for="password">Current Password:</label>
+            <!-- <span class="label">New Password:</span> -->
             <input type="password" placeholder="Enter Current Password"
             id="password"
             v-model.trim="changePasswordForm.password">
@@ -86,7 +87,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .change-password {
     padding: 2%;
     /* margin: 50px auto;
@@ -97,5 +98,12 @@ export default {
     justify-content: center;
     margin-right: 10px;
     flex-direction: column; */
+}
+
+.form-input{
+    margin: 15px 0px;
+    display: flex;
+    /* justify-content: flex-start; */
+    justify-content: start;
 }
 </style>
