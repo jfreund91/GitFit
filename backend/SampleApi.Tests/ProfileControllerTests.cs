@@ -87,9 +87,6 @@ namespace SampleApi.Tests
 
             profile = result.Value as Profile;
 
-            //Alternative syntax for calling profile
-            //profile = (Profile)result.Value;
-
             // ASSERT
 
             // The new profile username is correctly returned from the database

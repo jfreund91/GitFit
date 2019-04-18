@@ -35,3 +35,14 @@ INSERT INTO food_entries ([id]
 
 SET IDENTITY_INSERT food_entries OFF;
 
+SET IDENTITY_INSERT favorites ON;
+
+INSERT INTO favorites ([id]
+		,[userId]
+		,[name]
+		,[calories]
+		,[fat]
+		,[protein]
+		,[ndbno]) VALUES (1,1,'Bacon', 600, 20, 20, 1);
+
+SET IDENTITY_INSERT favorites OFF;

@@ -36,7 +36,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@calories", food.Calories);
                     cmd.Parameters.AddWithValue("@fat", food.Fat);
                     cmd.Parameters.AddWithValue("@protein", food.Protein);
-                    cmd.Parameters.AddWithValue("@carbs", food.Carbs);
+                    //cmd.Parameters.AddWithValue("@carbs", food.Carbs);
                     cmd.Parameters.AddWithValue("@ndbno", food.ndbno);
                     food.EntryId=Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -102,9 +102,9 @@ namespace SampleApi.DAL
             food.EntryId = Convert.ToInt32(reader["id"]);
             food.Calories = Convert.ToDecimal(reader["calories"]);
             food.Fat = Convert.ToDecimal(reader["fat"]);
-            food.Carbs = Convert.ToDecimal(reader["carbs"]);
+            //food.Carbs = Convert.ToDecimal(reader["carbs"]);
             food.Protein = Convert.ToDecimal(reader["protein"]);
-            food.ndbno = Convert.ToInt32("ndbno");
+            food.ndbno = Convert.ToInt32(reader["ndbno"]);
             return food;
         }
     }
