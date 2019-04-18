@@ -9,7 +9,7 @@
         <!-- Display "favorites" or frequently used foods here -->
         <!-- Every time a user adds a food item, it should go into favories -->
         <!-- This should pull from those favorites and popolate a list -->
-        <h2 id="favorite-foods">Favorites</h2>
+        <h2 id="favorite-foods" v-if="(isAuthenticated)">Favorites</h2>
         <div class="search-results">
             <ul>
                 <li v-for="item in this.favoriteResults" :key="item.ndbno">
@@ -82,7 +82,7 @@ export default {
  name: 'search',
  data() {
      return {
-         // showSearch: true,
+         isAuthenticated: auth.getUser() !== null,
          queryString: "",
          searchResults : [],
          favoriteResults : [],
