@@ -74,20 +74,19 @@
             </div>
         </div>
         <div>
-            
+            <!------------------------ SNACKS ------------------------>
             <div>
                 <div class="meal-list-header">
                     <h2>Snacks</h2>
                 </div>
                 <div class="container">
-                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Snack Food</span></i></router-link>
                     <table class="snacksTable">
                         <tr>
                             <th>Description</th>
                             <th>Servings</th>
                             <th>Calories</th>
                         </tr>
-                        <!-- <tbody> -->
                             <tr v-for="item in snacks" :key="item.id">
                                 <td>
                                     {{item.name}}                               
@@ -103,17 +102,7 @@
                                     </span>                                
                                 </td>     
                             </tr>
-                        <!-- </tbody> -->
                     </table>
-                    <!-- <ul>
-                        <li v-for="item in snacks" :key="item.id">
-                            {{item.name}}
-                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
-                            <span class="remove-food">
-                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
             <div>                
@@ -121,16 +110,29 @@
                     <h2>Breakfast</h2>
                 </div>
                 <div class="container">
-                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
-                    <ul>
-                        <li v-for="item in breakfasts" :key="item.id">
-                            {{item.name}}
-                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
-                            <span class="remove-food">
-                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>
-                        </li>
-                    </ul>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Breakfast Food</span></i></router-link>
+                    <table class="snacksTable">
+                        <tr>
+                            <th>Description</th>
+                            <th>Servings</th>
+                            <th>Calories</th>
+                        </tr>
+                            <tr v-for="item in breakfasts" :key="item.id">
+                                <td>
+                                    {{item.name}}                               
+                                </td>
+                                <td>
+                                    {{item.servings}}                               
+                                </td>
+                                <td>
+                                    {{item.calories}}
+                                    <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
+                                    <span class="remove-food">
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                    </span>                                
+                                </td>     
+                            </tr>
+                    </table>
                 </div>
             </div>
             <div>                
@@ -138,16 +140,29 @@
                     <h2>Lunch</h2>
                 </div>
                 <div class="container">
-                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
-                    <ul>
-                        <li class = "meal-items" v-for="item in lunches" :key="item.id">
-                            {{item.name}}
-                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
-                            <span class="remove-food">
-                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>
-                        </li>
-                    </ul>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Lunch Food</span></i></router-link>
+                    <table class="snacksTable">
+                        <tr>
+                            <th>Description</th>
+                            <th>Servings</th>
+                            <th>Calories</th>
+                        </tr>
+                            <tr v-for="item in lunches" :key="item.id">
+                                <td>
+                                    {{item.name}}                               
+                                </td>
+                                <td>
+                                    {{item.servings}}                               
+                                </td>
+                                <td>
+                                    {{item.calories}}
+                                    <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
+                                    <span class="remove-food">
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                    </span>                                
+                                </td>     
+                            </tr>
+                    </table>
                 </div>
             </div>
             <div>
@@ -155,16 +170,29 @@
                     <h2>Dinner</h2>
                 </div>
                 <div class="container">
-                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
-                    <ul>
-                        <li v-for="item in dinners" :key="item.id">
-                            {{item.name}}
-                            <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
-                            <span class="remove-food">
-                                <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
-                            </span>
-                        </li>
-                    </ul>
+                    <router-link to="/search"><i class="fas fa-plus-circle large-plus"><span class="addfoodconsumed">Add Dinner Food</span></i></router-link>
+                    <table class="snacksTable">
+                        <tr>
+                            <th>Description</th>
+                            <th>Servings</th>
+                            <th>Calories</th>
+                        </tr>
+                            <tr v-for="item in dinners" :key="item.id">
+                                <td>
+                                    {{item.name}}                               
+                                </td>
+                                <td>
+                                    {{item.servings}}                               
+                                </td>
+                                <td>
+                                    {{item.calories}}
+                                    <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
+                                    <span class="remove-food">
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                    </span>                                
+                                </td>     
+                            </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -735,6 +763,12 @@ input[type=date]::-webkit-clear-button {
 
 .snacksTable td {
     border: solid midnightblue 2px;
+}
+
+.addfoodconsumed {
+    color: black;
+    font-size: 2rem;
+    padding: 5px;
 }
 
 </style>
