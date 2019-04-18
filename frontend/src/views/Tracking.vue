@@ -105,6 +105,7 @@
                     </table>
                 </div>
             </div>
+            <!------------------------ BREAKFAST ------------------------>
             <div>                
                 <div class="meal-list-header">
                     <h2>Breakfast</h2>
@@ -135,6 +136,7 @@
                     </table>
                 </div>
             </div>
+            <!------------------------ LUNCHES ------------------------>
             <div>                
                 <div class="meal-list-header">
                     <h2>Lunch</h2>
@@ -165,6 +167,7 @@
                     </table>
                 </div>
             </div>
+            <!------------------------ DINNER ------------------------>
             <div>
                 <div class="meal-list-header">
                     <h2>Dinner</h2>

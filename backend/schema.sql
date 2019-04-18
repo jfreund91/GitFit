@@ -107,6 +107,7 @@ CREATE TABLE favorites
 	calories		decimal			not null,
 	fat				decimal			not null,
 	protein			decimal			not null,
+	carbs			decimal			not null,
 	ndbno			int				not null,
 
 	constraint pk_favorites	primary key (id),
