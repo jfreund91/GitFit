@@ -1,7 +1,7 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
-        <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" name="birthDate" ></h3>
+        <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3>
         <h4>Date: {{profile.eatenToday[0]}} **The date picker needs to update the date for the data below</h4>
 
         <div class="container circle-container">
@@ -21,6 +21,8 @@
             ]" :colors="[['#b00', 'rgba(199, 100, 170, 0.99)'],['#b00', '#aaa']]"></column-chart>
             <!-- color of first bar, color of 2nd bar -->
         </div>
+
+
         <!-- Graph for tracking calories: goal/actual based on date -->
         <div id="tracking-calories-graph">
                 <h2 id="track-calories-header">Track Calories Comparison - Goal/Actual</h2>
@@ -31,9 +33,18 @@
                     {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
                     xtitle="Date" ytitle="Calories"
                 ></line-chart>
+                <!-- Replace data above with object containing:
+                        date: #of calories      for every day in database for actual
+                -->
+                <!-- For goal it will be steady based on (current weight - goal weight) = number of lbs to lose
+                        number of lbs to lose / timeline
+                 -->
                 </div>
                 </div>
         <div class="container bars-container">
+
+
+            
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
                 <bar-chart suffix="%" 
@@ -292,7 +303,7 @@ export default {
             }
         },
         removeLastEntry(){
-        this.profile.eatenToday.pop();
+            this.profile.eatenToday.pop();
         },
         viewDetail(itemId) {
          this.$modal.show('food-item-detail-view'); // Opens the modal to edit the servings
@@ -333,6 +344,53 @@ export default {
                 this.profile.eatenToday = output;
             }
         },
+        // Change food items based on date being updated
+        updateDate(dateToDisplay) {
+            // console.log(dateToDisplay) --2019-04-17T00:00
+            let user = auth.getUser();
+            if (user == null) { // Not logged in
+            let output = [];
+            output = this.profile.eatenToday.filter((item)=> {
+                return item.date == dateToDisplay;
+            });
+            this.profile.eatenToday = output;
+            } else if (user != null) { // User is logged in so pull from db
+                let output = [];
+                output = this.profile.eatenToday.filter((item)=> {
+                    return item.date == dateToDisplay;
+                 });
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/dailyfood`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                },
+                //body: JSON.stringify(dateToDisplay)
+                })
+                .then((response) => {
+                    return response.json();
+                }).then ((json) => {
+                this.profile.eatenToday = [];
+                json.forEach(item => {
+                this.profile.eatenToday.push({
+                    
+                    id: item.entryId,
+                    name: item.name,
+                    calories: item.calories,
+                    fat: item.fat,
+                    carbs: item.carbs, 
+                    protein: item.protein,
+                    mealType: item.mealType,
+                    servings: item.servings,
+                    date: item.date
+                })})
+            });
+            }
+            //this.profile.eatenToday = output;
+            console.log("The date is:")
+            console.log(this.profile.eatenToday[0])
+        },
+
         editFood(detailItem) {
             console.log("I get here.");
             console.log(detailItem)
