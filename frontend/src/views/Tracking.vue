@@ -712,4 +712,15 @@ li {
     width: 50%;
 }
 
+/* 
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
+
+input[type=date]::-webkit-clear-button {
+    -webkit-appearance: none;
+    display: none;
+}
 </style>
