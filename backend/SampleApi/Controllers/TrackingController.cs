@@ -45,12 +45,12 @@ namespace SampleApi.Controllers
         /// Gets the user's daily log of food entries.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Authorize]
         [Route("/api/[controller]/dailyfood")]
-        public IEnumerable<Food> GetFoodEntriesByDay([FromBody] Food food)
+        public IEnumerable<Food> GetFoodEntriesByDay([FromBody] DateTime date)
         {
-            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today, DateTime.Today);
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, date, date);
         }
 
         /// <summary>
