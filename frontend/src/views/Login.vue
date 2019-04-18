@@ -1,26 +1,25 @@
 <template>
     <div id="login">
         <section id="login-signup" v-bind:class="{ showSignupForm: !showLoginForm }">
-
             <form v-if="showLoginForm" v-on:submit.prevent="login">
-        
             <p v-bind:error="error"></p>
             <h1>Login</h1>
-        <label for="email">Username</label>
-        <input
-          v-model.trim="loginForm.username"
-          type="text"
-          placeholder="Username"
-          id="email"
-        />
 
-        <label for="password">Password</label>
-        <input
-          v-model.trim="loginForm.password"
-          type="password"
-          placeholder="Password"
-          id="password"
-        />
+            <label for="email">Username</label>
+            <input
+              v-model.trim="loginForm.username"
+              type="text"
+              placeholder="Username"
+              id="email"
+            />
+
+            <label for="password">Password</label>
+            <input
+              v-model.trim="loginForm.password"
+              type="password"
+              placeholder="Password"
+              id="password"
+            />
 
         <div class="form-actions">
           <button class="login">Log In</button>
@@ -180,7 +179,7 @@ export default {
         } else {
           auth.saveToken(data);
           const user = auth.getUser();
-          this.goHome();
+          this.goToProfile();
         }
       } catch (error) {
         console.error(error);

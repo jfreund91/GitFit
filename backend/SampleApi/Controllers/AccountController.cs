@@ -110,6 +110,45 @@ namespace SampleApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Changes the user's password
+        /// </summary>
+        /// <param name="model">An object containing credentials and new password.</param> 
+        /// <returns></returns>
+        [HttpPost("changePassword")]
+        public IActionResult ChangePassword(UpdatePasswordModel model)
+        {
+            // Assume the user is not authorized
+            IActionResult result = Unauthorized();
+
+            // Get the user by username
+            var user = userDao.GetUser(model.Username);
+
+            // If we found a user and the password has matches
+            if (user != null && passwordHasher.VerifyHashMatch(user.Password, model.Password, user.Salt))
+            {
+
+                // Update the password to the new password
+
+                // Generate a password hash
+                var passwordHash = passwordHasher.ComputeHash(model.NewPassword);
+
+                // Create a user object
+                var userUpdated = new User { Password = passwordHash.Password, Salt = passwordHash.Salt, Role = user.Role, Username = model.Username, Id = user.Id };
+
+                // Update the password and the salt
+                userDao.UpdateUser(userUpdated);
+
+                // Generate an authentication token
+                var token = tokenGenerator.GenerateToken(user.Username, user.Role);
+
+                // Switch to 200 OK
+                result = Ok(token);
+            }
+   
+            return result;
+        }
+
 
         [HttpGet]
         [Route("/test")]

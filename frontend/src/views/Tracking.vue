@@ -1,10 +1,12 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
+        <h3 id="track-date">Date:  <input type="datetime-local" v-model="profile.eatenToday[0].date" id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(profile.eatenToday[0].date)"></h3>
+        <h4>Date: {{profile.eatenToday[0]}} **The date picker needs to update the date for the data below</h4>
+
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
-                <!-- <div>Age: {{profile.age}}</div> -->
                 <div>Age: {{calculateAge}}</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
@@ -12,16 +14,52 @@
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
                 <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
-            <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart>
+            <!-- The Calories consumed bars -->
+            <column-chart :data="[
+                ['Calories Consumed', Math.trunc(caloriesConsumed)], 
+                ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]
+            ]" :colors="[['#b00', 'rgba(199, 100, 170, 0.99)'],['#b00', '#aaa']]"></column-chart>
+            <!-- color of first bar, color of 2nd bar -->
         </div>
+
+
+        <!-- Graph for tracking calories: goal/actual based on date -->
+        <div id="tracking-calories-graph">
+                <h2 id="track-calories-header">Track Calories Comparison - Goal/Actual</h2>
+                <div id="track-cals-line">
+                <line-chart 
+                    :data = "[
+                    {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
+                    {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
+                    xtitle="Date" ytitle="Calories"
+                ></line-chart>
+                <!-- Replace data above with object containing:
+                        date: #of calories      for every day in database for actual
+                -->
+                <!-- For goal it will be steady based on (current weight - goal weight) = number of lbs to lose
+                        number of lbs to lose / timeline
+                 -->
+                </div>
+                </div>
         <div class="container bars-container">
+
+
+            
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
-            <bar-chart suffix="%" :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
-            <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
-            <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
-            <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
-            <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
+                <bar-chart suffix="%" 
+                    :data="[
+                        ['Protein', Math.trunc((this.proteinConsumed/50)*100)], 
+                        ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], 
+                        ['Fat', Math.trunc((this.fatConsumed/80)*100)]
+                    ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]"
+                    :display="Tia"
+                    >
+                    </bar-chart>
+                <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
+                <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
+                <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
+                <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
             </div>
             <div class="water-container">
                 <h1>Water</h1>
@@ -44,7 +82,38 @@
                 </div>
                 <div class="container">
                     <router-link to="/search"><i class="fas fa-plus-circle large-plus"></i></router-link>
-                    <ul>
+                    <table class="snacksTable">
+                        <thead>
+                            <th>
+                                <td>Description</td>
+                                <td>Servings</td>
+                                <td>Calories</td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.name}}                               
+                                </td>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.servings}}                               
+                                </td>
+                                <td v-for="item in snacks" :key="item.id">
+                                    {{item.calories}}
+                                    <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
+                                    <span class="remove-food">
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                    </span>                                
+                                </td>     
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    
+                    
+                    <!-- <ul>
                         <li v-for="item in snacks" :key="item.id">
                             {{item.name}}
                             <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
@@ -52,7 +121,10 @@
                                 <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
                             </span>
                         </li>
-                    </ul>
+                    </ul> -->
+
+
+
                 </div>
             </div>
             <div>                
@@ -107,6 +179,7 @@
                 </div>
             </div>
         </div>
+        <!-- Modal for the food item details -->
         <modal name="food-item-detail-view" :height="350">
         <!-- Gives the detailed view -->
             <div >
@@ -135,7 +208,7 @@
                         <option value="Lunch">Lunch</option>
                         <option value="Dinner">Dinner</option>
                     </select>
-                    <button id="i-ate-this-btn" @click="editFood()">I ate this!</button>
+                    <button id="i-ate-this-btn" @click="editFood(detailItem)">I ate this!</button>
                 </div>
                 </div>
             </div>
@@ -194,7 +267,8 @@ export default {
                     carbs: item.carbs, 
                     protein: item.protein,
                     mealType: item.mealType,
-                    servings: item.servings
+                    servings: item.servings,
+                    date: item.date
                 })})
             });
         }
@@ -229,10 +303,10 @@ export default {
             }
         },
         removeLastEntry(){
-        this.profile.eatenToday.pop();
+            this.profile.eatenToday.pop();
         },
-         viewDetail(itemId) {
-         this.$modal.show('food-item-detail-view');
+        viewDetail(itemId) {
+         this.$modal.show('food-item-detail-view'); // Opens the modal to edit the servings
          let result = [];
          result = this.profile.eatenToday.filter((item) => {
              return item.id === itemId;
@@ -270,10 +344,102 @@ export default {
                 this.profile.eatenToday = output;
             }
         },
-        editFood(itemId) {
+        // Change food items based on date being updated
+        updateDate(dateToDisplay) {
+            // console.log(dateToDisplay) --2019-04-17T00:00
+            let user = auth.getUser();
+            if (user == null) { // Not logged in
+            let output = [];
+            output = this.profile.eatenToday.filter((item)=> {
+                return item.date == dateToDisplay;
+            });
+            this.profile.eatenToday = output;
+            } else if (user != null) { // User is logged in so pull from db
+                let output = [];
+                output = this.profile.eatenToday.filter((item)=> {
+                    return item.date == dateToDisplay;
+                 });
+                fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/dailyfood`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + auth.getToken()
+                },
+                //body: JSON.stringify(dateToDisplay)
+                })
+                .then((response) => {
+                    return response.json();
+                }).then ((json) => {
+                this.profile.eatenToday = [];
+                json.forEach(item => {
+                this.profile.eatenToday.push({
+                    
+                    id: item.entryId,
+                    name: item.name,
+                    calories: item.calories,
+                    fat: item.fat,
+                    carbs: item.carbs, 
+                    protein: item.protein,
+                    mealType: item.mealType,
+                    servings: item.servings,
+                    date: item.date
+                })})
+            });
+            }
+            //this.profile.eatenToday = output;
+            console.log("The date is:")
+            console.log(this.profile.eatenToday[0])
+        },
+
+        editFood(detailItem) {
+            console.log("I get here.");
+            console.log(detailItem)
+            //this.item.servings = this.detailItem.servings;
+            // Change the values that are displayed in the table
+            //this.detailItem.calories = 89;
+            // this.item.servings = this.detailItem.servings;
+            // if (user == null) {
+            // this.profile.eatenToday[0](
+            //     {
+            //         id: this.profile.eatenToday.length + 1,
+            //         name: this.detailItem.name,
+            //         calories: this.detailItem.calories * this.detailItem.servings,
+            //         fat: this.detailItem.fat * this.detailItem.servings,
+            //         carbs: this.detailItem.carbs * this.detailItem.servings, 
+            //         protein: this.detailItem.protein * this.detailItem.servings,
+            //         mealType: this.detailItem.mealType * this.detailItem.servings
+            //     }
+               
+            // ) 
+            // this.$router.push('/tracking');
+            // } else if(user !== null)
+            // {
+            //     fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
+            //     method: "POST",
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         Authorization: "Bearer " + auth.getToken()
+            //     },
+            //     body: JSON.stringify(this.detailItem)
+            //     }).then(response => {
+            //         if(response.ok) {
+            //             this.$router.push('/tracking');
+            //         }
+            //     })
+            // }
+
+
+
+
         }
     },
+
+
     computed: {
+        // Get the date
+        getDate() {
+
+        },
         calculateAge() {
         let DateOfBirth = new Date(this.profile.birthDate);
         let currentDate = new Date();
@@ -534,4 +700,18 @@ li {
     list-style: none;
     padding-bottom: 25px;
 }
+
+#track-date {
+    text-align: center;
+}
+
+#track-calories-header {
+    text-align: center;
+}
+
+#track-cals-line {
+    padding: 0px 25%;
+    width: 50%;
+}
+
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div id="profile">
+        <!-- <img src="../assets/action-athlete-barbell.jpg" id="side-image">  -->
         <div class="img-container">
+            <!-- Should be able to edit this -->
             <img class="profile-photo small" v-bind:src="profile.userImage" v-show="!(initialProfile)" />
                 <!-- Show this if the user hasn't created a profile -->
             <img v-show="initialProfile" class="profile-photo small" src="https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru" />
@@ -25,6 +27,9 @@
                     ></vue-dropzone>
                 <!-- Show this if the user has already created a profile -->
                 <!-- Should be able to edit this -->
+                <!-- <img class="profile-photo small" v-bind:src="profile.userImage" v-show="!(initialProfile)" /> -->
+                    <!-- Show this if the user hasn't created a profile -->
+                <img v-show="initialProfile" class="profile-photo small" src="https://ui-avatars.com/api/?name=Usr&length=3&size=128&rounded=true&color=FFF4C4&background=2FFF00&uppercase=false&bold=tru" />
             </div>
             <div class="form-input">
                 <span class="label">Name:</span>
@@ -360,5 +365,12 @@ select {
     /* font-size: 17px; */
 }
 
+#side-image {
+    width: 570px;
+    height: 570px;
+    border: solid 2px red;
+    margin-right: 30px;
+    margin-top: 30px;
+}
 
 </style>
