@@ -7,18 +7,13 @@
         <button id="yearly" v-on:click="getYearly">Annually</button>
         <button id="lifetime" v-on:click="getLifetime">Lifetime</button>
         </div>
-        <div id="tracking-graph">
-            <!-- <line-chart v-if="(weekly)" :data="{'Day 1': this.totalCalories , '2017-05-14': 5}"></line-chart>
-            <line-chart v-if="(monthly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
-            <line-chart v-if="(yearly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
-            <line-chart v-if="(lifetime)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart> -->
-        </div>
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
-            <ul>
-                <li v-for="item in this.results" :key="item.entryId">{{item.name}} Calories:{{item.calories}}</li>
-            </ul>
-            <h2 v-if="(calories)">{{this.totalCalories}}</h2>
+            <div id="tracking-graph">
+            <line-chart v-if="(weekly)" :data="{'Day 1': this.results[0] , 'Day 2': this.results[1], 'Day 3': this.results[2], 'Day 4': this.results[3], 'Day 5': this.results[4], 'Day 6': this.results[5], 'Day 7': this.results[6] }"></line-chart>
+            <line-chart v-if="(monthly)" :data="{'Day 1': this.results[0] , 'Day 2': this.results[1], 'Day 3': this.results[2], 'Day 4': this.results[3], 'Day 5': this.results[4], 'Day 6': this.results[5], 'Day 7': this.results[6] }"></line-chart>
+            <line-chart v-if="(yearly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
+        </div>
         </div>
     </div>
 </template>
@@ -33,19 +28,18 @@ export default {
         return {
              tracking : "",
              results: [],
-             totalCalories: 0,
              weekly: false,
              monthly:false,
-             yearly: false,
-             lifetime: false,
-             calories: this.totalCalories > 0
+             yearly: false
         }
     },
     methods: {
         getWeekly(){
             this.tracking = "This Week";
             this.weekly = true;
-             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/week`, {
+            this.monthly = false;
+            this.yearly = false;
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/weeklycals`, {
                  method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,14 +48,14 @@ export default {
              }).then(response => response.json()).then(json => {
              this.results = json;
              });
-                for(let i = 0; i<this.results2; i++ ) {
-                this.totalCalories += this.results2[i].calories;
-            }
              },
         getMonthly() {
             this.tracking = "This Month"; 
             this.monthly = true;
-             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/month`, {
+            this.weekly =false;
+            this.yearly = false;
+            this.results = [];
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/monthlycals`, {
                  method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +69,9 @@ export default {
         getYearly() {
             this.tracking = "This Year";
             this.yearly = true;
-             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/year`, {
+            this.weekly = false;
+            this.monthly = false;
+             fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/yearlycals`, {
                  method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
