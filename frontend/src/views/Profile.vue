@@ -353,6 +353,7 @@ select {
 .form {
     margin-bottom: 30px;
     max-width: 500px;
+    min-width: 300px;
 }
 
 #gender {
