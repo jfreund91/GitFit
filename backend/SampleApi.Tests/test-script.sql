@@ -11,25 +11,27 @@ DELETE FROM users;
 ---- INSERT sample user
 SET IDENTITY_INSERT users ON;
 INSERT INTO users ([id]
-      ,[username]
-      ,[password]
-      ,[salt]
-      ,[role]) VALUES (1, 'Ted', 'Eastbound&Down', 'laskdjf;laskjf', null);
+	  ,[username]
+	  ,[password]
+	  ,[salt]
+	  ,[role]) VALUES (1, 'Ted', 'Eastbound&Down', 'laskdjf;laskjf', null);
 SET IDENTITY_INSERT users OFF;
 
 INSERT INTO user_profiles VALUES (1, 'TedKennedy', 180, 200, '1980-01-01', 6, 2, '1.55','M', '1.55', null);
 
-INSERT INTO food_entries VALUES (1, 1, 'TedKennedy', 1000, 100, 20, 1, 'Snack', '2019-01-01', 1, 3);  
+SET IDENTITY_INSERT food_entries ON;
 
+INSERT INTO food_entries ([id]
+		,[userId]
+		,[name]
+		,[calories]
+		,[fat]
+		,[protein]
+		,[carbohydrates]
+		,[meal_type]
+		,[meal_date]
+		,[servings]
+		,[ndbno]) VALUES (1, 1, 'TedKennedy', 1000, 100, 20, 1, 'Snack', '2019-01-01', 1, 3);  
 
+SET IDENTITY_INSERT food_entries OFF;
 
----- INSERT sample survey
---INSERT INTO survey_result VALUES (@parkCode,'email@email.com','PA','active')
---DECLARE @surveyId int = (SELECT @@IDENTITY);
-
------- INSERT sample weather
---INSERT INTO weather VALUES (@parkCode,1,20,25,'rain')
---DECLARE @weather varchar(4) = (@parkCode);
-
----- Return reservation ID
---SELECT @parkCode as parkCode, @surveyId as surveyId
