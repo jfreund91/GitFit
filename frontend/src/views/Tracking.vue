@@ -4,7 +4,6 @@
         <div class="container circle-container">
             <div id="profile-stats">
                 <h3>User Stats</h3>
-                <!-- <div>Age: {{profile.age}}</div> -->
                 <div>Age: {{calculateAge}}</div>
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
@@ -12,7 +11,15 @@
                 <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
                 <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
-            <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart>
+            <!-- <column-chart :data="[['Calories Consumed', Math.trunc(caloriesConsumed)], ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]]" backgroundColor=""></column-chart> -->
+        
+            <column-chart :data="[
+                ['Calories Consumed', Math.trunc(caloriesConsumed)], 
+                ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]
+            ]" :colors="[['#b00', 'rgba(199, 100, 170, 0.99)'],['#b00', '#aaa']]"></column-chart>
+            
+        
+        
         </div>
         <div class="container bars-container">
             <div class="macros">
