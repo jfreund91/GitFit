@@ -35,11 +35,13 @@ export default {
              weekly: false,
              monthly:false,
              yearly: false,
-             chartData: []
+             chartData: [],
+             secondSeries: []
         }
     },
     methods: {
         getWeekly(){
+            this.secondSeries = [];
             this.chartData = [];
             this.tracking = "This Week";
             this.weekly = true;
@@ -54,10 +56,12 @@ export default {
              }).then(response => response.json()).then(json => {
              this.results = json;
              this.getChartData();
+             this.getSecondSeriesData();
              });
              },
         getMonthly() {
              this.chartData = [];
+             this.secondSeries = [];
             this.tracking = "This Month"; 
             this.monthly = true;
             this.weekly =false;
@@ -72,10 +76,12 @@ export default {
              }).then(response => response.json()).then(json => {
              this.results = json;
              this.getChartData();
+             this.getSecondSeriesData();
              });
 
         },
         getYearly() {
+            this.secondSeries = [];
              this.chartData = [];
             this.tracking = "This Year";
             this.yearly = true;
@@ -89,6 +95,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             this.getChartData();
              this.getChartData();
              });
         },
@@ -113,7 +120,16 @@ export default {
                 this.chartData.push( [foo, this.results[i] ])
                 }
             }
-        }
+        },
+            getSecondSeriesData() {
+                for(let i = 0; i<this.results.length; i++ ) {
+                let day = i + 1;
+                const foo = `Day ${day}`;
+                if(this.results[i] > 0 || day === 1 || day === this.results.length){
+                this.secondSeries.push( [foo, calorieBudget() ])
+                }
+            }
+            }
     },
     computed: {
         calorieBudget () {
