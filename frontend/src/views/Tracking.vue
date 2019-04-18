@@ -17,18 +17,24 @@
                 ['Calories Consumed', Math.trunc(caloriesConsumed)], 
                 ['Calorie Budget', Math.trunc(calorieBudget - caloriesConsumed) ]
             ]" :colors="[['#b00', 'rgba(199, 100, 170, 0.99)'],['#b00', '#aaa']]"></column-chart>
+            <!-- color of first bar, color of 2nd bar -->
             
-        
-        
+
         </div>
         <div class="container bars-container">
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
-            <bar-chart suffix="%" :data="[['Protein', Math.trunc((this.proteinConsumed/50)*100)], ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], ['Fat', Math.trunc((this.fatConsumed/80)*100)]]"></bar-chart>
-            <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
-            <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
-            <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
-            <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
+                <bar-chart suffix="%" 
+                    :data="[
+                        ['Protein', Math.trunc((this.proteinConsumed/50)*100)], 
+                        ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], 
+                        ['Fat', Math.trunc((this.fatConsumed/80)*100)]
+                    ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]">
+                    </bar-chart>
+                <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
+                <p>Carbs: {{Math.trunc(this.carbsConsumed)}} grams</p>
+                <p>Fat: {{Math.trunc(this.fatConsumed)}} grams</p>
+                <p>Calories: {{Math.trunc(this.caloriesConsumed)}}</p>
             </div>
             <div class="water-container">
                 <h1>Water</h1>
