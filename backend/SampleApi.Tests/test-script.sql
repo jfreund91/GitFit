@@ -43,6 +43,7 @@ INSERT INTO favorites ([id]
 		,[calories]
 		,[fat]
 		,[protein]
-		,[ndbno]) VALUES (1,1,'Bacon', 600, 20, 20, 1);
+		,[carbs]
+		,[ndbno]) VALUES (1,1,'Bacon', 600, 20, 20, 1,1);
 
 SET IDENTITY_INSERT favorites OFF;

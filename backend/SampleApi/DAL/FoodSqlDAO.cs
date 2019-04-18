@@ -93,7 +93,7 @@ namespace SampleApi.DAL
             food.Calories = Convert.ToDecimal(reader["calories"]);
             food.Fat = Convert.ToDecimal(reader["fat"]);
             food.Protein = Convert.ToDecimal(reader["protein"]);
-            food.Carbs = Convert.ToDecimal(reader["carbs"]);
+            food.Carbs = Convert.ToDecimal(reader["carbohydrates"]);
             food.MealType = Convert.ToString(reader["meal_type"]);
             food.Servings = Convert.ToDecimal(reader["servings"]);
             food.Date = Convert.ToDateTime(reader["meal_date"]);

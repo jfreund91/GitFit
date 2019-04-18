@@ -102,7 +102,7 @@ namespace SampleApi.DAL
             food.EntryId = Convert.ToInt32(reader["id"]);
             food.Calories = Convert.ToDecimal(reader["calories"]);
             food.Fat = Convert.ToDecimal(reader["fat"]);
-            //food.Carbs = Convert.ToDecimal(reader["carbs"]);
+            food.Carbs = Convert.ToDecimal(reader["carbs"]);
             food.Protein = Convert.ToDecimal(reader["protein"]);
             food.ndbno = Convert.ToInt32(reader["ndbno"]);
             return food;
