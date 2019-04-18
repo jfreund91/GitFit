@@ -1,6 +1,12 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
+        <!-- Add gold stars here -->
+        <h3 v-if="getNumberOfStars > 1" id="gold-stars">Gold Stars: 
+            <span v-for="item in getNumberOfStars" :key="item">
+            <img src="../assets/gold-star.jpg">
+            </span>
+        </h3>
         <h3 v-if="(isAuthenticated)" id="track-date">Date:  <input type="date" v-model="pullDate" 
         id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(pullDate + 'T00:00')"></h3>
         <div class="container circle-container">
@@ -551,7 +557,31 @@ export default {
             return item.mealType === 'Dinner'
         });
         return dinners;
-    }
+    },
+    getNumberOfStars() {
+        let numOfStars = 0;
+
+        // 2 stars
+        if(
+            (this.snacks.length != undefined && this.breakfasts.length != undefined ) || (this.breakfast.length != undefined && this.lunches.length != undefined ) ||
+            (this.lunches.length != undefined && this.dinners.length != undefined ) 
+        ){  numOfStars = 2}
+
+        // 3 stars
+        if(
+            (this.snacks.length != undefined && this.breakfasts.length != undefined && this.lunches) || 
+            (this.breakfasts.length != undefined && this.lunches.length != undefined && this.dinners)
+        ){ 
+            numOfStars = 3}
+
+        // 4 stars
+        if(
+            (this.snacks.length != undefined && this.breakfasts.length != undefined && this.lunches.length != undefined && this.dinners.length != undefined )
+        ){ 
+            numOfStars = 4}
+
+        return numOfStars;
+    },
     }
 
 
@@ -728,7 +758,7 @@ li {
     padding-bottom: 25px;
 }
 
-#track-date {
+#track-date, #gold-stars {
     text-align: center;
 }
 
@@ -772,6 +802,11 @@ input[type=date]::-webkit-clear-button {
     color: black;
     font-size: 2rem;
     padding: 5px;
+}
+
+#gold-stars img {
+    width: 50px;
+    height: 50px;
 }
 
 </style>
