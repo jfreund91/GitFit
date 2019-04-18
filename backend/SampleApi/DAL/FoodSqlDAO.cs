@@ -98,7 +98,6 @@ namespace SampleApi.DAL
             food.Servings = Convert.ToDecimal(reader["servings"]);
             food.Date = Convert.ToDateTime(reader["meal_date"]);
             food.ndbno = Convert.ToInt32(reader["ndbno"]);
-            food.Date = Convert.ToDateTime(reader["meal_date"]);
 
             return food;
 
@@ -195,12 +194,13 @@ namespace SampleApi.DAL
             }
 
         }
-        public List<int> GetTimelineCaloriesByDay(int currentUser, int timeline)
+        public List<decimal> GetTimelineCaloriesByDay(int currentUser, int timeline)
         {
-            List<int> results = new List<int>();
+            List<decimal> results = new List<decimal>();
+            DateTime query = DateTime.Today.AddDays(-timeline);
             for (int i = timeline; i > 0; i--)
             {
-                DateTime query = DateTime.Now.AddDays(-timeline);
+               
                 string sql = "SELECT SUM(food_entries.calories) FROM food_entries WHERE meal_date = @meal_date AND userId = @userId;";
                 try
                 {
@@ -209,10 +209,20 @@ namespace SampleApi.DAL
                         conn.Open();
                         SqlCommand cmd = new SqlCommand(sql, conn);
                         cmd.Parameters.AddWithValue("@userId", currentUser);
-                        cmd.Parameters.AddWithValue("meal_date", query);
-                        int totalCal = Convert.ToInt32(cmd.ExecuteScalar());
+                        cmd.Parameters.AddWithValue("meal_date", query.ToString("yyyy-MM-dd"));
+                        Object o = cmd.ExecuteScalar();
+                        decimal totalCal = 0;
+                        if (o is DBNull)
+                        {
+
+                        }
+                        else
+                        {
+                            totalCal = (decimal)o;
+                        }
+                         
                         results.Add(totalCal);
-                        query.AddDays(1);
+                        query = query.AddDays(1);
                     }
                 }
                 catch (SqlException ex)

@@ -5,8 +5,8 @@
             <h1>Welcome</h1>
         </div>
     </div>
-    <h2 class="links"><router-link to="/login">Login</router-link></h2>
-    <h2 class="links"><router-link to="/profile">Continue as Guest</router-link></h2>
+    <h2 class="links landing-opts"><router-link to="/login">Login</router-link></h2>
+    <h2 class="links landing-opts"><router-link to="/profile">Continue as Guest</router-link></h2>
     <div id="box-container" class="container">
         <div class="box">
             <h2>Healthy Choices</h2>
@@ -81,7 +81,8 @@
 .links a {
     text-decoration: none;
     /* color: #1a174e; */
-    color: #dc5001;
+    /* color: #dc5001; */
+    color: #61c02a;
     font-weight: 700;
 }
 
@@ -107,6 +108,11 @@
 
 #landing-menu {
     padding: 0px;
+}
+
+.landing-opts {
+    background-color: gray;
+    color: white;
 }
 
 @media screen and (max-width: 789px) {

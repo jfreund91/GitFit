@@ -40,7 +40,19 @@ namespace SampleApi.Controllers
         {
             return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today, DateTime.Today);
         }
-        
+
+        /// <summary>
+        /// Gets the user's daily log of food entries.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("/api/[controller]/dailyfood")]
+        public IEnumerable<Food> GetFoodEntriesByDay([FromBody] Food food)
+        {
+            return foodDao.GetFoodEntriesInRange(CurrentUser.Id, DateTime.Today, DateTime.Today);
+        }
+
         /// <summary>
         /// Gets the user's lifetime entries.
         /// </summary>
@@ -118,7 +130,7 @@ namespace SampleApi.Controllers
         [Route("/api/[controller]/yearlycals")]
         [HttpGet]
         [Authorize]
-        public IEnumerable<int> GetYearlyCalories()
+        public IEnumerable<decimal> GetYearlyCalories()
         {
             return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 365);
         }
@@ -126,14 +138,14 @@ namespace SampleApi.Controllers
         [Route("/api/[controller]/monthlycals")]
         [HttpGet]
         [Authorize]
-        public IEnumerable<int> GetMonthlyCalories()
+        public IEnumerable<decimal> GetMonthlyCalories()
         {
             return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 30);
         }
         [Route("/api/[controller]/weeklycals")]
         [HttpGet]
         [Authorize]
-        public IEnumerable<int> GetWeeklyCalories()
+        public IEnumerable<decimal> GetWeeklyCalories()
         {
             return foodDao.GetTimelineCaloriesByDay(CurrentUser.Id, 7);
         }

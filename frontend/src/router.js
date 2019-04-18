@@ -73,8 +73,8 @@ const router = new Router({
         }
       },
       {
-        path: "/changepassword",
-        name: "changepassword",
+        path: "/changePassword",
+        name: "changePassword",
         component: ChangePassword,
         meth: {
           requiresAuth: false

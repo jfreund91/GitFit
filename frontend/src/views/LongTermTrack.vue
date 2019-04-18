@@ -12,7 +12,6 @@
             <line-chart v-if="(monthly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
             <line-chart v-if="(yearly)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart>
             <line-chart v-if="(lifetime)" :data="{'2017-05-13': 2, '2017-05-14': 5}"></line-chart> -->
-
         </div>
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
