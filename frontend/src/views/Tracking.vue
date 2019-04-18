@@ -4,7 +4,7 @@
         <!-- Add gold stars here -->
         <h3 v-if="getNumberOfStars > 1" id="gold-stars">Gold Stars: 
             <span v-for="item in getNumberOfStars" :key="item">
-            <img src="../assets/gold-star.jpg">
+            <img src="../assets/gold-star-transparent.png">
             </span>
         </h3>
         <h3 v-if="(isAuthenticated)" id="track-date">Date:  <input type="date" v-model="pullDate" 
@@ -16,7 +16,7 @@
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
-                <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
+                <button id="removeLastEntry" @click="removeLastEntry(), getNumberOfStars()">Remove last entry</button>
                 <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
             <!-- The Calories consumed bars -->
@@ -104,7 +104,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -135,7 +135,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -166,7 +166,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -197,7 +197,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
