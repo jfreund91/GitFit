@@ -56,7 +56,7 @@ namespace SampleApi.Tests
             int actual = this.GetRowCount("food_entries");
 
             //ASSERT
-            Assert.AreEqual(1, actual);
+            Assert.AreEqual(2, actual);
         }
 
 
@@ -111,7 +111,7 @@ namespace SampleApi.Tests
             int actual = this.GetRowCount("food_entries");
 
             //ASSERT
-            Assert.AreEqual(0, actual);
+            Assert.AreEqual(1, actual);
         }
 
     }
