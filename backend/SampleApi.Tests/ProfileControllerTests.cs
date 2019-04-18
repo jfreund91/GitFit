@@ -87,41 +87,11 @@ namespace SampleApi.Tests
 
             profile = result.Value as Profile;
 
-            //Alternative syntax for calling profile
-            //profile = (Profile)result.Value;
-
             // ASSERT
 
             // The new profile username is correctly returned from the database
             Assert.AreEqual(200, profile.GoalWeight);
         }
-        //[TestMethod]
-        //public void GetTodaysFoodEntries_ReturnsCorrectCarbohydrates()
-        //{
-        //    // ARRANGE
-        //    // Create the controller mocked with identity: 
-        //    ProfileController controller = NewController();
-
-        //    // ACT
-        //    // Create a new profile object
-        //    Profile profile = new Profile();
-
-        //    // Call the Create method on the controller to add the post to the db
-        //    ActionResult<TrackingController> viewresult = controller.GetTodaysFoodEntries();
-        //    // Cast ActionResult to an ObjectResult
-        //    ObjectResult result = viewresult.Result as ObjectResult;
-
-        //    profile = result.Value as Profile;
-
-        //    //Alternative syntax for calling profile
-        //    //profile = (Profile)result.Value;
-
-        //    // ASSERT
-
-        //    // The new profile username is correctly returned from the database
-        //    Assert.AreEqual(200, profile.GoalWeight);
-        //}
-
 
     }
 }
