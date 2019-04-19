@@ -70,6 +70,7 @@
 
 #landing {
     text-align: center;
+    border: 1px solid black;
 }
 
 #btn-container {
