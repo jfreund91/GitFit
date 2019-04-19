@@ -24,6 +24,11 @@
         </div>
     </div>
     <div class="table-container">
+        <p id="welcome-message">Welcome to the TE GitFit tracker! There are some benefits to becoming a registered user highlighted in 
+            the table below.
+        </p>
+
+
     <table class="landing-table">
         <tr>
             <th>Feature</th>
@@ -187,6 +192,27 @@ i#check.fas.fa-check:hover {
     .box {
         width: 100%;
     }
+}
+
+.landing-table {
+    border: black 4px solid;
+    margin-bottom: 50px;
+}
+
+.landing-table th {
+    /* border: solid pink 1px; */
+    background-color: yellowgreen;
+}
+
+.landing-table td {
+    border: solid purple 1px;
+}
+
+#welcome-message {
+    font-weight: 700;
+    border-top: 2px black dotted;
+    padding-top: 10px;
+
 }
 
 </style>
