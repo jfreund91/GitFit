@@ -8,7 +8,7 @@
         </div>
         <!-- Display "favorites" or frequently used foods here -->
         <!-- Every time a user adds a food item, it should go into favories -->
-        <!-- This should pull from those favorites and popolate a list -->
+        <!-- This should pull from those favorites and populate a list -->
         <h2 id="favorite-foods" v-if="(isAuthenticated)">Favorites</h2>
         <div class="search-results">
             <ul>
@@ -120,7 +120,7 @@ export default {
                             protein: item.protein,
                             carbs: item.carbs,
                             ndbno: item.ndbno,
-                            servings: 1,
+                            servings: '1',
                             mealType: 'Snack'
                         })})
                     });
@@ -160,21 +160,24 @@ export default {
                  this.detailItem.protein = json.report.food.nutrients[2].value * this.detailItem.servingRate;
                  this.detailItem.fat = json.report.food.nutrients[3].value * this.detailItem.servingRate;
                  this.detailItem.carbs = json.report.food.nutrients[4].value * this.detailItem.servingRate;
+                 console.log(this.detailItem)
                  
                 //  this.showSearch = false;
              });
         },
         addFood() {
-            if (user == null) {
+            if (user === null) {
             this.profile.eatenToday.push(
                 {
                     id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
-                    calories: this.detailItem.calories * this.detailItem.servings,
+                    calories: Math.trunc(this.detailItem.calories * this.detailItem.servings),
                     fat: this.detailItem.fat * this.detailItem.servings,
                     carbs: this.detailItem.carbs * this.detailItem.servings, 
                     protein: this.detailItem.protein * this.detailItem.servings,
-                    mealType: this.detailItem.mealType
+                    mealType: this.detailItem.mealType,
+                    servings: this.detailItem.servings
+                    //mealType: this.detailItem.mealType * this.detailItem.servings
                 }
             ) 
             this.$router.push('/tracking');

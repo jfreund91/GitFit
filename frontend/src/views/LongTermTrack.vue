@@ -5,14 +5,17 @@
         <button id="weekly" v-on:click="getWeekly">Weekly</button>
         <button id="monthly" v-on:click="getMonthly">Monthly</button>
         <button id="yearly" v-on:click="getYearly">Annually</button>
-        <button id="lifetime" v-on:click="getLifetime">Lifetime</button>
         </div>
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
             <div id="tracking-graph">
-            <line-chart v-if="(weekly)" :data="chartData"></line-chart>
-            <line-chart v-if="(monthly)" :data="chartData"></line-chart>
-            <line-chart v-if="(yearly)" :data="chartData"></line-chart>
+            <line-chart v-if="(weekly)" 
+                :data="chartData"
+                xtitle="" ytitle="Calories"
+                ></line-chart>
+
+            <line-chart v-if="(monthly)" :data="chartData" ytitle="Calories"></line-chart>
+            <line-chart v-if="(yearly)" :data="chartData" ytitle="Calories"></line-chart>
             <h2>Daily Goal: {{calorieBudget}} Calories</h2>
             <h2 v-if="(weekly)">Daily Average: {{dailyAverage}}</h2>
             <h2 v-if="(monthly)">Daily Average: {{dailyAverage}}</h2>
@@ -48,13 +51,14 @@ export default {
             this.monthly = false;
             this.yearly = false;
              fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/weeklycals`, {
-                 method: "GET",
+                method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + auth.getToken()
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getSecondSeriesData();
              });
@@ -75,6 +79,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getSecondSeriesData();
              });
@@ -82,7 +87,7 @@ export default {
         },
         getYearly() {
             this.secondSeries = [];
-             this.chartData = [];
+            this.chartData = [];
             this.tracking = "This Year";
             this.yearly = true;
             this.weekly = false;
@@ -95,6 +100,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getChartData();
              });
@@ -117,7 +123,7 @@ export default {
                 let day = i + 1;
                 const foo = `Day ${day}`;
                 if(this.results[i] > 0 || day === 1 || day === this.results.length){
-                this.chartData.push( [foo, this.results[i] ])
+                    this.chartData.push( [foo, this.results[i] ])
                 }
             }
         },

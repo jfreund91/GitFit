@@ -1,6 +1,12 @@
 <template>
     <div id="tracking">
         <h1 id="tracking-header">Track Calories</h1>
+        <!-- Add gold stars here -->
+        <h3 v-if="getNumberOfStars > 1" id="gold-stars">Gold Stars: 
+            <span v-for="item in getNumberOfStars" :key="item">
+            <img src="../assets/gold-star-transparent.png">
+            </span>
+        </h3>
         <h3 v-if="(isAuthenticated)" id="track-date">Date:  <input type="date" v-model="pullDate" 
         id="foodEatenDate" name="foodEatenDate" v-on:change="updateDate(pullDate + 'T00:00')"></h3>
         <div class="container circle-container">
@@ -10,7 +16,7 @@
                 <div>Current Weight: {{profile.currentWeight}}</div>
                 <div>Goal Weight: {{profile.goalWeight}}</div>
                 <div>Height(in): {{profile.feet*12+ +profile.inches}}</div>
-                <button id="removeLastEntry" @click="removeLastEntry()">Remove last entry</button>
+                <button id="removeLastEntry" @click="removeLastEntry(), getNumberOfStars()">Remove last entry</button>
                 <router-link to="/long-term-tracking"><button v-if="(isAuthenticated)">View Long Term Tracking</button></router-link>
             </div>
             <!-- The Calories consumed bars -->
@@ -23,27 +29,20 @@
 
 
         <!-- Graph for tracking calories: goal/actual based on date -->
-        <div id="tracking-calories-graph">
+        <!-- <div id="tracking-calories-graph">
                 <h2 id="track-calories-header">Track Calories Comparison - Goal/Actual</h2>
                 <div id="track-cals-line">
-                <line-chart 
-                    :data = "[
-                    {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
-                    {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
-                    xtitle="Date" ytitle="Calories"
-                ></line-chart>
-                <!-- Replace data above with object containing:
-                        date: #of calories      for every day in database for actual
-                -->
-                <!-- For goal it will be steady based on (current weight - goal weight) = number of lbs to lose
-                        number of lbs to lose / timeline
-                 -->
+                    <line-chart 
+                        :data = "[
+                        {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
+                        {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
+                        xtitle="Date" ytitle="Calories"
+                    ></line-chart>
                 </div>
-                </div>
+        </div> -->
+
+
         <div class="container bars-container">
-
-
-            
             <div class="macros">
                 <h1>% Based On FDA Recommended Value</h1>
                 <bar-chart suffix="%" 
@@ -52,7 +51,6 @@
                         ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], 
                         ['Fat', Math.trunc((this.fatConsumed/80)*100)]
                     ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]"
-                    :display="Tia"
                     >
                     </bar-chart>
                 <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
@@ -98,7 +96,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -129,7 +127,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -160,7 +158,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -191,7 +189,7 @@
                                     {{item.calories}}
                                     <span class="edit-food"  @click="viewDetail(item.id)"><i class="far fa-edit"></i></span>
                                     <span class="remove-food">
-                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id)"></i>
+                                        <i class="fas fa-minus-circle large-minus" @click="removeFood(item.id), getNumberOfStars()"></i>
                                     </span>                                
                                 </td>     
                             </tr>
@@ -252,6 +250,7 @@ export default {
         return {
             isAuthenticated: auth.getUser() !== null,
             detailItem: {
+             id: 0,
              ndbno: 0,
              name: "",
              calories: 0,
@@ -342,6 +341,7 @@ export default {
          this.detailItem.carbs = result[0].carbs;
          this.detailItem.servings = result[0].servings;
          this.detailItem.mealType = result[0].mealType;
+         this.detailItem.id = results[0].entryId;
         },
         removeFood(foodId) {
             let user = auth.getUser();
@@ -419,47 +419,35 @@ export default {
         },
 
         editFood(detailItem) {
-            console.log("I get here.");
-            console.log(detailItem)
-            //this.item.servings = this.detailItem.servings;
-            // Change the values that are displayed in the table
-            //this.detailItem.calories = 89;
-            // this.item.servings = this.detailItem.servings;
-            // if (user == null) {
-            // this.profile.eatenToday[0](
-            //     {
-            //         id: this.profile.eatenToday.length + 1,
-            //         name: this.detailItem.name,
-            //         calories: this.detailItem.calories * this.detailItem.servings,
-            //         fat: this.detailItem.fat * this.detailItem.servings,
-            //         carbs: this.detailItem.carbs * this.detailItem.servings, 
-            //         protein: this.detailItem.protein * this.detailItem.servings,
-            //         mealType: this.detailItem.mealType * this.detailItem.servings
-            //     }
-               
-            // ) 
-            // this.$router.push('/tracking');
-            // } else if(user !== null)
-            // {
-            //     fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
-            //     method: "POST",
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         Authorization: "Bearer " + auth.getToken()
-            //     },
-            //     body: JSON.stringify(this.detailItem)
-            //     }).then(response => {
-            //         if(response.ok) {
-            //             this.$router.push('/tracking');
-            //         }
-            //     })
-            // }
+            let user = auth.getUser();
+            let arr = this.profile.eatenToday;
+            for( let i = 0; i < arr.length; i++) { 
+                    if ( arr[i].name === detailItem.name) {
+                        arr[i].servings = detailItem.servings;
+                        arr[i].mealType = detailItem.mealType;
+                        if(user !== null){
+                            let output = arr[i];
+                            fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/updatefood`, {
+                                method: "PATCH",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    Authorization: "Bearer " + auth.getToken()
+                                },
+                                body: JSON.stringify(output)
+                                }).then(response => {
+                                    if(response.ok) {
+                                        console.log(response)
+                                    }
+                                })
+                        }
 
 
-
-
-        }
-    },
+                    }
+            }
+           
+            this.hide();
+                }
+            },
 
 
     computed: {
@@ -477,15 +465,15 @@ export default {
     },
     calorieBudget () {
         if(this.profile.gender === 'F') { 
-            return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23)
-            * this.profile.activityLevel + (this.profile.timeline * 1))
+            return ((Math.trunc(655 + (4.35 * this.profile.currentWeight) +
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23))
+            * this.profile.activityLevel) + (this.profile.timeline * 1))
             
         }
         else {
-            return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23
-            )* this.profile.activityLevel + (this.profile.timeline * 1))
+            return ((Math.trunc(66 + (6.23 * this.profile.currentWeight) +
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23))
+            * this.profile.activityLevel) + (this.profile.timeline * 1))
         }
     },
     caloriesConsumed() {
@@ -551,7 +539,31 @@ export default {
             return item.mealType === 'Dinner'
         });
         return dinners;
-    }
+    },
+    getNumberOfStars() {
+        let numOfStars = 0;
+
+        // 2 stars
+        if(
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 ) || (this.breakfasts.length  > 0 && this.lunches.length  > 0 ) ||
+            (this.lunches.length  > 0 && this.dinners.length  > 0 ) 
+        ){  numOfStars = 2}
+
+        // 3 stars
+        if(
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 && this.lunches.length > 0) || 
+            (this.breakfasts.length  > 0 && this.lunches.length  > 0 && this.dinners.length > 0)
+        ){ 
+            numOfStars = 3}
+
+        // 4 stars
+        if(
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 && this.lunches.length  > 0 && this.dinners.length  > 0 )
+        ){ 
+            numOfStars = 4}
+
+        return numOfStars;
+    },
     }
 
 
@@ -728,7 +740,7 @@ li {
     padding-bottom: 25px;
 }
 
-#track-date {
+#track-date, #gold-stars {
     text-align: center;
 }
 
@@ -773,5 +785,11 @@ input[type=date]::-webkit-clear-button {
     font-size: 2rem;
     padding: 5px;
 }
+
+#gold-stars img {
+    width: 50px;
+    height: 50px;
+}
+
 
 </style>

@@ -71,7 +71,7 @@ namespace SampleApi.DAL
         public IList<Food> GetFavorites(int currentUser)
         {
             IList<Food> favorites = new List<Food>();
-            string sql = "SELECT TOP 7 * FROM favorites WHERE userId = @userId ORDER BY id desc;";
+            string sql = "SELECT TOP 5 * FROM favorites WHERE userId = @userId ORDER BY id desc;";
             try
             {
                 using(SqlConnection conn = new SqlConnection(this.connectionString))

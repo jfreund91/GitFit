@@ -172,8 +172,8 @@ namespace SampleApi.DAL
         public void EditEntry(Food food, int userId)
         {
             string sql = @"UPDATE food_entries
-                           SET servings = @newServings, mealType = @newMealType
-                           WHERE id = @entryId AND userId = @userId;";
+                           SET servings = @newServings, meal_Type = @newMealType
+                           WHERE name = @entryId AND userId = @userId AND meal_date = @date;";
 
             try
             {
@@ -183,8 +183,9 @@ namespace SampleApi.DAL
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@newServings", food.Servings);
                     cmd.Parameters.AddWithValue("@newMealType", food.MealType);
-                    cmd.Parameters.AddWithValue("@entryId", food.EntryId);
+                    cmd.Parameters.AddWithValue("@entryId", food.Name);
                     cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@date", food.Date);
                     cmd.ExecuteNonQuery();
                 }
             }
