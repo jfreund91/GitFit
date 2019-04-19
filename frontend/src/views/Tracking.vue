@@ -483,15 +483,15 @@ export default {
     },
     calorieBudget () {
         if(this.profile.gender === 'F') { 
-            return Math.trunc(655 + (4.35 * this.profile.currentWeight) +
-            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23)
-            * this.profile.activityLevel + (this.profile.timeline * 1))
+            return ((Math.trunc(655 + (4.35 * this.profile.currentWeight) +
+            (4.7 * this.profile.feet*12+ +this.profile.inches) - (4.7 * 23))
+            * this.profile.activityLevel) + (this.profile.timeline * 1))
             
         }
         else {
-            return Math.trunc(66 + (6.23 * this.profile.currentWeight) +
-            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23
-            )* this.profile.activityLevel + (this.profile.timeline * 1))
+            return ((Math.trunc(66 + (6.23 * this.profile.currentWeight) +
+            (12.7 * this.profile.feet*12+ +this.profile.inches) - (6.8 * 23))
+            * this.profile.activityLevel) + (this.profile.timeline * 1))
         }
     },
     caloriesConsumed() {
