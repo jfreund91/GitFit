@@ -8,7 +8,7 @@
         </div>
         <!-- Display "favorites" or frequently used foods here -->
         <!-- Every time a user adds a food item, it should go into favories -->
-        <!-- This should pull from those favorites and popolate a list -->
+        <!-- This should pull from those favorites and populate a list -->
         <h2 id="favorite-foods" v-if="(isAuthenticated)">Favorites</h2>
         <div class="search-results">
             <ul>

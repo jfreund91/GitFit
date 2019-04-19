@@ -58,7 +58,6 @@
                         ['Carbs', Math.trunc((this.carbsConsumed/300)*100)], 
                         ['Fat', Math.trunc((this.fatConsumed/80)*100)]
                     ]" :colors="[['orange', 'rgba(23, 46, 170, 0.99)', 'purple'],['#b00', '#aaa']]"
-                    :display="Tia"
                     >
                     </bar-chart>
                 <p>Protein: {{Math.trunc(this.proteinConsumed)}} grams</p>
@@ -428,6 +427,7 @@ export default {
             console.log("I get here.");
             console.log(detailItem)
             //this.item.servings = this.detailItem.servings;
+            //console.log(this.item.servings)
             // Change the values that are displayed in the table
             //this.detailItem.calories = 89;
             // this.item.servings = this.detailItem.servings;
