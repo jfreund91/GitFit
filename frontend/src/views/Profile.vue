@@ -279,8 +279,8 @@ export default {
 
 
 .profile-photo.small {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
 }
 
 #profile {
