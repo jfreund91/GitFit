@@ -552,20 +552,20 @@ export default {
 
         // 2 stars
         if(
-            (this.snacks.length != undefined && this.breakfasts.length != undefined ) || (this.breakfast.length != undefined && this.lunches.length != undefined ) ||
-            (this.lunches.length != undefined && this.dinners.length != undefined ) 
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 ) || (this.breakfasts.length  > 0 && this.lunches.length  > 0 ) ||
+            (this.lunches.length  > 0 && this.dinners.length  > 0 ) 
         ){  numOfStars = 2}
 
         // 3 stars
         if(
-            (this.snacks.length != undefined && this.breakfasts.length != undefined && this.lunches) || 
-            (this.breakfasts.length != undefined && this.lunches.length != undefined && this.dinners)
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 && this.lunches.length > 0) || 
+            (this.breakfasts.length  > 0 && this.lunches.length  > 0 && this.dinners.length > 0)
         ){ 
             numOfStars = 3}
 
         // 4 stars
         if(
-            (this.snacks.length != undefined && this.breakfasts.length != undefined && this.lunches.length != undefined && this.dinners.length != undefined )
+            (this.snacks.length  > 0 && this.breakfasts.length  > 0 && this.lunches.length  > 0 && this.dinners.length  > 0 )
         ){ 
             numOfStars = 4}
 
