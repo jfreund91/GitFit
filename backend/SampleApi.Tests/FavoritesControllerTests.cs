@@ -56,7 +56,6 @@ namespace SampleApi.Tests
 
             // ASSERT
 
-            // The new profile username is correctly returned from the database
             Food food = foods.First();
             Assert.AreEqual(600, food.Calories);
         }
