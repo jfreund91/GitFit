@@ -165,7 +165,7 @@ export default {
              });
         },
         addFood() {
-            if (user == null) {
+            if (user === null) {
             this.profile.eatenToday.push(
                 {
                     id: this.profile.eatenToday.length + 1,
@@ -174,8 +174,8 @@ export default {
                     fat: this.detailItem.fat * this.detailItem.servings,
                     carbs: this.detailItem.carbs * this.detailItem.servings, 
                     protein: this.detailItem.protein * this.detailItem.servings,
-                    // mealType: this.detailItem.mealType
-                    mealType: this.detailItem.mealType * this.detailItem.servings
+                    mealType: this.detailItem.mealType
+                    //mealType: this.detailItem.mealType * this.detailItem.servings
                 }
             ) 
             this.$router.push('/tracking');
