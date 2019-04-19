@@ -374,9 +374,13 @@ select {
 }
 
 #profile-section {
-    border: 2px black solid;
+    border: 1px black solid;
     padding: 20px;
-    background-color: rgb(118,166,39);
+    background-color: whitesmoke;
+}
+
+#profile-section h1 {
+    /* color: #7c7474 */
 }
 
 </style>
