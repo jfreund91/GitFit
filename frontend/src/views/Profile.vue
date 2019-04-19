@@ -373,4 +373,10 @@ select {
     margin-top: 30px;
 }
 
+#profile-section {
+    border: 2px black solid;
+    padding: 20px;
+    background-color: rgb(118,166,39);
+}
+
 </style>
