@@ -47,13 +47,14 @@ export default {
             this.monthly = false;
             this.yearly = false;
              fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/weeklycals`, {
-                 method: "GET",
+                method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + auth.getToken()
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getSecondSeriesData();
              });
@@ -74,6 +75,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getSecondSeriesData();
              });
@@ -94,6 +96,7 @@ export default {
                 }
              }).then(response => response.json()).then(json => {
              this.results = json;
+             console.log(this.results);
              this.getChartData();
              this.getChartData();
              });

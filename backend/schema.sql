@@ -142,6 +142,23 @@ INSERT INTO food_entries VALUES
 (1,'Bread, pumpernickel',71,1,2,13,'Breakfast','2019-04-18',3,18044),
 (1,'Fish oil, salmon',123,14,0,0,'Lunch','2019-04-18',3,4593),
 (1,'Tomato products, canned, sauce, pumpernickel',59,1,3,13,'Dinner','2019-04-18',3,11549),
-(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2019-04-18',2,18294);
+(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2019-04-18',2,18294),
+(1,'Tomato products, canned, sauce, pumpernickel',59,1,3,13,'Dinner','2019-01-17',3,11549),
+(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2019-01-17',2,18294),
+(1,'Bread, pumpernickel',71,1,2,13,'Breakfast','2019-02-18',3,18044),
+(1,'Fish oil, salmon',123,14,0,0,'Lunch','2019-02-18',3,4593),
+(1,'Tomato products, canned, sauce, pumpernickel',59,1,3,13,'Dinner','2019-01-18',3,11549),
+(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2019-01-18',2,18294),
+(1,'Tomato products, canned, sauce, pumpernickel',59,1,3,13,'Dinner','2018-09-17',3,11549),
+(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2018-09-17',2,18294),
+(1,'Bread, pumpernickel',71,1,2,13,'Breakfast','2018-09-18',3,18044),
+(1,'Fish oil, salmon',123,14,0,0,'Lunch','2018-09-18',3,4593),
+(1,'Tomato products, canned, sauce, pumpernickel',59,1,3,13,'Dinner','2018-09-20',3,11549),
+(1,'Pancakes, blueberry, prepared from recipe',63,3,2,8,'Breakfast','2018-09-20',2,18294),
+(1,'Pancakes, blueberry, prepared from recipe',630,3,2,8,'Breakfast','2019-03-17',2,18294),
+(1,'Bread, pumpernickel',1071,1,2,13,'Breakfast','2019-03-17',3,18044),
+(1,'Fish oil, salmon',1023,14,0,0,'Lunch','2019-03-17',3,4593),
+(1,'Tomato products, canned, sauce, pumpernickel',590,1,3,13,'Dinner','2019-03-17',3,11549),
+(1,'Pancakes, blueberry, prepared from recipe',635,3,2,8,'Breakfast','2019-03-17',2,18294);
 
 COMMIT TRANSACTION;
