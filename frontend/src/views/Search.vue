@@ -160,6 +160,7 @@ export default {
                  this.detailItem.protein = json.report.food.nutrients[2].value * this.detailItem.servingRate;
                  this.detailItem.fat = json.report.food.nutrients[3].value * this.detailItem.servingRate;
                  this.detailItem.carbs = json.report.food.nutrients[4].value * this.detailItem.servingRate;
+                 console.log(this.detailItem)
                  
                 //  this.showSearch = false;
              });
