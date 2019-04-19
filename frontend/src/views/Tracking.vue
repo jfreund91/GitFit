@@ -257,6 +257,7 @@ export default {
         return {
             isAuthenticated: auth.getUser() !== null,
             detailItem: {
+             id: 0,
              ndbno: 0,
              name: "",
              calories: 0,
@@ -347,6 +348,7 @@ export default {
          this.detailItem.carbs = result[0].carbs;
          this.detailItem.servings = result[0].servings;
          this.detailItem.mealType = result[0].mealType;
+         this.detailItem.id = results[0].entryId;
         },
         removeFood(foodId) {
             let user = auth.getUser();
@@ -424,48 +426,35 @@ export default {
         },
 
         editFood(detailItem) {
-            console.log("I get here.");
-            console.log(detailItem)
-            //this.item.servings = this.detailItem.servings;
-            //console.log(this.item.servings)
-            // Change the values that are displayed in the table
-            //this.detailItem.calories = 89;
-            // this.item.servings = this.detailItem.servings;
-            // if (user == null) {
-            // this.profile.eatenToday[0](
-            //     {
-            //         id: this.profile.eatenToday.length + 1,
-            //         name: this.detailItem.name,
-            //         calories: this.detailItem.calories * this.detailItem.servings,
-            //         fat: this.detailItem.fat * this.detailItem.servings,
-            //         carbs: this.detailItem.carbs * this.detailItem.servings, 
-            //         protein: this.detailItem.protein * this.detailItem.servings,
-            //         mealType: this.detailItem.mealType * this.detailItem.servings
-            //     }
-               
-            // ) 
-            // this.$router.push('/tracking');
-            // } else if(user !== null)
-            // {
-            //     fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/addfood`, {
-            //     method: "POST",
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         Authorization: "Bearer " + auth.getToken()
-            //     },
-            //     body: JSON.stringify(this.detailItem)
-            //     }).then(response => {
-            //         if(response.ok) {
-            //             this.$router.push('/tracking');
-            //         }
-            //     })
-            // }
+            let user = auth.getUser();
+            let arr = this.profile.eatenToday;
+            for( let i = 0; i < arr.length; i++) { 
+                    if ( arr[i].name === detailItem.name) {
+                        arr[i].servings = detailItem.servings;
+                        arr[i].mealType = detailItem.mealType;
+                        if(user !== null){
+                            let output = arr[i];
+                            fetch(`${process.env.VUE_APP_REMOTE_API}/tracking/updatefood`, {
+                                method: "PATCH",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    Authorization: "Bearer " + auth.getToken()
+                                },
+                                body: JSON.stringify(output)
+                                }).then(response => {
+                                    if(response.ok) {
+                                        console.log(response)
+                                    }
+                                })
+                        }
 
 
-
-
-        }
-    },
+                    }
+            }
+           
+            this.hide();
+                }
+            },
 
 
     computed: {
