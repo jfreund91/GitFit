@@ -9,9 +9,13 @@
         <div id="tracking-list">
             <h2>{{tracking}}</h2>
             <div id="tracking-graph">
-            <line-chart v-if="(weekly)" :data="chartData"></line-chart>
-            <line-chart v-if="(monthly)" :data="chartData"></line-chart>
-            <line-chart v-if="(yearly)" :data="chartData"></line-chart>
+            <line-chart v-if="(weekly)" 
+                :data="chartData"
+                xtitle="" ytitle="Calories"
+                ></line-chart>
+
+            <line-chart v-if="(monthly)" :data="chartData" ytitle="Calories"></line-chart>
+            <line-chart v-if="(yearly)" :data="chartData" ytitle="Calories"></line-chart>
             <h2>Daily Goal: {{calorieBudget}} Calories</h2>
             <h2 v-if="(weekly)">Daily Average: {{dailyAverage}}</h2>
             <h2 v-if="(monthly)">Daily Average: {{dailyAverage}}</h2>
@@ -83,7 +87,7 @@ export default {
         },
         getYearly() {
             this.secondSeries = [];
-             this.chartData = [];
+            this.chartData = [];
             this.tracking = "This Year";
             this.yearly = true;
             this.weekly = false;
@@ -119,7 +123,7 @@ export default {
                 let day = i + 1;
                 const foo = `Day ${day}`;
                 if(this.results[i] > 0 || day === 1 || day === this.results.length){
-                this.chartData.push( [foo, this.results[i] ])
+                    this.chartData.push( [foo, this.results[i] ])
                 }
             }
         },
