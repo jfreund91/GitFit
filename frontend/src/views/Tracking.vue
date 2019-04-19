@@ -32,20 +32,14 @@
         <!-- <div id="tracking-calories-graph">
                 <h2 id="track-calories-header">Track Calories Comparison - Goal/Actual</h2>
                 <div id="track-cals-line">
-                <line-chart 
-                    :data = "[
-                    {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
-                    {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
-                    xtitle="Date" ytitle="Calories"
-                ></line-chart> -->
-                <!-- Replace data above with object containing:
-                        date: #of calories      for every day in database for actual
-                -->
-                <!-- For goal it will be steady based on (current weight - goal weight) = number of lbs to lose
-                        number of lbs to lose / timeline
-                 -->
-                <!-- </div>
-                </div> -->
+                    <line-chart 
+                        :data = "[
+                        {name: 'Goal', data: {'2017-01-01 00:00:00 -0800': 3, '2017-01-02 00:00:00 -0800': 4, '2017-01-05 00:00:00 -0800': 4}},
+                        {name: 'Actual', data: {'2017-01-01 00:00:00 -0800': 5, '2017-01-02 00:00:00 -0800': 3, '2017-01-05 00:00:00 -0800': 4}}]"
+                        xtitle="Date" ytitle="Calories"
+                    ></line-chart>
+                </div>
+        </div> -->
 
 
         <div class="container bars-container">
