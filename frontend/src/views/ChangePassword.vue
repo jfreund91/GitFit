@@ -92,7 +92,7 @@ export default {
     display: flex;
     height: 100vh;
     flex-direction: column;
-    padding: 2%;
+    padding-left: 35%;
     /* margin: 50px auto;
     text-align: center;
     padding-top: 0px;
@@ -109,4 +109,9 @@ export default {
     /* justify-content: flex-start; */
     justify-content: start;
 }
+
+.change-password-btn {
+    width: 400px;
+}
+
 </style>
