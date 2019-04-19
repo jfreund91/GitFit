@@ -8,7 +8,7 @@
     <div id="box-container" class="container">
         <div class="box">
             <h2>Healthy Choices</h2>
-            <img src="../assets/healthyeating.gif" class=>
+            <img src="../assets/healthyeating.gif">
             <p>Keep track of your calorie intake based on your nurition goals! 
                 You can see the nutritional breakdown in your favorite foods to make healthier choices.</p>
         </div>
