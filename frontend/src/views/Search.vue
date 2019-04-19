@@ -170,11 +170,12 @@ export default {
                 {
                     id: this.profile.eatenToday.length + 1,
                     name: this.detailItem.name,
-                    calories: this.detailItem.calories * this.detailItem.servings,
+                    calories: Math.trunc(this.detailItem.calories * this.detailItem.servings),
                     fat: this.detailItem.fat * this.detailItem.servings,
                     carbs: this.detailItem.carbs * this.detailItem.servings, 
                     protein: this.detailItem.protein * this.detailItem.servings,
-                    mealType: this.detailItem.mealType
+                    mealType: this.detailItem.mealType,
+                    servings: this.detailItem.servings
                     //mealType: this.detailItem.mealType * this.detailItem.servings
                 }
             ) 
