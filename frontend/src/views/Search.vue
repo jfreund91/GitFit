@@ -199,19 +199,19 @@ export default {
                     }
                 });
 
-                // Add to favorites
-                fetch(`${process.env.VUE_APP_REMOTE_API}/favorites`, {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: "Bearer " + auth.getToken()
-                    },
-                    body: JSON.stringify(this.detailItem)
-                    }).then(response => {
-                    if(response.ok) {
-                        this.$router.push('/tracking');
-                    }
-                });
+                // // Add to favorites
+                // fetch(`${process.env.VUE_APP_REMOTE_API}/favorites`, {
+                //     method: "POST",
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         Authorization: "Bearer " + auth.getToken()
+                //     },
+                //     body: JSON.stringify(this.detailItem)
+                //     }).then(response => {
+                //     if(response.ok) {
+                //         this.$router.push('/tracking');
+                //     }
+                // });
 
 
             }
